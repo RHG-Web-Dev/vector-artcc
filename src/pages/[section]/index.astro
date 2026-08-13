@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import {
+  getSections,
+  getSectionInfo,
+  getSectionPages,
+} from "../../data/navigation";
+import { site } from "../../data/site";
+
+export async function getStaticPaths() {
+  const sections = await getSections();
+
+  return sections.map((section) => ({
+    params: {
+      section: section.key,
+    },
+  }));
+}
+
+const sectionKey = Astro.params.section;
+
+const sections = await getSections();
+
+const section = sections.find(
+  (item) => item.key === sectionKey,
+);
+
+if (!section) {
+  throw new Error(`Unknown section: ${sectionKey}`);
+}
+
+const sectionInfo = await getSectionInfo(section.key);
+const pages = await getSectionPages(section.key);
+
+const title = sectionInfo.title;
+const description = sectionInfo.description;
+---
+
+<Layout
+  title={`${site.name} | ${title}`}
+  description={description}
+  section={title}
+>
+  <section class="space-y-8">
+    <SectionHeader
+      eyebrow={title}
+      title={`${title} Reference`}
+      description={description}
+    />
+
+    {pages.length > 0 ? (
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {pages.map((page) => (
+          <Card href={page.href} interactive>
+            <div class="space-y-3">
+              {page.category && (
+                <p class="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500">
+                  {page.category}
+                </p>
+              )}
+
+              <h2 class="font-display text-xl font-semibold text-white">
+                {page.label}
+              </h2>
+
+              <p class="text-sm leading-6 text-slate-300">
+                {page.description}
+              </p>
+
+              <p class="text-sm text-sky-200">
+                Open reference →
+              </p>
+            </div>
+          </Card>
+        ))}
+      </div>
+    ) : (
+      <div class="border border-[var(--control-line)] bg-[var(--control-panel)] p-6">
+        <p class="text-sm text-slate-400">
+          No reference material has been published in this section yet.
+        </p>
+      </div>
+    )}
+  </section>
+</Layout>
