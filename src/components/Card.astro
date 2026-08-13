@@ -1,8 +1,8 @@
 ---
 interface Props {
-	href?: string;
-	class?: string;
-	interactive?: boolean;
+  href?: string;
+  class?: string;
+  interactive?: boolean;
 }
 
 const { href, class: className = '', interactive = false } = Astro.props;
@@ -10,8 +10,8 @@ const Tag = href ? 'a' : 'article';
 ---
 
 <Tag
-	href={href}
-	class={`group block rounded-xl surface p-4 transition ${interactive || href ? 'hover:border-sky-400/30 hover:bg-white/[0.04]' : ''} ${className}`}
+  href={href}
+  class={`group block surface p-5 ${interactive || href ? 'transition hover:border-[#2a638c] hover:bg-[var(--control-panel-alt)]' : ''} ${className}`}
 >
-	<slot />
+  <slot />
 </Tag>
