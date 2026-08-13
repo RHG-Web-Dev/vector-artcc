@@ -1,6 +1,6 @@
 ---
-import { site } from "../data/site";
 import SidebarNav from "./SidebarNav.astro";
+import { site } from "../data/site";
 
 interface Props {
   section?: string;
@@ -22,11 +22,20 @@ const { section = "Dashboard" } = Astro.props;
       </div>
     </a>
 
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-5">
+      <div class="hidden items-center gap-2 border-r border-[var(--control-line)] pr-5 sm:flex" aria-live="polite">
+        <span class="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+        <div class="text-right leading-tight">
+          <p class="text-[0.58rem] uppercase tracking-[0.2em] text-[var(--control-muted)]">Online Controllers</p>
+          <p id="online-controller-count" class="font-mono text-sm font-semibold text-white">—</p>
+        </div>
+      </div>
+
       <div class="hidden text-right md:block">
         <p class="text-[0.62rem] uppercase tracking-[0.25em] text-[var(--control-muted)]">Current Section</p>
         <p class="mt-0.5 text-sm font-medium text-white">{section}</p>
       </div>
+
       <button
         id="mobile-menu-button"
         class="inline-flex items-center border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white hover:bg-[var(--control-panel-strong)] lg:hidden"
@@ -47,9 +56,35 @@ const { section = "Dashboard" } = Astro.props;
 <script>
   const btn = document.getElementById("mobile-menu-button");
   const menu = document.getElementById("mobile-menu");
+  const controllerCount = document.getElementById("online-controller-count");
+  const controllerApi = "https://api.vatsim.net/v2/atc/online";
+  const refreshInterval = 60_000;
 
   btn?.addEventListener("click", () => {
     const isHidden = menu?.classList.toggle("hidden");
     btn.setAttribute("aria-expanded", String(!isHidden));
   });
+
+  async function updateOnlineControllers() {
+    if (!controllerCount) return;
+
+    try {
+      const response = await fetch(controllerApi, {
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) throw new Error(`VATSIM API returned ${response.status}`);
+
+      const data = await response.json();
+      const controllers = Array.isArray(data) ? data : data.data;
+      controllerCount.textContent = Array.isArray(controllers)
+        ? controllers.length.toLocaleString()
+        : "—";
+    } catch {
+      controllerCount.textContent = "—";
+    }
+  }
+
+  updateOnlineControllers();
+  setInterval(updateOnlineControllers, refreshInterval);
 </script>
