@@ -54,23 +54,25 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     <div class="min-h-screen bg-[var(--control-navy-deep)]">
       <Header section={section} />
 
-      <aside class="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-[var(--control-line)] bg-[var(--control-navy)] lg:block">
-        <div class="flex h-full flex-col px-4 py-6">
-          <div class="mb-6 border-b border-[var(--control-line)] pb-5">
-            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--control-blue-bright)]">ZME / KMEM</p>
-            <h1 class="mt-2 font-display text-2xl font-bold text-white">CONTROL</h1>
-            <p class="mt-1 text-sm text-[var(--control-muted)]">Memphis ARTCC Controller Companion</p>
+      <div class="flex min-h-[calc(100vh-4.5rem)]">
+        <aside class="hidden w-64 shrink-0 border-r border-[var(--control-line)] bg-[var(--control-navy)] lg:block">
+          <div class="sticky top-0 flex h-[calc(100vh-4.5rem)] flex-col px-4 py-6">
+            <div class="mb-6 border-b border-[var(--control-line)] pb-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--control-blue-bright)]">ZME / KMEM</p>
+              <h1 class="mt-2 font-display text-2xl font-bold text-white">CONTROL</h1>
+              <p class="mt-1 text-sm text-[var(--control-muted)]">Memphis ARTCC Controller Companion</p>
+            </div>
+            <div class="min-h-0 flex-1 overflow-y-auto pr-1">
+              <SidebarNav currentPath={Astro.url.pathname} />
+            </div>
           </div>
-          <div class="min-h-0 flex-1 overflow-y-auto pr-1">
-            <SidebarNav currentPath={Astro.url.pathname} />
-          </div>
-        </div>
-      </aside>
+        </aside>
 
-      <div class="lg:pl-64">
-        <main class="mx-auto min-h-[calc(100vh-4.5rem)] max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-          <slot />
-          <Footer />
+        <main class="min-w-0 flex-1">
+          <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+            <slot />
+            <Footer />
+          </div>
         </main>
       </div>
     </div>
