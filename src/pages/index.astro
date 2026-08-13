@@ -2,68 +2,70 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import SectionHeader from "../components/SectionHeader.astro";
-import { getCollection } from "astro:content";
+import {
+  getSections,
+  getSectionPages,
+} from "../data/navigation";
+import { site } from "../data/site";
 
-const sections = [
-  {
-    key: "learn",
-    title: "Learn",
-    description: "Core aviation and controller knowledge.",
-  },
-  {
-    key: "reference",
-    title: "Reference",
-    description: "Fast-reference material for controlling.",
-  },
-  {
-    key: "kmem",
-    title: "KMEM",
-    description: "Facility-specific information and procedures.",
-  },
-  {
-    key: "training",
-    title: "Training",
-    description: "Training material, sessions, and scenarios.",
-  },
-  {
-    key: "resources",
-    title: "Resources",
-    description: "External references and supporting material.",
-  },
-] as const;
+const sections = await getSections();
 
 const sectionData = await Promise.all(
   sections.map(async (section) => {
-    const entries = await getCollection(section.key);
+    const pages = await getSectionPages(section.key);
 
     return {
       ...section,
-      entries: entries
-        .sort((a, b) => a.data.title.localeCompare(b.data.title))
-        .slice(0, 3),
+      pages,
     };
   }),
 );
+
+const recentlyUpdated = sectionData
+  .flatMap((section) =>
+    section.pages.map((page) => ({
+      ...page,
+      sectionTitle: section.title,
+    })),
+  )
+  .filter((page) => page.updated)
+  .sort((a, b) => {
+    const dateA = new Date(a.updated!).getTime();
+    const dateB = new Date(b.updated!).getTime();
+
+    return dateB - dateA;
+  })
+  .slice(0, 8);
 ---
 
 <Layout
-  title="CONTROL | ARTCC Controller Companion"
-  description="A practical reference, training, and toolkit platform for VATSIM controllers."
+  title={`${site.name} | ARTCC Controller Companion`}
+  description="A practical reference, training, and toolkit platform for controllers."
 >
   <section class="space-y-8">
-    <header class="border-b border-[var(--control-line)] pb-7">
-      <p class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[var(--control-blue-bright)]">
+
+    <!-- Hero -->
+
+    <header class="border-b border-(--control-line) pb-7">
+      <p
+        class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-(--control-blue-bright)"
+      >
         ARTCC CONTROLLER COMPANION
       </p>
 
-      <h1 class="mt-3 font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-        CONTROL
+      <h1
+        class="mt-3 font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+      >
+        {site.name}
       </h1>
 
       <p class="mt-3 max-w-2xl text-base leading-7 text-slate-300">
         A practical reference, training, and toolkit platform for controllers.
       </p>
     </header>
+
+
+    <!-- Sections -->
 
     <section>
       <SectionHeader
@@ -74,65 +76,115 @@ const sectionData = await Promise.all(
 
       <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {sectionData.map((section) => (
-          <Card href={`/${section.key}`} interactive>
+          <Card
+            href={`/${section.key}`}
+            interactive
+          >
             <div class="space-y-2">
+
               <h2 class="font-display text-lg font-semibold text-white">
                 {section.title}
               </h2>
 
-              <p class="text-sm leading-6 text-slate-400">
-                {section.description}
-              </p>
+              {section.description && (
+                <p class="text-sm leading-6 text-slate-400">
+                  {section.description}
+                </p>
+              )}
 
               <p class="font-mono text-xs text-slate-500">
-                {section.entries.length} reference{section.entries.length === 1 ? "" : "s"}
+                {section.pages.length}{" "}
+                reference{section.pages.length === 1 ? "" : "s"}
               </p>
+
             </div>
           </Card>
         ))}
       </div>
     </section>
 
+
+    <!-- Recently Updated -->
+
     <section>
       <SectionHeader
-        eyebrow="Latest"
-        title="Reference material"
-        description="Recently available material across CONTROL."
+        eyebrow="Updates"
+        title="Recently updated"
+        description="The latest changes and additions to the reference library."
       />
 
-      <div class="mt-5 divide-y divide-[var(--control-line)] border-y border-[var(--control-line)]">
-        {
-          sectionData
-            .flatMap((section) =>
-              section.entries.map((entry) => ({
-                ...entry,
-                section: section.title,
-                sectionKey: section.key,
-              })),
-            )
-            .slice(0, 8)
-            .map((entry) => (
-              <a
-                href={`/${entry.sectionKey}/${entry.id}`}
-                class="flex flex-col gap-1 px-4 py-4 transition hover:bg-[var(--control-panel)] sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div>
-                  <p class="text-sm font-medium text-white">
-                    {entry.data.title}
-                  </p>
+      <div
+        class="mt-5 divide-y divide-(--control-line) border-y border-(--control-line)"
+      >
+        {recentlyUpdated.length > 0 ? (
+          recentlyUpdated.map((page) => (
+            <a
+              href={page.href}
+              class="flex flex-col gap-2 px-4 py-4 transition hover:bg-(--control-panel) sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div class="min-w-0">
 
+                <p class="text-sm font-medium text-white">
+                  {page.label}
+                </p>
+
+                {page.description && (
                   <p class="mt-1 text-sm text-slate-400">
-                    {entry.data.description}
+                    {page.description}
                   </p>
-                </div>
+                )}
 
-                <span class="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[var(--control-muted)]">
-                  {entry.section}
+              </div>
+
+              <div class="flex shrink-0 items-center gap-4">
+
+                <span
+                  class="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-(--control-muted)"
+                >
+                  {page.sectionTitle}
                 </span>
-              </a>
-            ))
-        }
+
+                {page.updated && (
+                  <time
+                    datetime={page.updated}
+                    class="font-mono text-xs text-slate-500"
+                  >
+                    {new Date(page.updated).toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      },
+                    )}
+                  </time>
+                )}
+
+              </div>
+            </a>
+          ))
+        ) : (
+          <div class="px-4 py-8">
+            <p class="text-sm text-slate-500">
+              No recently updated material is available.
+            </p>
+          </div>
+        )}
       </div>
     </section>
+
+
+    <!-- Empty state if no sections exist -->
+
+    {sectionData.length === 0 && (
+      <section>
+        <div class="border border-(--control-line) bg-(--control-panel) p-6">
+          <p class="text-sm text-slate-400">
+            No reference sections have been published yet.
+          </p>
+        </div>
+      </section>
+    )}
+
   </section>
 </Layout>

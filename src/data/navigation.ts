@@ -1,17 +1,7 @@
 import { getCollection } from 'astro:content';
 
-const collections = [
-	'learn',
-	'reference',
-	'kmem',
-	'training',
-	'resources',
-] as const;
-
-export type SectionName = (typeof collections)[number];
-
 export interface Section {
-	key: SectionName;
+	key: string;
 	title: string;
 	description: string;
 	order: number;
@@ -20,109 +10,165 @@ export interface Section {
 
 export interface SectionPage {
 	id: string;
+	section: string;
 	slug: string;
 	label: string;
 	description: string;
 	href: string;
 	category?: string;
-	updated?: Date;
+	updated?: string;
 	featured: boolean;
 	order: number;
 	hidden: boolean;
 }
 
-/**
- * Converts a collection name into a readable section title.
+/*
+ * Get the section/category from a content entry.
  *
- * This is only a fallback/default.
- * Individual content pages can still provide their own content.
+ * Example:
+ *
+ * learn/airspace.md
+ *       ^
+ *       section = learn
  */
-function formatSectionTitle(section: SectionName): string {
-	return section
-		.replace(/-/g, ' ')
-		.replace(/\b\w/g, (character) => character.toUpperCase());
+function getSectionFromId(id: string): string {
+	return id.split('/')[0];
 }
 
-/**
- * Gets all sections.
+/*
+ * Get the filename from a content entry.
  *
- * Sections are derived from the Astro collections.
+ * Example:
+ *
+ * learn/airspace.md
+ *       ^^^^^^^^^^^
+ */
+function getFilename(id: string): string {
+	return id.split('/').pop() ?? '';
+}
+
+/*
+ * Convert a content filename into a URL slug.
+ *
+ * airspace.md -> airspace
+ * craft.mdx   -> craft
+ */
+function getSlugFromId(id: string): string {
+	return getFilename(id).replace(/\.(md|mdx)$/, '');
+}
+
+/*
+ * Metadata files begin with "_".
+ *
+ * Currently:
+ *
+ * _section.md
+ *
+ * is used to define section information.
+ *
+ * Metadata files should NEVER become public pages.
+ */
+function isMetadataEntry(id: string): boolean {
+	return getFilename(id).startsWith('_');
+}
+
+/*
+ * Get all sections dynamically.
+ *
+ * Sections are discovered from:
+ *
+ * src/content/<section>/_section.md
  */
 export async function getSections(): Promise<Section[]> {
-	const sections = await Promise.all(
-		collections.map(async (key) => {
-			const pages = await getCollection(key);
-
-			const visiblePages = pages.filter((page) => !page.data.hidden);
-
-			const firstPage = visiblePages[0];
-
-			return {
-				key,
-
-				title: formatSectionTitle(key),
-
-				description: `${formatSectionTitle(key)} reference material.`,
-
-				order: firstPage?.data.order ?? 999,
-
-				hidden: false,
-			};
-		}),
-	);
-
-	return sections.sort((a, b) => {
-		return a.order - b.order;
-	});
-}
-
-/**
- * Gets information about one section.
- */
-export async function getSectionInfo(
-	section: SectionName,
-): Promise<Omit<Section, 'key'>> {
-	const pages = await getCollection(section);
-
-	const visiblePages = pages.filter((page) => !page.data.hidden);
-
-	const firstPage = visiblePages[0];
-
-	return {
-		title: formatSectionTitle(section),
-
-		description: `${formatSectionTitle(section)} reference material.`,
-
-		order: firstPage?.data.order ?? 999,
-
-		hidden: false,
-	};
-}
-
-/**
- * Gets all visible pages in a section.
- */
-export async function getSectionPages(
-	section: SectionName,
-): Promise<SectionPage[]> {
-	const entries = await getCollection(section);
+	const entries = await getCollection('content');
 
 	return entries
-		.filter((entry) => !entry.data.hidden)
-		.sort((a, b) => {
-			const orderDifference = (a.data.order ?? 999) - (b.data.order ?? 999);
+		.filter((entry) => isMetadataEntry(entry.id))
+		.map((entry) => ({
+			key: getSectionFromId(entry.id),
 
-			if (orderDifference !== 0) {
-				return orderDifference;
+			title: entry.data.title,
+
+			description: entry.data.description ?? '',
+
+			order: entry.data.order ?? 999,
+
+			hidden: entry.data.hidden ?? false,
+		}))
+		.filter((section) => !section.hidden)
+		.sort((a, b) => {
+			return a.order - b.order;
+		});
+}
+
+/*
+ * Get information for one section.
+ */
+export async function getSectionInfo(
+	section: string,
+): Promise<Section | undefined> {
+	const sections = await getSections();
+
+	return sections.find((item) => item.key === section);
+}
+
+/*
+ * Get all pages belonging to a section.
+ *
+ * Sorting priority:
+ *
+ * 1. Featured pages
+ * 2. Page order
+ * 3. Alphabetical title
+ */
+export async function getSectionPages(section: string): Promise<SectionPage[]> {
+	const entries = await getCollection('content');
+
+	return entries
+		.filter((entry) => {
+			return (
+				getSectionFromId(entry.id) === section &&
+				!isMetadataEntry(entry.id) &&
+				!entry.data.hidden
+			);
+		})
+		.sort((a, b) => {
+			/*
+			 * Featured first.
+			 */
+			const featuredA = a.data.featured ? 1 : 0;
+
+			const featuredB = b.data.featured ? 1 : 0;
+
+			if (featuredA !== featuredB) {
+				return featuredB - featuredA;
 			}
 
+			/*
+			 * Then respect order.
+			 *
+			 * Missing order values become 999.
+			 */
+			const orderA = a.data.order ?? 999;
+
+			const orderB = b.data.order ?? 999;
+
+			if (orderA !== orderB) {
+				return orderA - orderB;
+			}
+
+			/*
+			 * Finally, alphabetical order.
+			 */
 			return a.data.title.localeCompare(b.data.title);
 		})
 		.map((entry) => {
-			const slug = entry.id.replace(/\.(md|mdx)$/, '');
+			const slug = getSlugFromId(entry.id);
 
 			return {
 				id: entry.id,
+
+				section,
 
 				slug,
 
@@ -131,6 +177,8 @@ export async function getSectionPages(
 				description: entry.data.description ?? '',
 
 				href: `/${section}/${slug}`,
+
+				category: entry.data.category,
 
 				updated: entry.data.updated,
 
@@ -143,25 +191,45 @@ export async function getSectionPages(
 		});
 }
 
-/**
- * Gets every visible page across every section.
+/*
+ * Get every public content page.
+ *
+ * Metadata entries and hidden pages are excluded.
  */
 export async function getAllPages(): Promise<SectionPage[]> {
-	const sectionPages = await Promise.all(
-		collections.map((section) => getSectionPages(section)),
-	);
+	const entries = await getCollection('content');
 
-	return sectionPages.flat();
-}
+	return entries
+		.filter((entry) => {
+			return !isMetadataEntry(entry.id) && !entry.data.hidden;
+		})
+		.map((entry) => {
+			const section = getSectionFromId(entry.id);
 
-/**
- * Finds a specific page.
- */
-export async function getPage(
-	section: SectionName,
-	slug: string,
-): Promise<SectionPage | undefined> {
-	const pages = await getSectionPages(section);
+			const slug = getSlugFromId(entry.id);
 
-	return pages.find((page) => page.slug === slug);
+			return {
+				id: entry.id,
+
+				section,
+
+				slug,
+
+				label: entry.data.title,
+
+				description: entry.data.description ?? '',
+
+				href: `/${section}/${slug}`,
+
+				category: entry.data.category,
+
+				updated: entry.data.updated,
+
+				featured: entry.data.featured ?? false,
+
+				order: entry.data.order ?? 999,
+
+				hidden: entry.data.hidden ?? false,
+			};
+		});
 }

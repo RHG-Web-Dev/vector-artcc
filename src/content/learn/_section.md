@@ -1,6 +1,6 @@
 ---
 order: 1
-title: Learn
-description: Core aviation and controller knowledge.
+title: Learning
+description: Learning material, sessions, and scenarios for new and experienced controllers.
 hidden: false
 ---

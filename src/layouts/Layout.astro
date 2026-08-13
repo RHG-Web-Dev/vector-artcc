@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import { site } from "../data/site";
 import Header from "../components/Header.astro";
@@ -44,14 +45,15 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&display=swap" rel="stylesheet" />
-  </head>
+  <ClientRouter />
+	</head>
 
   <body class="min-h-screen antialiased">
-    <div class="min-h-screen bg-[var(--control-navy-deep)]">
+    <div class="min-h-screen bg-(--control-navy-deep)">
       <Header section={section} />
 
       <div class="flex min-h-[calc(100vh-4.5rem)]">
-        <aside class="hidden w-64 shrink-0 border-r border-[var(--control-line)] bg-[var(--control-navy)] lg:block">
+        <aside class="hidden w-64 shrink-0 border-r border-(--control-line) bg-(--control-navy) lg:block">
           <div class="sticky top-0 flex h-screen flex-col px-4 py-6">
             <div class="min-h-0 flex-1 overflow-y-auto pr-1">
               <SidebarNav currentPath={Astro.url.pathname} />

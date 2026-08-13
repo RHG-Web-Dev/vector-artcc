@@ -9,29 +9,29 @@ interface Props {
 const { section = "Dashboard" } = Astro.props;
 ---
 
-<header class="border-b border-[var(--control-line)] bg-[var(--control-navy)]">
+<header class="border-b border-(--control-line) bg-(--control-navy)">
   <div class="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
     <a href="/" class="flex min-w-0 items-center gap-4">
-      <div class="hidden h-9 w-1 bg-[var(--control-blue-bright)] sm:block"></div>
+      <div class="hidden h-9 w-1 bg-(--control-blue-bright) sm:block"></div>
       <div class="min-w-0">
         <div class="mt-0.5 flex items-baseline gap-3">
 					<img src="/img/favicon.svg" alt=`{site.name} mark` class="h-6 w-6 shrink-0" />
           <span class="font-display text-xl font-bold tracking-wide text-white">{site.name}</span>
-          <span class="hidden truncate text-xs uppercase tracking-[0.18em] text-[var(--control-muted)] sm:inline">Controller Companion</span>
+          <span class="hidden truncate text-xs uppercase tracking-[0.18em] text-(--control-muted) sm:inline">Controller Companion</span>
         </div>
       </div>
     </a>
 
     <div class="flex items-center gap-5">
 
-      <div class="hidden text-right md:block">
-        <p class="text-[0.62rem] uppercase tracking-[0.25em] text-[var(--control-muted)]">Current Section</p>
+      <!-- <div class="hidden text-right md:block">
+        <p class="text-[0.62rem] uppercase tracking-[0.25em] text-(--control-muted)">Current Section</p>
         <p class="mt-0.5 text-sm font-medium text-white">{section}</p>
-      </div>
+      </div> -->
 
       <button
         id="mobile-menu-button"
-        class="inline-flex items-center border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white hover:bg-[var(--control-panel-strong)] lg:hidden"
+        class="inline-flex items-center border border-(--control-line-strong)] bg-(--control-navy-deep)] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white hover:bg-(--control-panel-strong)] lg:hidden"
         aria-controls="mobile-menu"
         aria-expanded="false"
         type="button"
@@ -41,7 +41,7 @@ const { section = "Dashboard" } = Astro.props;
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden border-t border-[var(--control-line)] bg-[var(--control-navy-deep)] px-4 py-4 sm:px-6 lg:hidden">
+  <div id="mobile-menu" class="hidden border-t border-(--control-line) bg-(--control-navy-deep) px-4 py-4 sm:px-6 lg:hidden">
     <SidebarNav currentPath={Astro.url.pathname} mobile />
   </div>
 </header>

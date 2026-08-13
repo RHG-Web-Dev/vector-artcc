@@ -2,12 +2,12 @@
 import { site } from "../data/site";
 ---
 
-<footer class="mt-10 border-t border-[var(--control-line)] pt-5 text-xs text-[var(--control-muted)]">
+<footer class="mt-10 border-t border-(--control-line) pt-5 text-xs text-(--control-muted)">
   <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
     <div>
       <p>{site.footer.text} © {new Date().getFullYear()}</p>
-      <p id="zulu-time" class="mt-1 font-mono text-[0.7rem] tracking-wide text-[var(--control-muted)]">
-        Zulu Time: LOAD
+      <p id="zulu-time" class="mt-1 font-mono text-[0.7rem] tracking-wide text-(--control-muted)">
+        
       </p>
     </div>
 
