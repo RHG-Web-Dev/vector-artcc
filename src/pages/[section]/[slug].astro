@@ -10,30 +10,39 @@ const collections = ["learn", "reference", "kmem", "training", "resources"] as c
 
 export async function getStaticPaths() {
   const paths = [];
+  const seen = new Set<string>();
+
+  const addPath = (params: { section: string; slug: string }, props: Record<string, unknown>) => {
+    const key = `${params.section}/${params.slug}`;
+
+    if (seen.has(key)) {
+      return;
+    }
+
+    seen.add(key);
+    paths.push({ params, props });
+  };
 
   for (const collection of collections) {
     const entries = await getCollection(collection);
     const page = sectionPages[collection];
 
     for (const entry of entries) {
-      paths.push({
-        params: { section: collection, slug: entry.slug },
-        props: { entry },
-      });
+      addPath({ section: collection, slug: entry.slug }, { entry });
     }
 
     for (const item of page.items) {
       const slug = item.href.split('/').pop() ?? item.href;
       const entry = entries.find((candidate) => candidate.slug === slug) ?? null;
 
-      paths.push({
-        params: { section: collection, slug },
-        props: {
+      addPath(
+        { section: collection, slug },
+        {
           entry,
           placeholderTitle: item.label,
           placeholderDescription: `Placeholder ${collection} page for ${item.label}.`,
         },
-      });
+      );
     }
   }
 
