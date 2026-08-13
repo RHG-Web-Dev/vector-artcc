@@ -6,10 +6,9 @@ import SectionHeader from "../../components/SectionHeader.astro";
 import { getCollection } from "astro:content";
 import { sectionPages } from "../../data/navigation";
 
-const collections = ["learn", "reference", "kmem", "training", "resources"] as const;
-
 export async function getStaticPaths() {
-  const paths = [];
+  const collections = ["learn", "reference", "kmem", "training", "resources"] as const;
+  const paths: Array<{ params: { section: string; slug: string }; props: Record<string, unknown> }> = [];
   const seen = new Set<string>();
 
   const addPath = (params: { section: string; slug: string }, props: Record<string, unknown>) => {
@@ -32,7 +31,7 @@ export async function getStaticPaths() {
     }
 
     for (const item of page.items) {
-      const slug = item.href.split('/').pop() ?? item.href;
+      const slug = item.href.split("/").pop() ?? item.href;
       const entry = entries.find((candidate) => candidate.slug === slug) ?? null;
 
       addPath(
@@ -67,8 +66,8 @@ const renderable = entry ? await entry.render() : null;
           {entry?.data.featured ? <Badge tone="amber">Featured</Badge> : <Badge tone="slate">Reference</Badge>}
         </div>
         <div class="space-y-3">
-          <h1 class="font-display text-3xl font-semibold text-white sm:text-4xl">{entry?.data.title ?? placeholderTitle ?? slug.replaceAll('-', ' ')}</h1>
-          <p class="max-w-3xl text-base leading-7 text-slate-300">{entry?.data.description ?? placeholderDescription ?? 'Placeholder content scaffold. Add source-backed material here when the section is ready.'}</p>
+          <h1 class="font-display text-3xl font-semibold text-white sm:text-4xl">{entry?.data.title ?? placeholderTitle ?? slug.replaceAll("-", " ")}</h1>
+          <p class="max-w-3xl text-base leading-7 text-slate-300">{entry?.data.description ?? placeholderDescription ?? "Placeholder content scaffold. Add source-backed material here when the section is ready."}</p>
         </div>
       </div>
     </Card>
