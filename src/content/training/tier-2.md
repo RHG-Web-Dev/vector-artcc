@@ -2,7 +2,7 @@
 title: MEM Tier 2
 description: Training placeholder for Memphis facility progression.
 category: training
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: true
 ---
 

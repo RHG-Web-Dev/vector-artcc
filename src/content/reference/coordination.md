@@ -2,7 +2,7 @@
 title: Coordination
 description: Placeholder coordination notes.
 category: reference
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: false
 ---
 

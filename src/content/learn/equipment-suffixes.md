@@ -2,7 +2,7 @@
 title: Equipment Suffixes
 description: Placeholder note for aircraft equipment suffix and capability references.
 category: learn
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: false
 ---
 

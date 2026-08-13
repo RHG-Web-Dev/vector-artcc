@@ -2,7 +2,7 @@
 title: Amendments
 description: Placeholder amendments quick reference.
 category: reference
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: false
 ---
 

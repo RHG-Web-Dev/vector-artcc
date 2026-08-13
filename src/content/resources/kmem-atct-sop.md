@@ -2,7 +2,7 @@
 title: KMEM ATCT SOP
 description: Source document slot for Memphis tower procedures.
 category: resources
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: false
 ---
 

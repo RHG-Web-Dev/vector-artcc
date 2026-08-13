@@ -2,7 +2,7 @@
 title: KMEM Frequencies
 description: Placeholder frequency references for KMEM.
 category: kmem
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: false
 ---
 

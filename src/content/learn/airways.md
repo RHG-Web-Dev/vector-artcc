@@ -2,7 +2,7 @@
 title: Airways
 description: Quick airway classification notes for the CONTROL library.
 category: learn
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: false
 ---
 

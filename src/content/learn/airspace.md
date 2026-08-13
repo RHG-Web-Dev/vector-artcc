@@ -2,7 +2,7 @@
 title: Airspace
 description: Starter airspace notes for CONTROL.
 category: learn
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: true
 ---
 

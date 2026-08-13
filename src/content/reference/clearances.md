@@ -2,7 +2,7 @@
 title: IFR Clearances
 description: Placeholder material for issuing and reading IFR clearances.
 category: reference
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: false
 ---
 

@@ -2,7 +2,7 @@
 title: Navigation
 description: Placeholder navigation concepts for controller learning.
 category: learn
-updated: 2026-08-12
+updated: '2026-08-12'
 featured: false
 ---
 
