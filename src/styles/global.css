@@ -2,23 +2,20 @@
 
 :root {
   color-scheme: dark;
-  --control-navy: #061a2d;
+  --control-navy: #071b2d;
   --control-navy-deep: #041321;
-  --control-blue: #1677b8;
-  --control-blue-bright: #2d9de0;
-  --control-panel: #0a2135;
-  --control-panel-alt: #0d2941;
-  --control-line: #1b405d;
-  --control-line-strong: #2a638c;
-  --control-text: #edf5fb;
-  --control-muted: #9bb0c1;
-  --control-warm: #d9e6ef;
+  --control-blue: #176fa8;
+  --control-blue-bright: #3aa4df;
+  --control-panel: #0a2237;
+  --control-panel-alt: #0e2b44;
+  --control-line: #1c415c;
+  --control-line-strong: #2b6387;
+  --control-text: #edf4f8;
+  --control-muted: #91a7b8;
+  --control-warm: #dce7ee;
 }
 
-html {
-  scroll-behavior: smooth;
-  background: var(--control-navy-deep);
-}
+html { background: var(--control-navy-deep); }
 
 body {
   min-height: 100vh;
@@ -28,43 +25,29 @@ body {
   color: var(--control-text);
 }
 
-h1,
-h2,
-h3,
-h4,
-.font-display {
+h1, h2, h3, h4, .font-display {
   font-family: 'IBM Plex Sans Condensed', sans-serif;
-  letter-spacing: 0.015em;
+  letter-spacing: 0;
 }
 
-a {
-  text-underline-offset: 0.2em;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
+a { text-underline-offset: 0.2em; }
+button, input, textarea, select { font: inherit; }
 
 .surface {
   background: var(--control-panel);
   border: 1px solid var(--control-line);
-  border-radius: 0.25rem;
+  border-radius: 2px;
 }
 
 .surface-strong {
   background: var(--control-panel-alt);
   border: 1px solid var(--control-line-strong);
-  border-radius: 0.25rem;
+  border-radius: 2px;
 }
 
-.text-muted {
-  color: var(--control-muted);
-}
+.text-muted { color: var(--control-muted); }
 
 ::selection {
-  background: rgba(45, 157, 224, 0.3);
-  color: #ffffff;
+  background: rgba(58, 164, 223, 0.28);
+  color: #fff;
 }
