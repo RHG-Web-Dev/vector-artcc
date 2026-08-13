@@ -2,15 +2,15 @@
 
 :root {
 	color-scheme: dark;
-	--control-bg: #07111d;
-	--control-panel: rgba(11, 19, 33, 0.84);
-	--control-panel-strong: rgba(15, 24, 40, 0.96);
-	--control-line: rgba(148, 163, 184, 0.16);
-	--control-line-strong: rgba(96, 165, 250, 0.28);
+	--control-bg: #07111c;
+	--control-panel: rgba(10, 17, 30, 0.92);
+	--control-panel-strong: rgba(13, 22, 38, 0.98);
+	--control-line: rgba(148, 163, 184, 0.14);
+	--control-line-strong: rgba(96, 165, 250, 0.26);
 	--control-text: #e5eefc;
-	--control-muted: #8ba0bb;
-	--control-accent: #4ea1ff;
-	--control-accent-soft: rgba(78, 161, 255, 0.12);
+	--control-muted: #90a2b9;
+	--control-accent: #58a7ff;
+	--control-accent-soft: rgba(88, 167, 255, 0.1);
 	--control-warm: #d8e1ef;
 }
 
@@ -22,18 +22,15 @@ html {
 body {
 	min-height: 100vh;
 	font-family: 'IBM Plex Sans', sans-serif;
-	background:
-		radial-gradient(
-			circle at top left,
-			rgba(78, 161, 255, 0.16),
-			transparent 30%
-		),
-		radial-gradient(
-			circle at 85% 10%,
-			rgba(37, 99, 235, 0.12),
-			transparent 28%
-		),
-		linear-gradient(180deg, #08111d 0%, #050b13 100%);
+	background-color: var(--control-bg);
+	background-image:
+		linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+		linear-gradient(180deg, rgba(10, 17, 28, 0.96), rgba(5, 10, 18, 1));
+	background-size:
+		48px 48px,
+		48px 48px,
+		100% 100%;
 	color: var(--control-text);
 }
 
@@ -48,6 +45,29 @@ h4,
 
 a {
 	text-underline-offset: 0.2em;
+}
+
+button,
+input,
+textarea,
+select {
+	font: inherit;
+}
+
+.surface {
+	background: var(--control-panel);
+	border: 1px solid var(--control-line);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+}
+
+.surface-strong {
+	background: var(--control-panel-strong);
+	border: 1px solid var(--control-line-strong);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+}
+
+.text-muted {
+	color: var(--control-muted);
 }
 
 ::selection {

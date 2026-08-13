@@ -22,12 +22,13 @@ const { section = "Dashboard" } = Astro.props;
     </div>
 
     <div class="flex items-center gap-2">
-      <span class="hidden rounded-full border border-white/8 bg-white/5 px-3 py-2 text-xs text-slate-300 lg:inline-flex">
-        Your reference for Memphis controlling.
-      </span>
+      <label class="hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-slate-300 lg:flex" for="site-search">
+        <span class="uppercase tracking-[0.24em] text-slate-500">Search</span>
+        <input id="site-search" type="search" placeholder="CTRL+K later" class="w-36 bg-transparent text-slate-100 placeholder:text-slate-500 focus:outline-none" />
+      </label>
       <button
         id="mobile-menu-button"
-        class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-slate-100 transition hover:border-sky-400/30 hover:bg-white/8 xl:hidden"
+        class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-slate-100 transition hover:border-sky-400/30 hover:bg-white/[0.06] xl:hidden"
         aria-controls="mobile-menu"
         aria-expanded="false"
         type="button"

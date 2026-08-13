@@ -12,17 +12,17 @@ interface Props {
 const { eyebrow, title, description, actionLabel, actionHref } = Astro.props;
 ---
 
-<div class="flex flex-col gap-4 border-b border-white/8 pb-5 sm:flex-row sm:items-end sm:justify-between">
+<div class="flex flex-col gap-3 border-b border-white/8 pb-4 sm:flex-row sm:items-end sm:justify-between">
 	<div class="max-w-3xl space-y-3">
 		{eyebrow && <Badge tone="blue">{eyebrow}</Badge>}
 		<div class="space-y-2">
-			<h2 class="font-display text-2xl font-semibold text-white sm:text-3xl">{title}</h2>
+			<h2 class="font-display text-[1.5rem] font-semibold text-white sm:text-[1.75rem]">{title}</h2>
 			{description && <p class="max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">{description}</p>}
 		</div>
 	</div>
 
 	{actionLabel && actionHref && (
-		<a href={actionHref} class="inline-flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-100 transition hover:border-sky-400/30 hover:bg-white/8">
+		<a href={actionHref} class="inline-flex items-center rounded-lg border border-white/10 bg-white/5 px-3.5 py-2 text-sm font-medium text-slate-100 transition hover:border-sky-400/30 hover:bg-white/[0.06]">
 			{actionLabel}
 		</a>
 	)}
