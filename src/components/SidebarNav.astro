@@ -10,18 +10,15 @@ const { currentPath, mobile = false } = Astro.props;
 const isActive = (href: string) => currentPath === href || (href !== '/' && currentPath.startsWith(`${href}/`));
 ---
 
-<nav aria-label="Primary navigation" class={mobile ? 'space-y-6' : 'space-y-6'}>
+<nav aria-label="Primary navigation" class="space-y-5">
   {navSections.map((section) => (
-    <section class="space-y-2">
-      <div class="flex items-center gap-2 px-2">
-        <span class="h-1.5 w-1.5 bg-[#2d9de0]"></span>
-        <p class="text-[0.62rem] font-semibold uppercase tracking-[0.25em] text-[#718ba0]">{section.label}</p>
-      </div>
-      <div class="space-y-0.5 border-l border-[#1b405d] pl-2">
+    <section class="space-y-1.5">
+      <p class="px-2 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[var(--control-muted)]">{section.label}</p>
+      <div>
         {section.items.map((item) => (
           <a
             href={item.href}
-            class={`flex items-center border-l-2 px-3 py-2 text-sm transition ${isActive(item.href) ? 'border-[#2d9de0] bg-[#0d2941] font-semibold text-white' : 'border-transparent text-[#9bb0c1] hover:border-[#2a638c] hover:bg-[#0a2135] hover:text-white'}`}
+            class={`flex items-center border-l-2 px-3 py-1.5 text-sm leading-5 transition-colors ${isActive(item.href) ? 'border-[var(--control-blue-bright)] bg-[var(--control-panel-alt)] font-semibold text-white' : 'border-transparent text-[var(--control-muted)] hover:border-[var(--control-line-strong)] hover:bg-[var(--control-panel)] hover:text-white'}`}
           >
             <span>{item.label}</span>
           </a>
