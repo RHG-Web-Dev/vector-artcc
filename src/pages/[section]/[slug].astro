@@ -5,6 +5,7 @@ import Card from "../../components/Card.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import { getCollection } from "astro:content";
 import { sectionPages } from "../../data/navigation";
+import { site } from "../../data/site";
 
 export async function getStaticPaths() {
   const collections = ["learn", "reference", "kmem", "training", "resources"] as const;
@@ -54,7 +55,7 @@ const renderable = entry ? await entry.render() : null;
 ---
 
 <Layout
-  title={entry ? `${entry.data.title} | CONTROL` : `CONTROL | ${slug}`}
+  title={`${site.name} | ${entry ? entry.data.title : slug}`}
   description={entry?.data.description ?? placeholderDescription ?? `Placeholder ${section} reference page.`}
   section={section}
 >
@@ -75,7 +76,7 @@ const renderable = entry ? await entry.render() : null;
     <div class="grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
       <Card>
         <div class="space-y-4">
-          <p class="text-[0.65rem] uppercase tracking-[0.32em] text-slate-500">Content</p>
+          <!-- <p class="text-[0.65rem] uppercase tracking-[0.32em] text-slate-500">Content</p> -->
           {renderable ? (
             <article class="space-y-4 text-sm leading-7 text-slate-200 [&_h2]:mt-8 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-white [&_p]:text-slate-200 [&_ul]:space-y-2 [&_ul]:pl-5 [&_li]:marker:text-sky-300">
               <renderable.Content />
@@ -89,7 +90,7 @@ const renderable = entry ? await entry.render() : null;
         </div>
       </Card>
 
-      <Card>
+      <!-- <Card>
         <div class="space-y-3">
           <p class="text-[0.65rem] uppercase tracking-[0.32em] text-slate-500">Notes</p>
           <p class="text-sm leading-6 text-slate-300">Keep official procedures, training notes, and personal mnemonics clearly separated as the library grows.</p>
@@ -98,7 +99,7 @@ const renderable = entry ? await entry.render() : null;
             <p class="mt-1 leading-6">This route can render markdown from Astro content collections or remain a placeholder until a document exists.</p>
           </div>
         </div>
-      </Card>
+      </Card> -->
     </div>
   </section>
 </Layout>

@@ -1,9 +1,35 @@
 ---
 import { site } from "../data/site";
 ---
+
 <footer class="mt-10 border-t border-[var(--control-line)] pt-5 text-xs text-[var(--control-muted)]">
-  <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-    <p>{site.footer.text} © {new Date().getFullYear()}</p>
-    <p>Unofficial VATSIM controller reference. Verify operational information against current official source material.</p>
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <p>{site.footer.text} © {new Date().getFullYear()}</p>
+      <p class="mt-1 font-mono text-[0.7rem] uppercase tracking-wide text-[var(--control-muted)]">
+        Current Zulu: <span id="zulu-time">--:--:--Z</span>
+      </p>
+    </div>
+
+    <p class="max-w-xl text-left sm:text-right">
+      Unofficial VATSIM controller reference. Verify operational information against current official source material.
+    </p>
   </div>
 </footer>
+
+<script>
+  const zuluTime = document.getElementById("zulu-time");
+
+  function updateZuluTime() {
+    if (!zuluTime) return;
+
+    const now = new Date();
+
+    const time = now.toISOString().slice(11, 19);
+
+    zuluTime.textContent = `${time}Z`;
+  }
+
+  updateZuluTime();
+  setInterval(updateZuluTime, 1000);
+</script>

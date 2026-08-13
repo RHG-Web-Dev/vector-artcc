@@ -1,17 +1,17 @@
 export const navSections = [
 	{
-		label: 'Core',
+		label: 'Sections',
 		items: [
-			{ label: 'Dashboard', href: '/' },
+			{ label: 'Home', href: '/' },
 			{ label: 'Learn', href: '/learn' },
 			{ label: 'Reference', href: '/reference' },
-			{ label: 'KMEM', href: '/kmem' },
+			// { label: 'KMEM', href: '/kmem' },
 			{ label: 'Training', href: '/training' },
-			{ label: 'Tools', href: '/tools' },
+			// { label: 'Tools', href: '/tools' },
 			{ label: 'Resources', href: '/resources' },
 		],
 	},
-	{
+	/*{
 		label: 'Learn',
 		items: [
 			{ label: 'Airspace', href: '/learn/airspace' },
@@ -50,10 +50,10 @@ export const navSections = [
 	{
 		label: 'Training',
 		items: [
-			{ label: 'MEM Tier 2', href: '/training/tier-2' },
-			{ label: 'Training Sessions', href: '/training/sessions' },
-			{ label: 'Knowledge Checks', href: '/training/knowledge-checks' },
-			{ label: 'Scenarios', href: '/training/scenarios' },
+				{ label: 'MEM Tier 2', href: '/training/tier-2' },
+				{ label: 'Training Sessions', href: '/training/sessions' },
+				{ label: 'Knowledge Checks', href: '/training/knowledge-checks' },
+				{ label: 'Scenarios', href: '/training/scenarios' },
 		],
 	},
 	{
@@ -66,7 +66,7 @@ export const navSections = [
 			{ label: 'FAA 7110.65', href: '/resources/faa-7110-65' },
 			{ label: 'CRC Documentation', href: '/resources/crc-documentation' },
 		],
-	},
+	},*/
 ] as const;
 
 export const sectionSummaries = {

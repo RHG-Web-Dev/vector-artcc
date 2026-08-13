@@ -15,8 +15,8 @@ const { section = "Dashboard" } = Astro.props;
       <div class="hidden h-9 w-1 bg-[var(--control-blue-bright)] sm:block"></div>
       <div class="min-w-0">
         <div class="mt-0.5 flex items-baseline gap-3">
-					<img src="/img/favicon.svg" alt="CONTROL mark" class="h-6 w-6 shrink-0" />
-          <span class="font-display text-xl font-bold tracking-wide text-white">CONTROL</span>
+					<img src="/img/favicon.svg" alt=`{site.name} mark` class="h-6 w-6 shrink-0" />
+          <span class="font-display text-xl font-bold tracking-wide text-white">{site.name}</span>
           <span class="hidden truncate text-xs uppercase tracking-[0.18em] text-[var(--control-muted)] sm:inline">Controller Companion</span>
         </div>
       </div>

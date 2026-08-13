@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Badge from "../components/Badge.astro";
 import Card from "../components/Card.astro";
 import SectionHeader from "../components/SectionHeader.astro";
+import { site } from "../data/site";
 
 const tools = [
 	{ title: 'CRAFT Builder', description: 'Compose clearance flows for future controller mode support.' },
@@ -13,7 +14,7 @@ const tools = [
 ---
 
 <Layout
-  title="CONTROL | Tools"
+  title={`${site.name} | Tools`}
   description="Utility surfaces for future CRAFT, altitude, and lookup tools."
   section="Tools"
 >

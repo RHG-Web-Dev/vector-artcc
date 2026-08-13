@@ -1,6 +1,6 @@
 ---
 title: Airspace
-description: Starter airspace notes for CONTROL.
+description: Starter airspace notes for VECTOR.
 category: learn
 updated: '2026-08-12'
 featured: true

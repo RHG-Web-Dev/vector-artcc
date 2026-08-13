@@ -1,13 +1,11 @@
 export const site = {
-	name: 'CONTROL',
+	name: 'VECTOR',
 	subtitle: 'ARTCC Controller Companion',
 	description:
-		'CONTROL is a professional reference, training, and utility platform for VATSIM air traffic controllers.',
-	brand: 'CONTROL',
-	brandSubline: 'ARTCC CONTROLLER COMPANION',
+		'VECTOR is a professional reference, training, and utility platform for VATSIM air traffic controllers.',
 	logo: {
 		src: '/img/favicon.svg',
-		alt: 'CONTROL',
+		alt: 'VECTOR',
 	},
 	navigation: [
 		{ label: 'Dashboard', href: '/' },
@@ -19,6 +17,6 @@ export const site = {
 		{ label: 'Resources', href: '/resources' },
 	],
 	footer: {
-		text: 'CONTROL | ARTCC Controller Companion',
+		text: `VECTOR | ARTCC Controller Companion`,
 	},
 } as const;
