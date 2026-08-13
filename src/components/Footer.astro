@@ -6,8 +6,8 @@ import { site } from "../data/site";
   <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
     <div>
       <p>{site.footer.text} © {new Date().getFullYear()}</p>
-      <p class="mt-1 font-mono text-[0.7rem] uppercase tracking-wide text-[var(--control-muted)]">
-        Current Zulu: <span id="zulu-time">--:--:--Z</span>
+      <p id="zulu-time" class="mt-1 font-mono text-[0.7rem] tracking-wide text-[var(--control-muted)]">
+        Zulu Time: LOAD
       </p>
     </div>
 
@@ -25,9 +25,23 @@ import { site } from "../data/site";
 
     const now = new Date();
 
-    const time = now.toISOString().slice(11, 19);
+    const date = now.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC",
+    });
 
-    zuluTime.textContent = `${time}Z`;
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZone: "UTC",
+    });
+
+    zuluTime.textContent = `${date} at ${time}Z`;
   }
 
   updateZuluTime();
