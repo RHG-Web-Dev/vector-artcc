@@ -15,7 +15,6 @@ interface Props {
 const {
   title = `${site.brand} | ${site.subtitle}`,
   description = site.description,
-  image = "/img/control-og.svg",
   section = "Dashboard",
 } = Astro.props;
 
@@ -34,17 +33,15 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     <link rel="canonical" href={url} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="darkreader-lock" />
-    <link rel="icon" type="image/svg+xml" href="/img/control-mark.svg" />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <meta name="theme-color" content="#061a2d" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -56,12 +53,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 
       <div class="flex min-h-[calc(100vh-4.5rem)]">
         <aside class="hidden w-64 shrink-0 border-r border-[var(--control-line)] bg-[var(--control-navy)] lg:block">
-          <div class="sticky top-0 flex h-[calc(100vh-4.5rem)] flex-col px-4 py-6">
-            <div class="mb-6 border-b border-[var(--control-line)] pb-5">
-              <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--control-blue-bright)]">ZME / KMEM</p>
-              <h1 class="mt-2 font-display text-2xl font-bold text-white">CONTROL</h1>
-              <p class="mt-1 text-sm text-[var(--control-muted)]">Memphis ARTCC Controller Companion</p>
-            </div>
+          <div class="sticky top-0 flex h-screen flex-col px-4 py-6">
             <div class="min-h-0 flex-1 overflow-y-auto pr-1">
               <SidebarNav currentPath={Astro.url.pathname} />
             </div>
