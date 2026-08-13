@@ -1,0 +1,96 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Badge from "../../components/Badge.astro";
+import Card from "../../components/Card.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import { getCollection } from "astro:content";
+import { sectionPages } from "../../data/navigation";
+
+const collections = ["learn", "reference", "kmem", "training", "resources"] as const;
+
+export async function getStaticPaths() {
+  const paths = [];
+
+  for (const collection of collections) {
+    const entries = await getCollection(collection);
+    const page = sectionPages[collection];
+
+    for (const entry of entries) {
+      paths.push({
+        params: { section: collection, slug: entry.slug },
+        props: { entry },
+      });
+    }
+
+    for (const item of page.items) {
+      const slug = item.href.split('/').pop() ?? item.href;
+      const entry = entries.find((candidate) => candidate.slug === slug) ?? null;
+
+      paths.push({
+        params: { section: collection, slug },
+        props: {
+          entry,
+          placeholderTitle: item.label,
+          placeholderDescription: `Placeholder ${collection} page for ${item.label}.`,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { section, slug } = Astro.params;
+const { entry, placeholderTitle, placeholderDescription } = Astro.props;
+const renderable = entry ? await entry.render() : null;
+---
+
+<Layout
+  title={entry ? `${entry.data.title} | CONTROL` : `CONTROL | ${slug}`}
+  description={entry?.data.description ?? placeholderDescription ?? `Placeholder ${section} reference page.`}
+  section={section}
+>
+  <section class="space-y-6">
+    <Card>
+      <div class="space-y-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <Badge tone="blue">{section}</Badge>
+          {entry?.data.featured ? <Badge tone="amber">Featured</Badge> : <Badge tone="slate">Reference</Badge>}
+        </div>
+        <div class="space-y-3">
+          <h1 class="font-display text-3xl font-semibold text-white sm:text-4xl">{entry?.data.title ?? placeholderTitle ?? slug.replaceAll('-', ' ')}</h1>
+          <p class="max-w-3xl text-base leading-7 text-slate-300">{entry?.data.description ?? placeholderDescription ?? 'Placeholder content scaffold. Add source-backed material here when the section is ready.'}</p>
+        </div>
+      </div>
+    </Card>
+
+    <div class="grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+      <Card>
+        <div class="space-y-4">
+          <p class="text-[0.65rem] uppercase tracking-[0.32em] text-slate-500">Content</p>
+          {renderable ? (
+            <article class="space-y-4 text-sm leading-7 text-slate-200 [&_h2]:mt-8 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-white [&_p]:text-slate-200 [&_ul]:space-y-2 [&_ul]:pl-5 [&_li]:marker:text-sky-300">
+              <renderable.Content />
+            </article>
+          ) : (
+            <div class="space-y-4 text-sm leading-7 text-slate-300">
+              <p>This route is reserved for future source-backed material.</p>
+              <p>Until the content is supplied, keep the page as a stub for routing, layout, and design work.</p>
+            </div>
+          )}
+        </div>
+      </Card>
+
+      <Card>
+        <div class="space-y-3">
+          <p class="text-[0.65rem] uppercase tracking-[0.32em] text-slate-500">Notes</p>
+          <p class="text-sm leading-6 text-slate-300">Keep official procedures, training notes, and personal mnemonics clearly separated as the library grows.</p>
+          <div class="rounded-xl border border-white/8 bg-black/10 p-3 text-sm text-slate-300">
+            <p class="text-white">Source handling</p>
+            <p class="mt-1 leading-6">This route can render markdown from Astro content collections or remain a placeholder until a document exists.</p>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </section>
+</Layout>

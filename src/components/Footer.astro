@@ -1,0 +1,9 @@
+---
+import { site } from "../data/site";
+---
+<footer class="border-t border-white/8 pt-6 text-sm text-slate-400">
+	<div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+		<p>{site.footer.text} © {new Date().getFullYear()}</p>
+		<p class="max-w-2xl text-slate-500">Training notes and quick references only. Confirm operational use against current source material.</p>
+	</div>
+</footer>

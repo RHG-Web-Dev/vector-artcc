@@ -1,0 +1,17 @@
+---
+interface Props {
+	href?: string;
+	class?: string;
+	interactive?: boolean;
+}
+
+const { href, class: className = '', interactive = false } = Astro.props;
+const Tag = href ? 'a' : 'article';
+---
+
+<Tag
+	href={href}
+	class={`group block rounded-2xl border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 shadow-[0_1px_0_rgba(255,255,255,0.02)_inset] transition ${interactive || href ? 'hover:-translate-y-0.5 hover:border-sky-400/30 hover:bg-white/7' : ''} ${className}`}
+>
+	<slot />
+</Tag>

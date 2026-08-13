@@ -1,0 +1,29 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	actionLabel?: string;
+	actionHref?: string;
+}
+
+const { eyebrow, title, description, actionLabel, actionHref } = Astro.props;
+---
+
+<div class="flex flex-col gap-4 border-b border-white/8 pb-5 sm:flex-row sm:items-end sm:justify-between">
+	<div class="max-w-3xl space-y-3">
+		{eyebrow && <Badge tone="blue">{eyebrow}</Badge>}
+		<div class="space-y-2">
+			<h2 class="font-display text-2xl font-semibold text-white sm:text-3xl">{title}</h2>
+			{description && <p class="max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">{description}</p>}
+		</div>
+	</div>
+
+	{actionLabel && actionHref && (
+		<a href={actionHref} class="inline-flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-100 transition hover:border-sky-400/30 hover:bg-white/8">
+			{actionLabel}
+		</a>
+	)}
+</div>

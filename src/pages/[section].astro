@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Badge from "../components/Badge.astro";
+import Card from "../components/Card.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { sectionPages, sectionSummaries } from "../data/navigation";
+
+const allowedSections = ["learn", "reference", "kmem", "training", "resources"] as const;
+
+export function getStaticPaths() {
+  return allowedSections.map((section) => ({ params: { section } }));
+}
+
+const { section } = Astro.params;
+const page = sectionPages[section as keyof typeof sectionPages];
+---
+
+<Layout
+  title={`CONTROL | ${page.title}`}
+  description={page.description}
+  section={page.title}
+>
+  <section class="space-y-6">
+    <Card>
+      <div class="space-y-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <Badge tone="blue">{page.title}</Badge>
+          <Badge tone="slate">Memphis ARTCC Controller Companion</Badge>
+        </div>
+        <div class="space-y-3">
+          <h1 class="font-display text-4xl font-semibold text-white">{page.title}</h1>
+          <p class="max-w-3xl text-base leading-7 text-slate-300">{page.description}</p>
+        </div>
+      </div>
+    </Card>
+
+    <SectionHeader
+      eyebrow="Structure"
+      title={`${page.title} library`}
+      description={sectionSummaries[section as keyof typeof sectionSummaries]}
+    />
+
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {page.items.map((item) => (
+        <Card href={item.href} interactive>
+          <div class="space-y-3">
+            <p class="text-[0.68rem] uppercase tracking-[0.32em] text-slate-500">Lookup</p>
+            <h2 class="font-display text-xl font-semibold text-white">{item.label}</h2>
+            <p class="text-sm leading-6 text-slate-300">Placeholder reference page for future content expansion.</p>
+            <p class="text-sm text-sky-200 transition group-hover:translate-x-1">Open page →</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section>
+</Layout>

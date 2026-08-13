@@ -1,0 +1,95 @@
+---
+import "../styles/global.css";
+import { site } from "../data/site";
+import Header from "../components/Header.astro";
+import SidebarNav from "../components/SidebarNav.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  section?: string;
+}
+
+const {
+  title = `${site.brand} | ${site.subtitle}`,
+  description = site.description,
+  image = "/img/control-og.svg",
+  section = "Dashboard",
+} = Astro.props;
+
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={url} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="darkreader-lock" />
+
+    <link rel="icon" type="image/svg+xml" href="/img/control-mark.svg" />
+
+    <meta name="theme-color" content="#08111d" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="min-h-screen text-slate-100 antialiased">
+    <div class="relative min-h-screen">
+      <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(9,16,28,0.86),rgba(5,10,18,0.96))]" />
+      <div class="relative mx-auto flex min-h-screen max-w-[1680px]">
+        <aside class="sticky top-0 hidden h-screen w-[18rem] shrink-0 border-r border-white/8 bg-slate-950/70 px-5 py-6 backdrop-blur-xl xl:flex xl:flex-col">
+          <a href="/" class="group block rounded-2xl border border-sky-400/20 bg-white/5 px-4 py-4 transition hover:border-sky-300/40 hover:bg-white/8">
+            <p class="text-[0.68rem] uppercase tracking-[0.38em] text-sky-300/90">CONTROL</p>
+            <h1 class="mt-2 font-display text-2xl font-semibold text-white">Memphis ARTCC</h1>
+            <p class="mt-1 text-sm text-slate-300">Controller Companion</p>
+          </a>
+
+          <div class="mt-6 flex-1 overflow-y-auto pr-1">
+            <SidebarNav currentPath={Astro.url.pathname} />
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-white/8 bg-white/4 px-4 py-4 text-sm text-slate-300">
+            <p class="text-[0.65rem] uppercase tracking-[0.32em] text-slate-500">Focus</p>
+            <p class="mt-2 leading-6">KMEM first, then broader ZME support as reference material is added.</p>
+          </div>
+        </aside>
+
+        <div class="flex min-w-0 flex-1 flex-col">
+          <Header section={section} />
+
+          <main class="min-w-0 flex-1 px-4 pb-10 pt-6 sm:px-6 lg:px-8 xl:pt-8">
+            <div class="mx-auto flex max-w-7xl flex-col gap-8">
+              <slot />
+              <Footer />
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
