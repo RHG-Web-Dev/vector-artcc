@@ -1,37 +1,31 @@
 @import 'tailwindcss';
 
 :root {
-	color-scheme: dark;
-	--control-bg: #07111c;
-	--control-panel: rgba(10, 17, 30, 0.92);
-	--control-panel-strong: rgba(13, 22, 38, 0.98);
-	--control-line: rgba(148, 163, 184, 0.14);
-	--control-line-strong: rgba(96, 165, 250, 0.26);
-	--control-text: #e5eefc;
-	--control-muted: #90a2b9;
-	--control-accent: #58a7ff;
-	--control-accent-soft: rgba(88, 167, 255, 0.1);
-	--control-warm: #d8e1ef;
+  color-scheme: dark;
+  --control-navy: #061a2d;
+  --control-navy-deep: #041321;
+  --control-blue: #1677b8;
+  --control-blue-bright: #2d9de0;
+  --control-panel: #0a2135;
+  --control-panel-alt: #0d2941;
+  --control-line: #1b405d;
+  --control-line-strong: #2a638c;
+  --control-text: #edf5fb;
+  --control-muted: #9bb0c1;
+  --control-warm: #d9e6ef;
 }
 
 html {
-	scroll-behavior: smooth;
-	background: var(--control-bg);
+  scroll-behavior: smooth;
+  background: var(--control-navy-deep);
 }
 
 body {
-	min-height: 100vh;
-	font-family: 'IBM Plex Sans', sans-serif;
-	background-color: var(--control-bg);
-	background-image:
-		linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-		linear-gradient(180deg, rgba(10, 17, 28, 0.96), rgba(5, 10, 18, 1));
-	background-size:
-		48px 48px,
-		48px 48px,
-		100% 100%;
-	color: var(--control-text);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--control-navy-deep);
+  color: var(--control-text);
 }
 
 h1,
@@ -39,38 +33,38 @@ h2,
 h3,
 h4,
 .font-display {
-	font-family: 'IBM Plex Sans Condensed', sans-serif;
-	letter-spacing: 0.02em;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  letter-spacing: 0.015em;
 }
 
 a {
-	text-underline-offset: 0.2em;
+  text-underline-offset: 0.2em;
 }
 
 button,
 input,
 textarea,
 select {
-	font: inherit;
+  font: inherit;
 }
 
 .surface {
-	background: var(--control-panel);
-	border: 1px solid var(--control-line);
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+  background: var(--control-panel);
+  border: 1px solid var(--control-line);
+  border-radius: 0.25rem;
 }
 
 .surface-strong {
-	background: var(--control-panel-strong);
-	border: 1px solid var(--control-line-strong);
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+  background: var(--control-panel-alt);
+  border: 1px solid var(--control-line-strong);
+  border-radius: 0.25rem;
 }
 
 .text-muted {
-	color: var(--control-muted);
+  color: var(--control-muted);
 }
 
 ::selection {
-	background: rgba(78, 161, 255, 0.24);
-	color: #ffffff;
+  background: rgba(45, 157, 224, 0.3);
+  color: #ffffff;
 }

@@ -9,38 +9,52 @@ interface Props {
 const { section = "Dashboard" } = Astro.props;
 ---
 
-<header class="sticky top-0 z-40 border-b border-white/8 bg-slate-950/90 backdrop-blur-xl">
-  <div class="flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8 xl:px-8">
-    <div class="min-w-0">
-      <p class="text-[0.65rem] uppercase tracking-[0.38em] text-sky-300/90">CONTROL</p>
-      <div class="mt-1 flex items-center gap-3">
-        <h2 class="truncate font-display text-lg font-semibold text-white sm:text-xl">{section}</h2>
-        <span class="hidden rounded-full border border-sky-400/20 bg-sky-400/10 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-sky-100 md:inline-flex">
-          {site.brandSubline}
-        </span>
+<header class="border-b border-[#1b405d] bg-[#061a2d]">
+  <div class="mx-auto max-w-[1440px]">
+    <div class="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <a href="/" class="flex min-w-0 items-center gap-4">
+        <div class="hidden h-9 w-1 bg-[#2d9de0] sm:block"></div>
+        <div class="min-w-0">
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-[#6eb9e6]">Memphis ARTCC</p>
+          <div class="mt-0.5 flex items-baseline gap-3">
+            <span class="font-display text-xl font-bold tracking-wide text-white">CONTROL</span>
+            <span class="hidden truncate text-xs uppercase tracking-[0.18em] text-[#9bb0c1] sm:inline">Controller Companion</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <div class="hidden text-right md:block">
+          <p class="text-[0.62rem] uppercase tracking-[0.25em] text-[#718ba0]">Current Section</p>
+          <p class="mt-0.5 text-sm font-medium text-white">{section}</p>
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="inline-flex items-center border border-[#2a638c] bg-[#0a2135] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white hover:bg-[#0d2941] lg:hidden"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          type="button"
+        >
+          Menu
+        </button>
       </div>
     </div>
 
-    <div class="flex items-center gap-2">
-      <label class="hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-slate-300 lg:flex" for="site-search">
-        <span class="uppercase tracking-[0.24em] text-slate-500">Search</span>
-        <input id="site-search" type="search" placeholder="CTRL+K later" class="w-36 bg-transparent text-slate-100 placeholder:text-slate-500 focus:outline-none" />
-      </label>
-      <button
-        id="mobile-menu-button"
-        class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-slate-100 transition hover:border-sky-400/30 hover:bg-white/[0.06] xl:hidden"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-        type="button"
-      >
-        <span class="text-sm uppercase tracking-[0.28em] text-slate-400">Menu</span>
-        <span aria-hidden="true">☰</span>
-      </button>
+    <div class="hidden border-t border-[#123650] lg:flex lg:items-center lg:justify-between px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Site utility navigation" class="flex items-center gap-6 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#9bb0c1]">
+        <a href="/" class="hover:text-white">Home</a>
+        <a href="/learn" class="hover:text-white">Learn</a>
+        <a href="/reference" class="hover:text-white">Reference</a>
+        <a href="/kmem" class="hover:text-white">KMEM</a>
+        <a href="/training" class="hover:text-white">Training</a>
+        <a href="/tools" class="hover:text-white">Tools</a>
+      </nav>
+      <span class="py-2 text-[0.62rem] uppercase tracking-[0.18em] text-[#718ba0]">ZME / KMEM</span>
     </div>
-  </div>
 
-  <div id="mobile-menu" class="hidden border-t border-white/8 bg-slate-950/95 px-4 py-4 xl:hidden">
-    <SidebarNav currentPath={Astro.url.pathname} mobile />
+    <div id="mobile-menu" class="hidden border-t border-[#1b405d] bg-[#041321] px-4 py-4 sm:px-6 lg:hidden">
+      <SidebarNav currentPath={Astro.url.pathname} mobile />
+    </div>
   </div>
 </header>
 

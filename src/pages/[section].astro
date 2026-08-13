@@ -6,13 +6,14 @@ import SectionHeader from "../components/SectionHeader.astro";
 import { sectionPages, sectionSummaries } from "../data/navigation";
 
 const allowedSections = ["learn", "reference", "kmem", "training", "resources"] as const;
+type AllowedSection = (typeof allowedSections)[number];
 
 export function getStaticPaths() {
   return allowedSections.map((section) => ({ params: { section } }));
 }
 
-const { section } = Astro.params;
-const page = sectionPages[section as keyof typeof sectionPages];
+const section = Astro.params.section as AllowedSection;
+const page = sectionPages[section];
 ---
 
 <Layout
@@ -37,7 +38,7 @@ const page = sectionPages[section as keyof typeof sectionPages];
     <SectionHeader
       eyebrow="Structure"
       title={`${page.title} library`}
-      description={sectionSummaries[section as keyof typeof sectionSummaries]}
+      description={sectionSummaries[section]}
     />
 
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
