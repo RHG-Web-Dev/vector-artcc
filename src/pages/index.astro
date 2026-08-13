@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Badge from "../components/Badge.astro";
 import Card from "../components/Card.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import CraftReference from "../components/CraftReference.astro";
@@ -10,101 +9,66 @@ import { controllerModePreview, quickReference } from "../data/control";
 ---
 
 <Layout
-  title="CONTROL | Memphis ARTCC Controller Companion"
-  description="CONTROL is a Memphis ARTCC controller reference and training companion focused on KMEM and ZME operations."
+  title="CONTROL | ARTCC Controller Companion"
+  description="CONTROL is a professional reference, training, and utility platform for VATSIM air traffic controllers."
   section="Dashboard"
 >
-  <section class="space-y-6">
-    <div class="grid gap-6 xl:grid-cols-[1.45fr_0.95fr]">
-      <Card class="overflow-hidden">
-        <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-          <div class="space-y-5">
-            <div class="flex flex-wrap gap-2">
-              <Badge tone="blue">CONTROL</Badge>
-              <Badge tone="slate">Memphis ARTCC Controller Companion</Badge>
-            </div>
-
-            <div class="space-y-3">
-              <p class="text-sm uppercase tracking-[0.36em] text-sky-300/80">KMEM first. ZME next.</p>
-              <h1 class="font-display text-4xl font-semibold leading-tight text-white sm:text-5xl">Your reference for Memphis controlling.</h1>
-              <p class="max-w-2xl text-base leading-7 text-slate-300">
-                CONTROL is designed as a fast, professional reference for Memphis ARTCC work: quick lookup material, structured learning, and a future controller mode that stays usable while you are actively working traffic.
-              </p>
-            </div>
-
-            <div class="flex flex-wrap gap-3">
-              <a href="/reference/craft" class="inline-flex items-center rounded-xl border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-sm font-medium text-sky-100 transition hover:bg-sky-400/15">Open CRAFT</a>
-              <a href="/kmem/clearance-delivery" class="inline-flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-100 transition hover:border-sky-400/30 hover:bg-white/8">KMEM Clearance Delivery</a>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-white/8 bg-slate-950/60 p-4">
-            <p class="text-[0.65rem] uppercase tracking-[0.36em] text-slate-500">Quick Reference</p>
-            <div class="mt-4 space-y-3">
-              {quickReference.map((item) => (
-                <div class="flex items-center justify-between rounded-xl border border-white/8 bg-white/5 px-3 py-2">
-                  <span class="text-sm text-slate-300">{item.label}</span>
-                  <span class="font-display text-lg font-semibold text-white">{item.value}</span>
-                </div>
-              ))}
-            </div>
-
-            <div class="mt-4 rounded-xl border border-sky-400/15 bg-sky-400/8 p-3 text-sm leading-6 text-slate-300">
-              <p class="text-[0.65rem] uppercase tracking-[0.3em] text-sky-200/80">Controller Mode</p>
-              <div class="mt-2 space-y-1 font-mono text-[0.82rem] text-slate-200">
-                {controllerModePreview.map((item) => (
-                  <div class="flex gap-3">
-                    <span class="w-24 text-sky-200">{item.label}</span>
-                    <span>{item.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      <Card class="space-y-4">
-        <Badge tone="amber">Focus</Badge>
-        <h2 class="font-display text-2xl font-semibold text-white">Aviation operations without the clutter.</h2>
-        <p class="text-sm leading-6 text-slate-300">
-          The dashboard emphasizes fast scanning, restrained visual hierarchy, and the kind of information density useful while controlling. Long-form material belongs in Learn; lookup material belongs in Reference.
+  <div class="space-y-10">
+    <section class="border-b border-[var(--control-line)] pb-8">
+      <div class="max-w-4xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--control-blue-bright)]">ARTCC Controller Companion</p>
+        <h1 class="mt-3 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">CONTROL</h1>
+        <p class="mt-4 max-w-2xl text-base leading-7 text-[var(--control-muted)]">
+          A focused reference and training workspace for VATSIM controllers. Find procedures, learn concepts, and keep essential information close while working traffic.
         </p>
-        <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-          <div class="rounded-xl border border-white/8 bg-black/10 p-3 text-sm text-slate-300">Dark navy palette with blue operational accents.</div>
-          <div class="rounded-xl border border-white/8 bg-black/10 p-3 text-sm text-slate-300">Structured cards, badges, and compact utility blocks.</div>
-          <div class="rounded-xl border border-white/8 bg-black/10 p-3 text-sm text-slate-300">Future controller mode support without reworking the shell.</div>
-          <div class="rounded-xl border border-white/8 bg-black/10 p-3 text-sm text-slate-300">Static content-first architecture for reference material.</div>
-        </div>
-      </Card>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section class="space-y-5">
-    <SectionHeader
-      eyebrow="Dashboard"
-      title="Operational shortcuts"
-      description="Start with the most-used surfaces. These are designed to become the anchor points for later tools and controller mode workflows."
-    />
-
-    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <section class="grid gap-px border border-[var(--control-line)] bg-[var(--control-line)] md:grid-cols-2 xl:grid-cols-3">
       {dashboardCards.map((card) => (
-        <Card href={card.href} interactive>
-          <div class="space-y-3">
-            <Badge tone="slate">{card.label}</Badge>
-            <div class="space-y-2">
-              <h3 class="font-display text-xl font-semibold text-white">{card.title}</h3>
-              <p class="text-sm leading-6 text-slate-300">{card.description}</p>
-            </div>
-            <p class="text-sm text-sky-200 transition group-hover:translate-x-1">Open section →</p>
-          </div>
-        </Card>
+        <a href={card.href} class="group bg-[var(--control-navy)] p-5 transition-colors hover:bg-[var(--control-panel)]">
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[var(--control-blue-bright)]">{card.label}</p>
+          <h2 class="mt-2 font-display text-xl font-semibold text-white">{card.title}</h2>
+          <p class="mt-2 text-sm leading-6 text-[var(--control-muted)]">{card.description}</p>
+          <p class="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 group-hover:text-white">Open →</p>
+        </a>
       ))}
-    </div>
-  </section>
+    </section>
 
-  <section class="grid gap-6 xl:grid-cols-2">
-    <CraftReference />
-    <AirspaceReference />
-  </section>
+    <section class="grid gap-8 xl:grid-cols-[1.15fr_0.85fr]">
+      <div>
+        <SectionHeader
+          eyebrow="Quick Reference"
+          title="Essential controller information"
+          description="High-frequency reference material stays visible and compact."
+        />
+        <div class="mt-5 border-y border-[var(--control-line)]">
+          {quickReference.map((item) => (
+            <div class="flex items-center justify-between gap-4 border-b border-[var(--control-line)] px-4 py-3 last:border-b-0">
+              <span class="text-sm text-[var(--control-muted)]">{item.label}</span>
+              <span class="font-mono text-sm font-semibold text-white">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="border border-[var(--control-line)] bg-[var(--control-navy)] p-5">
+        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[var(--control-blue-bright)]">Controller Mode</p>
+        <h2 class="mt-2 font-display text-xl font-semibold text-white">Fast reference, minimal interface.</h2>
+        <div class="mt-5 space-y-2 font-mono text-sm">
+          {controllerModePreview.map((item) => (
+            <div class="grid grid-cols-[6rem_1fr] gap-3 border-b border-[var(--control-line)] pb-2 last:border-0">
+              <span class="text-slate-400">{item.label}</span>
+              <span class="text-white">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-8 xl:grid-cols-2">
+      <CraftReference />
+      <AirspaceReference />
+    </section>
+  </div>
 </Layout>
