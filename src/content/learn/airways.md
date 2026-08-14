@@ -2,7 +2,7 @@
 title: Airways
 description: Understanding airways, their structure, and how they are used in IFR routing.
 updated: '2026-08-13T00:00:00'
-hidden: false
+hidden: true
 featured: false
 ---
 

@@ -1,8 +1,7 @@
 ---
 title: KMEM Clearance Delivery
 description: Memphis clearance delivery quick reference built from controller training notes and linked ZME resources.
-updated: '2026-08-14'
-featured: true
+updated: '2026-08-14T00:00:00Z'
 ---
 
 # KMEM Clearance Delivery
@@ -52,7 +51,7 @@ Confirm the route, altitude, frequency, squawk, and any amended item. See [Readb
 
 - [KMEM Clearance Delivery Cheatsheet](https://docs.google.com/document/d/1BJ6ozTgVlL9agpQLq1eUOmzTb074xUn8MwN8YAAgx4s/edit?tab=t.20fd7vh1godn)
 - [ZME Reference Card](https://memphis-artcc2.nyc3.digitaloceanspaces.com/downloads/1776278059436-zmerefcard.pdf)
-- [KMEM RNAV Departure Reference](https://memphis-artcc2.nyc3.digitaloceanspaces.com/downloads/1702242607073-MEM%20Departure%20Reference%20(5).pdf)
+- [KMEM RNAV Departure Reference](<https://memphis-artcc2.nyc3.digitaloceanspaces.com/downloads/1702242607073-MEM%20Departure%20Reference%20(5).pdf>)
 - [Controller Planning Resources](/resources/controller-links/)
 
 ## Ground / Tower Coordination Notes

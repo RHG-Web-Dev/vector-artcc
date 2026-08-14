@@ -26,6 +26,29 @@ When working an IFR flight plan, controllers should be familiar with the equipme
 
 ---
 
+# All Suffixes
+
+| RVSM        | Navigation Capability | Transponder Capability     | Suffix |
+| :---------- | :-------------------- | :------------------------- | :----: |
+| **RVSM**    | No GNSS, No RNAV      | Transponder with Mode C    | **/W** |
+|             | RNAV, No GNSS         | Transponder with Mode C    | **/Z** |
+|             | GNSS                  | Transponder with Mode C    | **/L** |
+| **No RVSM** | **No DME**            | No Transponder             | **/X** |
+|             |                       | Transponder with no Mode C | **/T** |
+|             |                       | Transponder with Mode C    | **/U** |
+|             | **DME**               | No Transponder             | **/D** |
+|             |                       | Transponder with no Mode C | **/B** |
+|             |                       | Transponder with Mode C    | **/A** |
+|             | **TACAN**             | No Transponder             | **/M** |
+|             |                       | Transponder with no Mode C | **/N** |
+|             |                       | Transponder with Mode C    | **/P** |
+|             | **RNAV, no GNSS**     | No Transponder             | **/Y** |
+|             |                       | Transponder with no Mode C | **/C** |
+|             |                       | Transponder with Mode C    | **/I** |
+|             | **GNSS**              | No Transponder             | **/V** |
+|             |                       | Transponder with no Mode C | **/S** |
+|             |                       | Transponder with Mode C    | **/G** |
+
 # Common Equipment Suffixes
 
 The following suffixes are commonly encountered in IFR operations.
