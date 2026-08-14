@@ -7,7 +7,6 @@ interface Props {
 	description?: string;
 	actionLabel?: string;
 	actionHref?: string;
-	updated?: string;
 	chips?: {
 		text: string;
 		link?: string;
@@ -17,7 +16,7 @@ interface Props {
 }
 
 
-const { chips, title, description, actionLabel, actionHref, updated } = Astro.props;
+const { chips, title, description, actionLabel, actionHref } = Astro.props;
 ---
 <div class="flex flex-col gap-3 border-b border-white/8 pb-4 sm:flex-row sm:items-end sm:justify-between">
 	<div class="max-w-3xl space-y-3">
