@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import {
   getSections,
   getSectionPages,
@@ -58,12 +59,13 @@ const navigationSections = await Promise.all(
           <a
             href={sectionHref}
             class:list={[
-              "block border-l-2 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.25em] transition",
+              "inline-flex items-center gap-2 border-l-2 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.25em] transition",
               sectionActive
                 ? "border-(--control-blue-bright) text-white"
                 : "border-transparent text-(--control-muted) hover:border-(--control-blue) hover:text-white",
             ]}
           >
+						{ section.icon && <Icon name={section.icon} class="h-4 w-4" /> }
             {section.title}
           </a>
 
@@ -84,7 +86,7 @@ const navigationSections = await Promise.all(
                           ? "border-(--control-blue-bright) bg-(--control-panel) font-medium text-white"
                           : "border-transparent text-slate-400 hover:border-(--control-blue) hover:text-white",
                       ]}
-                    >
+                    >	
                       <span>{page.label}</span>
 
                       {page.featured && (
