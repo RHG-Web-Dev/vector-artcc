@@ -1,9 +1,6 @@
 ---
 title: ZME SOPs
 description: Placeholder for ZME source documents.
-category: resources
-updated: '2026-08-12'
+updated: '2026-08-12T00:00:00'
 featured: false
 ---
-
-Add approved source material here.

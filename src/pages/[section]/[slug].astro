@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import { getCollection, render } from "astro:content";
-
+import { site } from "../../data/site";
 export async function getStaticPaths() {
   const entries = await getCollection("content");
 
@@ -11,38 +11,19 @@ export async function getStaticPaths() {
   for (const entry of entries) {
     const parts = entry.id.split("/");
 
-    // Must have:
-    // section/file.md
-    if (parts.length !== 2) {
-      continue;
-    }
-
+    if (parts.length !== 2) continue;
+    
     const section = parts[0];
     const filename = parts[1];
 
-    // NEVER expose _section.md
-    if (filename.startsWith("_")) {
-      continue;
-    }
+    if (filename.startsWith("_")) continue;
+    if (entry.data.hidden) continue
 
-    // Ignore hidden content
-    if (entry.data.hidden) {
-      continue;
-    }
-
-    const slug = filename.replace(
-      /\.(md|mdx)$/,
-      "",
-    );
+    const slug = filename.replace(/\.(md|mdx)$/,"",);
 
     paths.push({
-      params: {
-        section,
-        slug,
-      },
-      props: {
-        entry,
-      },
+      params: { section, slug },
+      props: { entry },
     });
   }
 
@@ -50,32 +31,48 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-
 const { Content } = await render(entry);
 
-const section =
-  Astro.params.section ?? "";
+const section = Astro.params.section ?? "";
+const title = entry.data.title;
+const description = entry.data.description ?? "";
+const dateUpdated = entry.data.updated ? new Date(entry.data.updated) : null;
+const dateUpdatedString = dateUpdated ? dateUpdated.toLocaleDateString("en-US", {
+	weekday: "long",
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+}) : null;
+const daysAgo = dateUpdated ? Math.floor((new Date().getTime() - dateUpdated.getTime()) / (1000 * 60 * 60 * 24)) : null;
 
-const title =
-  entry.data.title;
-
-const description =
-  entry.data.description ?? "";
 ---
 
 <Layout
-  title={title}
+  title={`${site.name} | ${title}`}
   description={description}
   section={section}
 >
   <article class="space-y-8">
 
-      <SectionHeader
-      eyebrow={entry.data.category ?? section}
-      title={title}
-      description={description}
+    <SectionHeader
+			chips={[
+				{
+					text: section,
+					link: `/${section}`,
+				},
+				...(daysAgo !== null
+					? [
+							{
+								text: `Updated: ${dateUpdatedString}, ${daysAgo} day${daysAgo === 1 ? '' : 's'} ago`,
+                tone: 'blue' as const,
+							},
+						]
+					: []),
+			]}
+			title={title}
+			description={description}
 			updated={entry.data.updated}
-    />	
+		/>	
     <div class="prose prose-invert max-w-none">
       <Content />
     </div>

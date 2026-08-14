@@ -3,9 +3,10 @@ interface Props {
   label?: string;
   tone?: 'blue' | 'slate' | 'green' | 'amber';
   class?: string;
+	href?: string;
 }
 
-const { label, tone = 'slate', class: className = '' } = Astro.props;
+const { label, tone = 'slate', class: className = '', href } = Astro.props;
 
 const toneClasses = {
   blue: 'border-[#2a638c] bg-[#0d2941] text-[#b9def3]',
@@ -13,8 +14,11 @@ const toneClasses = {
   green: 'border-[#2d6b57] bg-[#10382f] text-[#b8e3d3]',
   amber: 'border-[#735f32] bg-[#3b3018] text-[#ead8a6]',
 }[tone];
+const Tag = href ? 'a' : 'span';
 ---
 
-<span class={`inline-flex items-center border px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] ${toneClasses} ${className}`}>
-  <slot>{label}</slot>
-</span>
+
+
+<Tag href={href} class={`inline-flex items-center border px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] ${toneClasses} ${className}`}>
+  <slot>{href ? '< ' : ''}{label}</slot>
+</Tag>

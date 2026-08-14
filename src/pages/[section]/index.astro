@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Card from "../../components/Card.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import { Icon } from "astro-icon/components";
 import {
   getSections,
   getSectionPages,
@@ -44,75 +45,118 @@ const pages = await getSectionPages(
 >
   <section class="space-y-8">
 
+    <!-- Section Header -->
     <SectionHeader
       title={section.title}
       description={section.description}
     />
 
     {pages.length > 0 ? (
-      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
 
         {pages.map((page) => (
           <Card
             href={page.href}
             interactive
+            class={`group relative overflow-hidden ${
+              page.featured
+                ? "border-yellow-400/30 hover:border-yellow-400/60"
+                : ""
+            }`}
           >
-            <div class="relative space-y-3">
 
-              {page.featured && (
-                <div
-                  class="absolute right-0 top-0"
-                  title="Featured reference"
-                  aria-label="Featured reference"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    class="h-4 w-4 text-yellow-400"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433L10.788 3.21z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-              )}
+            <!-- Featured indicator -->
+            {page.featured && (
+              <div
+                class="absolute right-4 top-4 z-20"
+                title="Featured reference"
+                aria-label="Featured reference"
+              >
+                <Icon
+                  name="mdi:star"
+                  class="text-lg text-yellow-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
+                />
+              </div>
+            )}
 
-              {page.category && (
-                <p class="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500">
-                  {page.category}
-                </p>
-              )}
+            <!-- Card content -->
+            <div class="relative z-10 flex min-h-48 flex-col">
 
-              <h2 class="font-display text-xl font-semibold text-white">
-                {page.label}
-              </h2>
+              <div class="flex-1 space-y-3">
 
-              {page.description && (
-                <p class="text-sm leading-6 text-slate-300">
-                  {page.description}
-                </p>
-              )}
+                {page.category && (
+                  <div class="flex items-center gap-2">
+                    <span class="h-px w-5 bg-[var(--control-blue-bright)]/60"></span>
 
-              <p class="text-sm text-sky-200">
-                Open reference →
-              </p>
+                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--control-blue-bright)]">
+                      {page.category}
+                    </p>
+                  </div>
+                )}
+
+                <h2 class="font-display text-xl font-semibold leading-tight text-white transition-colors group-hover:text-[var(--control-blue-bright)]">
+                  {page.label}
+                </h2>
+
+                {page.description && (
+                  <p class="text-sm leading-6 text-slate-400">
+                    {page.description}
+                  </p>
+                )}
+
+              </div>
+
+              <!-- Bottom action -->
+              <div class="mt-6 flex items-center justify-between border-t border-[var(--control-line)] pt-4">
+
+                <span class="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-slate-600">
+                  Reference
+                </span>
+
+                <span class="text-sm font-medium text-sky-200 transition-transform duration-200 group-hover:translate-x-1">
+                  Open →
+                </span>
+
+              </div>
 
             </div>
+
+            <!-- Decorative background icon -->
+            {/* <Icon
+              name={section.icon ?? "mdi:book-open-variant"}
+              class="pointer-events-none absolute -bottom-12 -right-10 z-0 text-[9rem] rotate-[-12deg] text-[var(--control-blue-bright)]/[0.035] transition-all duration-500 group-hover:rotate-[-7deg] group-hover:scale-110 group-hover:text-[var(--control-blue-bright)]/[0.07]"
+            /> */}
+
           </Card>
         ))}
 
       </div>
     ) : (
-      <div class="border border-[var(--control-line)] bg-[var(--control-panel)] p-6">
-        <p class="text-sm text-slate-400">
-          No reference material has been published
-          in this section yet.
-        </p>
-      </div>
+
+      <Card>
+        <div class="flex items-start gap-4">
+
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)]">
+            <Icon
+              name="mdi:information-outline"
+              class="text-xl text-slate-500"
+            />
+          </div>
+
+          <div>
+            <h2 class="font-display text-base font-semibold text-white">
+              No references available
+            </h2>
+
+            <p class="mt-1 text-sm leading-6 text-slate-400">
+              No reference material has been published
+              in this section yet.
+            </p>
+          </div>
+
+        </div>
+      </Card>
+
     )}
 
   </section>

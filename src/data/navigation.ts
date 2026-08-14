@@ -6,6 +6,7 @@ export interface Section {
 	description: string;
 	order: number;
 	hidden: boolean;
+	icon?: string;
 }
 
 export interface SectionPage {
@@ -81,19 +82,15 @@ function isMetadataEntry(id: string): boolean {
  */
 export async function getSections(): Promise<Section[]> {
 	const entries = await getCollection('content');
-
 	return entries
 		.filter((entry) => isMetadataEntry(entry.id))
 		.map((entry) => ({
 			key: getSectionFromId(entry.id),
-
 			title: entry.data.title,
-
 			description: entry.data.description ?? '',
-
 			order: entry.data.order ?? 999,
-
 			hidden: entry.data.hidden ?? false,
+			icon: entry.data.icon ?? undefined,
 		}))
 		.filter((section) => !section.hidden)
 		.sort((a, b) => {
@@ -178,8 +175,6 @@ export async function getSectionPages(section: string): Promise<SectionPage[]> {
 
 				href: `/${section}/${slug}`,
 
-				category: entry.data.category,
-
 				updated: entry.data.updated,
 
 				featured: entry.data.featured ?? false,
@@ -220,8 +215,6 @@ export async function getAllPages(): Promise<SectionPage[]> {
 				description: entry.data.description ?? '',
 
 				href: `/${section}/${slug}`,
-
-				category: entry.data.category,
 
 				updated: entry.data.updated,
 

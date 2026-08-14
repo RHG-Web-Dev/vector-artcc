@@ -1,9 +1,8 @@
 ---
 title: CRAFT
 description: Clearance mnemonic for fast controller reference.
-category: reference
-updated: '2026-08-12'
-featured: true
+updated: '2026-08-12T00:00:00'
+featured: false
 ---
 
 C - Clearance Limit

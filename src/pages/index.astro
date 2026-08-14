@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import SectionHeader from "../components/SectionHeader.astro";
@@ -35,6 +36,12 @@ const recentlyUpdated = sectionData
 
     return dateB - dateA;
   })
+	.filter((page) => {
+		const dateUpdated = new Date(page.updated!).getTime();
+		const thirtyDaysAgo = new Date().getTime() - 30 * 24 * 60 * 60 * 1000;
+
+		return dateUpdated >= thirtyDaysAgo;
+	})
   .slice(0, 8);
 ---
 
@@ -69,7 +76,11 @@ const recentlyUpdated = sectionData
 
     <section>
       <SectionHeader
-        eyebrow="Reference"
+        chips={[
+					{
+						text: 'Reference',
+					}
+				]}
         title="Controller resources"
         description="Quick access to the information you need while controlling."
       />
@@ -77,28 +88,36 @@ const recentlyUpdated = sectionData
       <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {sectionData.map((section) => (
           <Card
-            href={`/${section.key}`}
-            interactive
-          >
-            <div class="space-y-2">
+						href={`/${section.key}`}
+						interactive
+						class="group relative overflow-hidden"
+					>
+						<div class="relative z-10 max-w-[75%] space-y-2">
 
-              <h2 class="font-display text-lg font-semibold text-white">
-                {section.title}
-              </h2>
+							<h2 class="font-display text-lg font-semibold text-white">
+								{section.title}
+							</h2>
 
-              {section.description && (
-                <p class="text-sm leading-6 text-slate-400">
-                  {section.description}
-                </p>
-              )}
+							{section.description && (
+								<p class="text-sm leading-6 text-slate-400">
+									{section.description}
+								</p>
+							)}
 
-              <p class="font-mono text-xs text-slate-500">
-                {section.pages.length}{" "}
-                reference{section.pages.length === 1 ? "" : "s"}
-              </p>
+							<p class="font-mono text-xs text-slate-500">
+								{section.pages.length}{" "}
+								reference{section.pages.length === 1 ? "" : "s"}
+							</p>
 
-            </div>
-          </Card>
+						</div>
+
+						{section.icon && (
+							<Icon
+								name={section.icon}
+								class="pointer-events-none absolute -bottom-10 -right-4 z-0 text-[10rem] rotate-12 text-(--control-blue-bright)/10 transition-all duration-300 group-hover:rotate-7 group-hover:scale-110 group-hover:text-(--control-blue-bright)/15"
+							/>
+						)}
+					</Card>	
         ))}
       </div>
     </section>
@@ -108,7 +127,11 @@ const recentlyUpdated = sectionData
 
     <section>
       <SectionHeader
-        eyebrow="Updates"
+         chips={[
+					{
+						text: 'Updates',
+					}
+				]}
         title="Recently updated"
         description="The latest changes and additions to the reference library."
       />

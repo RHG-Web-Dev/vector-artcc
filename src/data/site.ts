@@ -7,15 +7,6 @@ export const site = {
 		src: '/img/favicon.svg',
 		alt: 'VECTOR',
 	},
-	// navigation: [
-	// 	{ label: 'Dashboard', href: '/' },
-	// 	{ label: 'Learn', href: '/learn' },
-	// 	{ label: 'Reference', href: '/reference' },
-	// 	{ label: 'Facilities', href: '/kmem' },
-	// 	{ label: 'Training', href: '/training' },
-	// 	{ label: 'Tools', href: '/tools' },
-	// 	{ label: 'Resources', href: '/resources' },
-	// ],
 	footer: {
 		text: `VECTOR | ARTCC Controller Companion`,
 	},

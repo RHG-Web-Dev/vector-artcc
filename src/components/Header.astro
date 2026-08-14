@@ -11,16 +11,27 @@ const { section = "Dashboard" } = Astro.props;
 
 <header class="border-b border-(--control-line) bg-(--control-navy)">
   <div class="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-    <a href="/" class="flex min-w-0 items-center gap-4">
-      <div class="hidden h-9 w-1 bg-(--control-blue-bright) sm:block"></div>
-      <div class="min-w-0">
-        <div class="mt-0.5 flex items-baseline gap-3">
-					<img src="/img/favicon.svg" alt=`{site.name} mark` class="h-6 w-6 shrink-0" />
-          <span class="font-display text-xl font-bold tracking-wide text-white">{site.name}</span>
-          <span class="hidden truncate text-xs uppercase tracking-[0.18em] text-(--control-muted) sm:inline">Controller Companion</span>
-        </div>
-      </div>
-    </a>
+    <a
+  href="/"
+  class="flex min-w-0 items-center gap-3"
+  aria-label={`${site.name} home`}
+>
+  <img
+    src="/img/favicon.svg"
+    alt={`${site.name} mark`}
+    class="h-8 w-8 shrink-0"
+  />
+
+  <div class="min-w-0 leading-none">
+    <span class="block font-display text-xl font-bold tracking-wide text-white">
+      {site.name}
+    </span>
+
+    <span class="mt-1 block text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[var(--control-muted)]">
+      {site.subtitle}
+    </span>
+  </div>
+</a>
 
     <div class="flex items-center gap-5">
 

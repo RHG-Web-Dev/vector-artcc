@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: process.env.SITE_URL ?? 'http://localhost:4321',
+	site: 'https://artcc.huskey.cc',
 
 	vite: {
 		// @ts-ignore

@@ -1,8 +1,7 @@
 ---
 title: Readbacks
 description: Placeholder readback guidance.
-category: reference
-updated: '2026-08-12'
+updated: '2026-08-12T00:00:00'
 featured: false
 ---
 

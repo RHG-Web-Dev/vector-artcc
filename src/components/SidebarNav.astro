@@ -50,7 +50,7 @@ const navigationSections = await Promise.all(
 
       const sectionActive =
         currentPath === sectionHref ||
-        currentPath.startsWith(`${sectionHref}/`);
+        currentPath.startsWith(`/${sectionHref}/`);
 
       return (
         <section>
