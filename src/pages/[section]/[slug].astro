@@ -71,9 +71,27 @@ const daysAgo = dateUpdated ? Math.floor((new Date().getTime() - dateUpdated.get
 			]}
 			title={title}
 			description={description}
-			updated={entry.data.updated}
 		/>	
-    <div class="prose prose-invert max-w-none">
+    <div class="
+		prose prose-invert max-w-none
+		white-space: pre-line
+    [&_table]:border-collapse
+    [&_table]:text-sm
+		[&_table]:text-slate-300
+    [&_th]:bg-slate-800
+    [&_th]:px-4
+    [&_th]:py-3
+    [&_th]:text-center
+    [&_th]:text-(--control-blue-bright)
+    [&_td]:border
+    [&_td]:border-(--control-line)
+    [&_td]:px-3
+    [&_td]:py-3
+    [&_td]:align-top
+    [&_td]:text-slate-300
+    [&_tr]:transition-colors
+    [&_tbody_tr:hover]:bg-slate-800/80
+  ">
       <Content />
     </div>
   </article>
