@@ -18,7 +18,9 @@ A simple memory aid is:
 ### Example
 
 ```text
-Local, Ground, one to cross Runway 27 at Sierra.
+[You] Local, Ground.
+[Local] Local
+[You] One to cross 27 at Sierra.
 ```
 
 Breakdown:
@@ -26,7 +28,7 @@ Breakdown:
 - **Who:** Local
 - **Who am I:** Ground
 - **How many:** One
-- **What:** Cross Runway 27
+- **What:** Cross 27
 - **Where:** Sierra
 
 ### Completion
@@ -34,7 +36,7 @@ Breakdown:
 After the crossing is complete:
 
 ```text
-Local, Ground, crossing complete.
+[You] Local, Ground, crossing complete.
 ```
 
 ## Practical Notes
