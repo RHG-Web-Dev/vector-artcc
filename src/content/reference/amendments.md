@@ -7,34 +7,37 @@ featured: false
 
 # Amendments
 
-An amendment changes part of an aircraft's previously issued clearance. Identify the problem, explain the available alternative, and obtain the pilot's response before issuing the new clearance when required.
+Use an amendment when a portion of an aircraft's filed or previously issued clearance is incorrect, unavailable, or otherwise needs to be changed. Identify the reason for the amendment and offer the pilot an appropriate alternative.
 
 ## Common Amendment Reasons
 
-- Filed departure or arrival is unavailable.
-- Procedure is invalid for the current time of day.
-- Procedure is not compatible with the aircraft's equipment.
+- Filed departure is invalid due to an incorrect cycle.
+- Departure is invalid for the current time of day.
+- Departure is incompatible with the aircraft's equipment type.
 - Filed altitude is incorrect for the direction of flight.
-- A route or transition needs to be changed.
+- A route, departure, arrival, or other clearance element needs to be changed.
 
 ## Useful Phraseology
 
-### Departure Unavailable
+### Incorrect Cycle
 
 ```text
-[CALLSIGN] Filed departure is unavailable right now. Can you take the [ALTERNATE] instead?
+[CALLSIGN] Departure invalid per incorrect cycle. Are you able to take the [NEW DEPARTURE] departure?
 ```
 
 ### Time-of-Day Restriction
 
 ```text
-[CALLSIGN] Departure invalid per time of day. Are you able to take the PIEPE6 departure?
+[CALLSIGN] Departure invalid per time of day. Are you able to take the [ALTERNATE] departure?
 ```
 
-### Equipment Restriction
+[Test](#equipment-type-restriction)
+Use the [Cheatsheet](/zme/cheatsheets#Restrictions) to determine which departures are valid for the current time of day.
+
+### Equipment Type Restriction
 
 ```text
-[CALLSIGN] Departure invalid per equipment type. Are you able to take the ELVIS4 departure?
+[CALLSIGN] Departure invalid per equipment type. Are you able to take the [ALTERNATE] departure?
 ```
 
 ### Altitude / Direction of Flight
@@ -43,14 +46,16 @@ An amendment changes part of an aircraft's previously issued clearance. Identify
 [CALLSIGN] Your altitude is incorrect per direction of flight. Would you like FL390 or FL370?
 ```
 
-## After the Pilot Accepts
+## Pilot Response
 
-Once the amendment is agreed upon, issue the clearance using the amended route, altitude, procedure, or other restriction and verify the readback.
+When an amendment requires a pilot's choice, provide the available option(s) and allow the pilot to respond before proceeding with the amended clearance.
+
+Once the pilot accepts the amendment, issue the appropriate clearance and verify the readback.
 
 For a route amendment, a concise pattern is:
 
 ```text
-AMEND ROUTE TO READ...
+[CALLSIGN] Clearance available with amendment, advise ready to copy.
 ```
 
-The exact phraseology should follow the current VATSIM and facility-specific standards.
+The exact phraseology should follow current VATSIM and facility-specific standards.
