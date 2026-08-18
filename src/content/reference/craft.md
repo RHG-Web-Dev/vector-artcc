@@ -9,21 +9,21 @@ featured: false
 
 CRAFT is a simple way to organize an IFR clearance before transmitting it.
 
-| Letter | Meaning | What to capture |
-| --- | --- | --- |
-| **C** | Clearance Limit | Airport or other clearance limit |
-| **R** | Route | Departure, transition, direct fixes, or as-filed routing |
-| **A** | Altitude | Initial altitude and any expected altitude |
-| **F** | Frequency | Departure frequency or applicable controller/facility instruction |
-| **T** | Transponder | Assigned squawk |
+| Letter | Meaning         | What to capture                                          |
+| ------ | --------------- | -------------------------------------------------------- |
+| **C**  | Clearance Limit | Airport, fix, waypoint                                   |
+| **R**  | Route           | Departure, transition, direct fixes, or as-filed routing |
+| **A**  | Altitude        | Initial altitude and final altitude                      |
+| **F**  | Frequency       | Departure frequency                                      |
+| **T**  | Transponder     | Assigned squawk                                          |
 
 ## Example
 
 ```text
 C - Baltimore Airport
 R - PIEPE6 departure, IBUFY transition, then as filed
-A - Maintain 5000, expect FL390 one-zero minutes after departure
-F - Departure [XXX.XX]
+A - Maintain 5000, expect flight-level 390 one-zero minutes after departure
+F - Departure frequency [XXX.XX]
 T - Squawk [XXXX]
 ```
 
