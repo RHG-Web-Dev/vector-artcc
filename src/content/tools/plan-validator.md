@@ -2,7 +2,7 @@
 title: Flight Plan Validator
 description: Validate an IFR flight plan's aircraft, airports, direction, altitude, and generate a CRAFT clearance reference.
 updated: '2026-08-13T00:00:00'
-hidden: true
+hidden: false
 ---
 
 <div class="mb-6 rounded-lg border border-yellow-400/50 bg-yellow-950/20 p-5">
