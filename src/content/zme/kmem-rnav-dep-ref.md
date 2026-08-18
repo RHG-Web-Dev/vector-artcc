@@ -1,5 +1,5 @@
 ---
-title: MEM RNAV Departure Reference
+title: RNAV Departure Reference
 description: Memphis International Airport RNAV departure reference for North and South Operations.
 updated: '2026-08-14'
 ---
