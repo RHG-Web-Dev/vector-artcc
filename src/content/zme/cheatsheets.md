@@ -1,5 +1,5 @@
 ---
-title: KMEM Departure Cheatsheet
+title: Departure Cheatsheet
 description: KMEM departure procedures, runway use, restrictions, and initial altitudes.
 updated: '2026-08-14'
 ---
