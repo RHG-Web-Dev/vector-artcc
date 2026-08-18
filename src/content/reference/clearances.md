@@ -1,5 +1,5 @@
 ---
-title: IFR Clearances
+title: Clearances
 description: Controller reference for picking up, issuing, amending, and reading IFR clearances.
 order: 2
 updated: '2026-08-14T00:00:00'
@@ -46,18 +46,18 @@ When the clearance is available, advise the pilot to copy it:
 
 Use CRAFT to organize the clearance:
 
-| Letter | Meaning | Example |
-| --- | --- | --- |
-| **C** | Clearance limit | Baltimore Airport |
-| **R** | Route | PIEPE6 departure, IBUFY transition, then as filed |
-| **A** | Altitude | Maintain 5,000; expect FL390 ten minutes after departure |
-| **F** | Frequency | Departure frequency |
-| **T** | Transponder | Assigned squawk |
+| Letter | Meaning         | Example                                                  |
+| ------ | --------------- | -------------------------------------------------------- |
+| **C**  | Clearance limit | Baltimore Airport                                        |
+| **R**  | Route           | PIEPE6 departure, IBUFY transition, then as filed        |
+| **A**  | Altitude        | Maintain 5,000; expect FL390 ten minutes after departure |
+| **F**  | Frequency       | Departure frequency                                      |
+| **T**  | Transponder     | Assigned squawk                                          |
 
 ### Example Clearance
 
 ```text
-[CALLSIGN] Cleared to Baltimore Airport via PIEPE6 departure,
+[CALLSIGN] Cleared to Baltimore Airport PIEPE6 departure,
 IBUFY transition, then as filed. Maintain 5,000, expect FL390
 one-zero minutes after departure. Departure frequency [XXX.XX].
 Squawk [XXXX].
@@ -65,13 +65,30 @@ Squawk [XXXX].
 
 If departure is offline or unavailable, the frequency portion should reflect the current facility procedure.
 
-## VFR Class B Admission
+### VFR Class B Admission
 
 A VFR Class B clearance can be organized using the same idea:
+
+#### Flight Following
+
+Ask the pilot if they would like flight following, then issue the clearance:
+
+- Flight Following = +FF
+- No Flight Following = -FF
+
+```text
+[CALLSIGN] Cleared into Memphis Class Bravo Airspace.
+Maintain VFR at or below 2,500.
+Departure frequency [XXX.XX].
+Squawk [XXXX].
+```
+
+### Pattern
 
 ```text
 [CALLSIGN] Cleared into Memphis Class Bravo Airspace.
 Maintain VFR at or below 1,300.
+Squawk [XXXX].
 ```
 
 Include the applicable frequency, controller/facility handling, and transponder information required by the situation.
