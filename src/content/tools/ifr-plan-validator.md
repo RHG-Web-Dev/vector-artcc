@@ -400,16 +400,18 @@ const MEM_RULES = {
   },
 
   currentCycles: {
-
-    CHLDR: 5,
-    PIEPE: 6,
-    CRSON: 7,
+		AZONE: 7,
     BBKING: 7,
-    JTEEE: 5,
-    ELVIS: 4
-
-  }
-
+		CHLDR: 5,
+		CRSON: 7,
+		DUCKZ: 5,
+		ELVIS: 4,
+		GOETZ: 7,
+		JTEEE: 5,
+		PIEPE: 6,
+		SELPH: 7,
+		ZUMIT: 5,
+	}
 };
 
 
@@ -679,14 +681,11 @@ function getAircraftType(aircraft) {
 }
 
 
+
 function isJetAircraft(aircraft) {
-
-  return (
-    getAircraftType(aircraft) ===
-    "jet"
-  );
-
+  return getAircraftType(aircraft) === "jet";
 }
+
 
 
 /* ================================================================
@@ -994,56 +993,31 @@ function getDirection(
    VALID ALTITUDES
    ================================================================ */
 
-function getValidAltitudes(
-  direction
-) {
+function getValidAltitudes(direction) {
 
-  if (
-    direction === "west"
-  ) {
+  if (direction === "west") {
 
-    return [
+    const altitudes = [];
 
-      320,
-      340,
-      360,
-      380,
-      400,
+    for (let fl = 180; fl <= 600; fl += 20) {
+      altitudes.push(fl);
+    }
 
-      430,
-      470,
-      510,
-      550,
-      590
-
-    ];
+    return altitudes;
 
   }
 
+  if (direction === "east") {
 
-  if (
-    direction === "east"
-  ) {
+    const altitudes = [];
 
-    return [
+    for (let fl = 190; fl <= 610; fl += 20) {
+      altitudes.push(fl);
+    }
 
-      310,
-      330,
-      350,
-      370,
-      390,
-      410,
-
-      450,
-      490,
-      530,
-      570,
-      610
-
-    ];
+    return altitudes;
 
   }
-
 
   return [];
 
@@ -1397,7 +1371,7 @@ function formatDepartureFrequency(
 
 
   return (
-    "Departure frequency on " +
+    "Departure frequency " +
     frequency.replace(
       ".",
       " point "
@@ -1447,7 +1421,7 @@ function generateCRAFT(
   return [
 		"Cleared to " + airportName,
 		routeParts.join(", ") + ",",
-    "Maintain " + initialAltitude + ", expect " + filedAltitude + " one-zero mins after departure,",
+    "Maintain " + initialAltitude + ", expect " + filedAltitude + " one-zero minutes after departure,",
     formatDepartureFrequency(plan.departureFrequency) + ",",
     "Squawk xxxx"
 
@@ -1463,21 +1437,9 @@ function generateCRAFT(
 function parseQuickPlan(
   value
 ) {
+  const tokens = getTokens(value);
 
-  const tokens =
-    getTokens(value);
-
-
-  if (
-    tokens.length < 5
-  ) {
-
-    throw new Error(
-      "Quick flight plan must contain CALLSIGN, AIRCRAFT/EQUIPMENT, DESTINATION, ALTITUDE, and ROUTE."
-    );
-
-  }
-
+  if (tokens.length < 5) throw new Error("Quick flight plan must contain CALLSIGN, AIRCRAFT/EQUIPMENT, DESTINATION, ALTITUDE, and ROUTE.");
 
   const callsign = tokens[0];
   const aircraft = tokens[1].replace(/^H\//, "");
@@ -1508,74 +1470,30 @@ function parseQuickPlan(
    ================================================================ */
 
 function importFlightPlanFromURL() {
-
-  const params = new URLSearchParams(
-    window.location.search
-  );
-
+  const params = new URLSearchParams(window.location.search);
   const fp = params.get("fp");
 
-  if (!fp) {
-    return false;
-  }
-
+  if (!fp) return false;
   const value = fp.trim();
 
-  if (!value) {
-    return false;
-  }
+  if (!value) return false;
 
   try {
-
     const plan = parseQuickPlan(value);
-
-    /* Populate Quick Flight Plan */
-
-    $("fp-quick").value =
-      value.toUpperCase();
-
-    /* Populate individual fields */
-
-    $("fp-callsign").value =
-      plan.callsign;
-
-    $("fp-aircraft").value =
-      plan.aircraft;
-
-    $("fp-destination").value =
-      plan.destination;
-
-    $("fp-altitude").value =
-      plan.altitude;
-
-    $("fp-route").value =
-      plan.route;
-
-    /* Default MEM departure */
-
-    $("fp-departure").value =
-      "KMEM";
-
-    /* Default departure frequency */
-
-    $("fp-departure-frequency").value =
-      MEM_RULES.departureFrequency;
-
-    /* Automatically validate */
-
-    validate();
-
+		$("fp-quick").value = value.toUpperCase();
+		$("fp-callsign").value = plan.callsign;
+		$("fp-aircraft").value = plan.aircraft;
+		$("fp-destination").value = plan.destination;
+		$("fp-altitude").value = plan.altitude;
+		$("fp-route").value = plan.route;
+		$("fp-departure").value = "KMEM";
+		$("fp-departure-frequency").value = MEM_RULES.departureFrequency;
+		validate();
     return true;
 
   } catch (error) {
-
-    $("fp-error-message").textContent =
-      "Unable to import flight plan from URL: " +
-      error.message;
-
-    $("fp-error").classList.remove(
-      "hidden"
-    );
+    $("fp-error-message").textContent = "Unable to import flight plan from URL: " + error.message;
+    $("fp-error").classList.remove("hidden");
 
     return false;
 
@@ -1585,31 +1503,11 @@ function importFlightPlanFromURL() {
 
 function buildQuickPlan() {
 
-  const callsign =
-    normalize(
-      $("fp-callsign").value
-    );
-
-  const aircraft =
-    normalize(
-      $("fp-aircraft").value
-    );
-
-  const destination =
-    normalize(
-      $("fp-destination").value
-    );
-
-  const altitude =
-    normalize(
-      $("fp-altitude").value
-    );
-
-  const route =
-    normalize(
-      $("fp-route").value
-    );
-
+  const callsign = normalize($("fp-callsign").value);
+  const aircraft = normalize( $("fp-aircraft").value);
+  const destination = normalize($("fp-destination").value);
+  const altitude = normalize($("fp-altitude").value);
+  const route = normalize($("fp-route").value);
 
   if (
     !callsign ||
@@ -1625,31 +1523,20 @@ function buildQuickPlan() {
 
 
   return [
-
     callsign,
     aircraft,
     destination,
     altitude,
     route
-
   ].join(" ");
 
 }
 
 
 function syncQuickPlan() {
-
-  const quick =
-    $("fp-quick");
-
-
-  if (!quick) {
-    return;
-  }
-
-
-  quick.value =
-    buildQuickPlan();
+  const quick = $("fp-quick");
+  if (!quick) return;
+  quick.value = buildQuickPlan();
 
 }
 
@@ -1670,20 +1557,12 @@ async function validateFlightPlan(
   let departureAirport;
   let destinationAirport;
 
-
   [
     departureAirport,
     destinationAirport
   ] = await Promise.all([
-
-    getAirportInfo(
-      plan.departure
-    ),
-
-    getAirportInfo(
-      plan.destination
-    )
-
+    getAirportInfo(plan.departure),
+    getAirportInfo(plan.destination)
   ]);
 
 
