@@ -1479,100 +1479,109 @@ function parseQuickPlan(
   }
 
 
-  const callsign =
-    tokens[0];
+  const callsign = tokens[0];
+  const aircraft = tokens[1].replace(/^H\//, "");
+	const destination = tokens[2];
+  const altitude = tokens[3];
+  const route = tokens.slice(4).join(" ");
 
-  const aircraft =
-    tokens[1];
-
-  const destination =
-    tokens[2];
-
-  const altitude =
-    tokens[3];
-
-  const route =
-    tokens
-      .slice(4)
-      .join(" ");
-
-
-  if (
-    !/^[A-Z0-9]+$/.test(
-      callsign
-    )
-  ) {
-
-    throw new Error(
-      "Invalid callsign."
-    );
-
-  }
-
-
-  if (
-    !/^[A-Z0-9]+\/[A-Z]$/.test(
-      aircraft
-    )
-  ) {
-
-    throw new Error(
-      "Aircraft/equipment must look like B77L/L."
-    );
-
-  }
-
-
-  if (
-    !/^[A-Z]{4}$/.test(
-      destination
-    )
-  ) {
-
-    throw new Error(
-      "Destination must be a four-letter ICAO code."
-    );
-
-  }
-
-
-  if (
-    !/^FL\d{2,3}$/.test(
-      altitude
-    ) &&
-    !/^\d{3,5}$/.test(
-      altitude
-    )
-  ) {
-
-    throw new Error(
-      "Altitude must look like FL340 or 34000."
-    );
-
-  }
-
+	if (!/^[A-Z0-9]+$/.test(callsign)) throw new Error("Invalid callsign.");
+  if (!/^[A-Z0-9]+\/[A-Z]$/.test(aircraft)) throw new Error("Aircraft/equipment must look like B77L/L.");
+  if (!/^[A-Z]{4}$/.test(destination)) throw new Error("Destination must be a four-letter ICAO code.");
+  if (!/^FL\d{2,3}$/.test(altitude) && !/^\d{3,5}$/.test(altitude)) throw new Error("Altitude must look like FL340 or 34000.");
 
   return {
-
-    callsign:
-      callsign,
-
-    aircraft:
-      aircraft,
-
-    destination:
-      destination,
-
-    altitude:
-      altitude,
-
-    route:
-      route
-
+    callsign: callsign,
+    aircraft: aircraft,
+    destination: destination,
+		altitude: altitude,
+		route: route
   };
 
 }
+/* ================================================================
+   URL FLIGHT PLAN IMPORT
+   Supports:
+     ?fp=FDX904 B77L/L KPHX FL340 ZUMIT5 FOXOM FSM KF33C KA33Y ZUN EAGUL6
 
+   The flight plan is loaded into the form and automatically validated.
+   ================================================================ */
+
+function importFlightPlanFromURL() {
+
+  const params = new URLSearchParams(
+    window.location.search
+  );
+
+  const fp = params.get("fp");
+
+  if (!fp) {
+    return false;
+  }
+
+  const value = fp.trim();
+
+  if (!value) {
+    return false;
+  }
+
+  try {
+
+    const plan = parseQuickPlan(value);
+
+    /* Populate Quick Flight Plan */
+
+    $("fp-quick").value =
+      value.toUpperCase();
+
+    /* Populate individual fields */
+
+    $("fp-callsign").value =
+      plan.callsign;
+
+    $("fp-aircraft").value =
+      plan.aircraft;
+
+    $("fp-destination").value =
+      plan.destination;
+
+    $("fp-altitude").value =
+      plan.altitude;
+
+    $("fp-route").value =
+      plan.route;
+
+    /* Default MEM departure */
+
+    $("fp-departure").value =
+      "KMEM";
+
+    /* Default departure frequency */
+
+    $("fp-departure-frequency").value =
+      MEM_RULES.departureFrequency;
+
+    /* Automatically validate */
+
+    validate();
+
+    return true;
+
+  } catch (error) {
+
+    $("fp-error-message").textContent =
+      "Unable to import flight plan from URL: " +
+      error.message;
+
+    $("fp-error").classList.remove(
+      "hidden"
+    );
+
+    return false;
+
+  }
+
+}
 
 function buildQuickPlan() {
 
@@ -2953,7 +2962,7 @@ function initializeValidator() {
 
       }
     );
-
+	importFlightPlanFromURL();
 }
 
 
