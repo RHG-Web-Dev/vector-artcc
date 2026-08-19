@@ -994,33 +994,23 @@ function getDirection(
    ================================================================ */
 
 function getValidAltitudes(direction) {
+  let altitudes = [];
 
   if (direction === "west") {
-
-    const altitudes = [];
-
-    for (let fl = 180; fl <= 600; fl += 20) {
-      altitudes.push(fl);
-    }
-
-    return altitudes;
-
+    // 180 through 400
+    for (let fl = 180; fl <= 400; fl += 20) altitudes.push(fl);
+    // 430 and above
+    for (let fl = 430; fl <= 600; fl += 20) altitudes.push(fl);
+  } else if (direction === "east") {
+    // 190 through 390
+    for (let fl = 190; fl <= 390; fl += 20) altitudes.push(fl);
+  
+    // 410, 430? No — 410 is east, then pattern flips
+    altitudes.push(410);
+    for (let fl = 450; fl <= 610; fl += 20) altitudes.push(fl);
   }
 
-  if (direction === "east") {
-
-    const altitudes = [];
-
-    for (let fl = 190; fl <= 610; fl += 20) {
-      altitudes.push(fl);
-    }
-
-    return altitudes;
-
-  }
-
-  return [];
-
+  return altitudes;
 }
 
 
@@ -1997,26 +1987,13 @@ function buildAmendmentMessage(
     )
   ) {
 
-    const suggestions =
-      validation
-        .suggestedAltitudes;
-
+    const suggestions =validation.suggestedAltitudes;
 
     if (
       suggestions.length >= 2
     ) {
-
-      messages.push(
-
-        plan.callsign +
-        " Your Altitude is incorrect per direction of flight, " +
-        "Would you like FL" +
-        suggestions[0] +
-        " or FL" +
-        suggestions[1] +
-        "?"
-
-      );
+			suggestions.sort((a, b) => a - b);
+      messages.push(plan.callsign + " Your Altitude is incorrect per direction of flight, " + "Would you like FL" + suggestions[0] + " or FL" + suggestions[1] + "?");
 
     } else if (
       suggestions.length === 1
