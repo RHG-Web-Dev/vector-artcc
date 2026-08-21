@@ -394,7 +394,17 @@ const MEM_RULES = {
       JTEEE: "NTWOO",
       PIEPE: "STWOO",
       SELPH: "NTREE",
-      ZUMIT: "WTREE"
+      ZUMIT: "WTREE",
+
+			AUTMN: "SFOUR",
+			BINKY: "STREE",
+			GENEH: "NFIVE",
+			GMBUD: "EFOUR",
+			GRRIZ: "NRONE",
+			HOTRD: "WFIVE",
+			NIKEI: "WFOUR",
+			OLEMS: "SONEI",
+
     }
 
   },
@@ -1199,12 +1209,12 @@ function determineDeparture(
   ) {
 
     const transitionKey =
-      transition.replace(
+      procedure.replace(
         /\d+$/,
         ""
       );
 
-
+		console.log(transitionKey)
     const replacementTransition =
       MEM_RULES
         .rvsmOnly
@@ -1241,8 +1251,7 @@ function determineDeparture(
         plan.callsign +
         " Dept Invalid per Equipment Type, " +
         "Are you able to take the " +
-        procedure +
-        " Dept?"
+        procedure + " Dept?"
 
     });
 
@@ -1406,10 +1415,10 @@ function generateCRAFT(
 
 
   const filedAltitude = formatFlightLevel(parseAltitude(plan.altitude));
-  const airportName = airport.name || airport.icao;
-
+  // const airportName = airport.name || airport.icao;
+  const airportName = airport.name.length < 10 ? airport.name : airport.city;
   return [
-		"Cleared to " + airportName,
+		"Cleared to " + airportName + (airportName.includes("Airport") ? "" : " Airport"),
 		routeParts.join(", ") + ",",
     "Maintain " + initialAltitude + ", expect " + filedAltitude + " one-zero minutes after departure,",
     formatDepartureFrequency(plan.departureFrequency) + ",",
@@ -1999,25 +2008,10 @@ function buildAmendmentMessage(
       suggestions.length === 1
     ) {
 
-      messages.push(
-
-        plan.callsign +
-        " Your Altitude is incorrect per direction of flight, " +
-        "Would you like FL" +
-        suggestions[0] +
-        "?"
-
-      );
-
+      messages.push(plan.callsign + " Your Altitude is incorrect per direction of flight, " +"Would you like FL" + suggestions[0] + "?");
     }
-
   }
-
-
-  return messages.join(
-    "\n\n"
-  );
-
+	return messages.join("\n\n");
 }
 
 
