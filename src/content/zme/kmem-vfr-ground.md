@@ -11,39 +11,34 @@ updated: '2026-08-24'
 ### VFR Altitudes
 
 - **VFR Flight:** At or below 2,500
-- **Pattern:**
-  - Props: 1,300
-  - Jets: 1,800
+- **Pattern:** 1,300 Props / 1,800 Jets
 
 ## VFR Request Flow
 
 ### Calls for VFR Flight
 
-1. **Do we have the aircraft type?**
-   - No → **"Say aircraft type."**
+```text
+Aircraft Type?
+│
+└─ No → "Say aircraft type."
 
-2. **Is this pattern work?**
-   - **Yes:** Aircraft type only.
-   - **No:** Determine whether the pilot wants flight following.
-
-3. **Do we know if they want flight following?**
-   - No → **"Flight following?"**
-
-#### Flight Following (+FF)
-
-Need:
-
-- Aircraft type
-- Destination
-- Requested VFR altitude
-
-#### No Flight Following (-FF)
-
-Need:
-
-- Aircraft type
-- Direction of flight
-- Requested VFR altitude
+Pattern Work?
+│
+├─ YES
+│  └─ Aircraft type only
+│
+└─ NO → Flight Following?
+     │
+     ├─ YES (+FF)
+     │  ├─ Aircraft type
+     │  ├─ Destination
+     │  └─ Requested VFR altitude
+     │
+     └─ NO (-FF)
+        ├─ Aircraft type
+        ├─ Direction of flight
+        └─ Requested VFR altitude
+```
 
 ## CRAFT
 
@@ -57,13 +52,18 @@ Need:
 
 ### VFR Departure
 
-> [CALL], cleared out of the Memphis Class Bravo airspace. Maintain VFR at or below 2,500. Departure frequency 125.8. Squawk XXXX.
+> *[CALL]* Cleared out of the Memphis Class Bravo Airspace.
+>
+> Maintain VFR at/below 2,500.
+>
+> Departure frequency 125.8.
+>
+> Squawk *XXXX*.
 
 ### VFR Pattern
 
-> [CALL], cleared into the Memphis Class Bravo airspace. Maintain VFR at or below 1,300 for props or 1,800 for jets. Squawk XXXX.
-
-## Flight Plan Notes
-
-- VFR flight plan altitude must always be prefixed with **VFR/**.
-- Do **not** use an **"expect ___ 10 minutes after departure"** instruction for VFR traffic.
+> *[CALL]* Cleared into the Memphis Class Bravo Airspace.
+>
+> Maintain VFR at/below (1,300 Props; 1,800 Jets).
+>
+> Squawk *XXXX*.
