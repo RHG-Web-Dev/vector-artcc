@@ -2,7 +2,6 @@
 import Layout from "../../layouts/Layout.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import { getCollection, render } from "astro:content";
-import { site } from "../../data/site";
 export async function getStaticPaths() {
   const entries = await getCollection("content");
 
@@ -48,7 +47,7 @@ const daysAgo = dateUpdated ? Math.floor((new Date().getTime() - dateUpdated.get
 ---
 
 <Layout
-  title={`${site.name} ─ ${title}`}
+  title={title}
   description={description}
   section={section}
 >

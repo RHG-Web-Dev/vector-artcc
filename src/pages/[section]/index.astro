@@ -7,7 +7,6 @@ import {
   getSections,
   getSectionPages,
 } from "../../data/navigation";
-import { site } from "../../data/site";
 
 export async function getStaticPaths() {
   const sections = await getSections();
@@ -39,7 +38,7 @@ const pages = await getSectionPages(
 ---
 
 <Layout
-  title={`${site.name} ─ ${section.title}`}
+  title={section.title}
   description={section.description}
   section={section.title}
 >
