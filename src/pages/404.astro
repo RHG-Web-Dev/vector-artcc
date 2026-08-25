@@ -1,18 +1,48 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { site } from "../data/site";
 ---
 
 <Layout
-  title=`${site.name} ─ ARTCC Controller Companion`
-  description=`${site.name} is a professional reference, training, and utility platform for VATSIM air traffic controllers.`
+  title="404 - Page Not Found"
+  description="This route has gone off the chart."
   section="Dashboard"
 >
-  <div class="space-y-10">
-    <h>404 - Page Not Found</h>
-		<p class="max-w-2xl text-base leading-7 text-(--control-muted)">
-			The page you are looking for does not exist.
-		</p>
-		<a href="/" class="inline-block rounded bg-(--control-blue-bright) px-4 py-2 text-sm font-semibold text-white hover:bg-var(--control-blue)">Return to Dashboard</a>
+  <div class="relative overflow-hidden rounded border border-(--control-line) bg-(--control-panel) p-6 sm:p-8">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.14),transparent_50%)]"></div>
+
+    <div class="relative space-y-6">
+      <p class="font-mono text-xs uppercase tracking-[0.32em] text-(--control-blue-bright)">
+        Squawk 404
+      </p>
+
+      <div class="space-y-4">
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          This route has gone off the chart.
+        </h1>
+
+        <p class="max-w-2xl text-base leading-7 text-(--control-muted)">
+          The page you’re looking for seems to have taken a wrong turn at the hold short line,
+          filed a route to the wrong airport, or simply never existed in the first place.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/"
+          class="inline-flex items-center rounded border border-(--control-line) px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-(--control-panel-alt)"
+        >
+          Return to Dashboard
+        </a>
+      </div>
+
+      <div class="mt-8 rounded border border-(--control-line) bg-slate-950/40 p-4">
+        <p class="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-(--control-muted)">
+          Pilot’s Note
+        </p>
+        <p class="mt-2 text-sm leading-6 text-slate-300">
+          “This isn’t a runway incursion — just a missing page.”
+        </p>
+      </div>
+    </div>
   </div>
 </Layout>
