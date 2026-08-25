@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 interface Props {
   label?: string;
   tone?: 'blue' | 'slate' | 'green' | 'amber';
@@ -15,10 +16,13 @@ const toneClasses = {
   amber: 'border-[#735f32] bg-[#3b3018] text-[#ead8a6]',
 }[tone];
 const Tag = href ? 'a' : 'span';
+const hover = href ? 'hover:bg-(--control-panel-strong) hover:border-(--control-line-strong)' : '';
 ---
 
 
 
-<Tag href={href} class={`inline-flex items-center border px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] ${toneClasses} ${className}`}>
-  <slot>{href ? '< ' : ''}{label}</slot>
+
+<Tag href={href} class={`inline-flex items-center border px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] ${toneClasses} ${className} ${hover} transform-all`}>
+  {href && <Icon name="mdi:chevron-left-box" class="h-4 w-4 mr-1" />}
+  <slot>{label}</slot>
 </Tag>
