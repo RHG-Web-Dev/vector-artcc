@@ -194,6 +194,15 @@ const { page = false, mobile = false } = Astro.props;
     }
 
 		if (event.key === 'Enter' && document.activeElement?.tagName === 'INPUT') {
+			if (document.activeElement === input) {
+				const query = input.value.trim();
+				if (query) {
+					event.preventDefault();
+					window.location.href = `/search?q=${encodeURIComponent(query)}`;
+				}
+				return;
+			}
+
 			const firstResult = pageResults?.querySelector('a') as HTMLAnchorElement || dialog?.querySelector('a') as HTMLAnchorElement | null;
 			if (firstResult) {
 				event.preventDefault();
