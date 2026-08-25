@@ -103,7 +103,7 @@ const { page = false, mobile = false } = Astro.props;
 
   const loadEntries = async () => {
     if (entries.length) return entries;
-    loading ??= fetch('/searchdata.json').then((response) => {
+    loading ??= fetch('/search/data.json').then((response) => {
       if (!response.ok) throw new Error('Search index unavailable');
       return response.json();
     });
