@@ -39,7 +39,7 @@ const pages = await getSectionPages(
 ---
 
 <Layout
-  title={`${site.name} | ${section.title}`}
+  title={`${site.name} ─ ${section.title}`}
   description={section.description}
   section={section.title}
 >
@@ -86,15 +86,15 @@ const pages = await getSectionPages(
 
                 {page.category && (
                   <div class="flex items-center gap-2">
-                    <span class="h-px w-5 bg-[var(--control-blue-bright)]/60"></span>
+                    <span class="h-px w-5 bg-(--control-blue-bright)/60"></span>
 
-                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--control-blue-bright)]">
+                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-(--control-blue-bright)">
                       {page.category}
                     </p>
                   </div>
                 )}
 
-                <h2 class="font-display text-xl font-semibold leading-tight text-white transition-colors group-hover:text-[var(--control-blue-bright)]">
+                <h2 class="font-display text-xl font-semibold leading-tight text-white transition-colors group-hover:text-(--control-blue-bright)">
                   {page.label}
                 </h2>
 
@@ -107,7 +107,7 @@ const pages = await getSectionPages(
               </div>
 
               <!-- Bottom action -->
-              <div class="mt-6 flex items-center justify-between border-t border-[var(--control-line)] pt-4">
+              <div class="mt-6 flex items-center justify-between border-t border-(--control-line) pt-4">
 
                 <span class="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-slate-600">
                   Reference
@@ -122,10 +122,14 @@ const pages = await getSectionPages(
             </div>
 
             <!-- Decorative background icon -->
-            {/* <Icon
-              name={section.icon ?? "mdi:book-open-variant"}
-              class="pointer-events-none absolute -bottom-12 -right-10 z-0 text-[9rem] rotate-[-12deg] text-[var(--control-blue-bright)]/[0.035] transition-all duration-500 group-hover:rotate-[-7deg] group-hover:scale-110 group-hover:text-[var(--control-blue-bright)]/[0.07]"
-            /> */}
+						{/* {
+							page.icon && (
+								<Icon
+									name={page.icon}
+									class="pointer-events-none absolute -bottom-12 -right-10 z-0 text-[9rem] rotate-12 text-(--control-blue-bright)/[0.035] transition-all duration-500 group-hover:rotate-[-7deg] group-hover:scale-110 group-hover:text-(--control-blue-bright)/[0.07]"
+								/>
+							)
+						} */}
 
           </Card>
         ))}
@@ -136,7 +140,7 @@ const pages = await getSectionPages(
       <Card>
         <div class="flex items-start gap-4">
 
-          <div class="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)]">
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center border border-(--control-line-strong) bg-(--control-navy-deep)">
             <Icon
               name="mdi:information-outline"
               class="text-xl text-slate-500"
