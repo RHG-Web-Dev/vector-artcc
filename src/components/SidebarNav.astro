@@ -28,20 +28,35 @@ const navigationSections = await Promise.all(
 <nav
   aria-label="Primary navigation"
   class:list={[
-    mobile ? "space-y-5" : "space-y-5",
+    mobile ? "space-y-2" : "space-y-2",
   ]}
 >
   <!-- Dashboard -->
   <a
     href="/"
     class:list={[
-      "block border-l-2 px-3 py-2 text-sm font-semibold uppercase tracking-[0.14em] transition",
+      "inline-flex items-center gap-2 border-l-2 px-3 py-1.5 text-sm font-semibold uppercase tracking-[0.14em] transition",
       currentPath === "/"
         ? "border-(--control-blue-bright) bg-(--control-panel) text-white"
         : "border-transparent text-slate-300 hover:border-(--control-blue) hover:text-white",
     ]}
   >
+			<Icon name='mdi:home' class="h-4 w-4" />
     Dashboard
+  </a>
+
+	<!-- Search -->
+  <a
+    href="/search"
+    class:list={[
+      "inline-flex items-center gap-2 border-l-2 px-3 py-1.5 text-sm font-semibold uppercase tracking-[0.14em] transition",
+      currentPath === "/search"
+        ? "border-(--control-blue-bright) bg-(--control-panel) text-white"
+        : "border-transparent text-slate-300 hover:border-(--control-blue) hover:text-white",
+    ]}
+  >
+		<Icon name='mdi:search' class="h-4 w-4" />
+    Search
   </a>
 
   <!-- Sections -->
