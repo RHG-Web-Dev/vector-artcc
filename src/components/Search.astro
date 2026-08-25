@@ -1,23 +1,27 @@
 ---
+import { Icon } from "astro-icon/components";
 interface Props {
   page?: boolean;
+  mobile?: boolean;
 }
 
-const { page = false } = Astro.props;
+const { page = false, mobile = false } = Astro.props;
 ---
 
 {!page && (
-  <button id="search-trigger" type="button" class="hidden items-center gap-2 border border-(--control-line) bg-(--control-navy-deep) px-3 py-2 text-xs font-medium text-(--control-muted) transition hover:border-(--control-line-strong) hover:text-white md:inline-flex" aria-label="Search" aria-haspopup="dialog" aria-controls="search-dialog">
-    <span aria-hidden="true">⌕</span>
+  <button id="search-trigger" type="button" class="hidden items-center gap-2 border border-(--control-line) bg-(--control-navy-deep) px-3 py-2 text-xs font-medium text-(--control-muted) transition hover:border-(--control-line-strong) hover:text-white lg:inline-flex" aria-label="Search" aria-haspopup="dialog" aria-controls="search-dialog">
+    <span aria-hidden="true">
+			<Icon name="mdi:search" class="h-4 w-4" />
+		</span>
     <span>Search</span>
-    <kbd class="ml-2 border border-(--control-line) px-1.5 py-0.5 text-[0.6rem] text-slate-400">Ctrl K</kbd>
+    <kbd class={`ml-2 border border-(--control-line) px-1.5 py-0.5 text-[0.6rem] text-slate-400 ${mobile && 'hidden'}`}>Ctrl K</kbd>
   </button>
 )}
 
 {page && (
   <div class="mx-auto max-w-3xl">
     <div class="relative">
-      <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-xl text-(--control-muted)" aria-hidden="true">⌕</span>
+      <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-xl text-(--control-muted)" aria-hidden="true"><Icon name="mdi:search" class="h-4 w-4" /></span>
       <input id="search-page-input" type="search" autocomplete="off" placeholder="Search training, references, tools..." class="w-full border border-(--control-line) bg-(--control-navy) py-4 pl-12 pr-4 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-(--control-blue)" aria-label="Search Vector ARTCC" />
     </div>
     <div id="search-page-results" class="mt-6 space-y-2" aria-live="polite"></div>
@@ -29,7 +33,7 @@ const { page = false } = Astro.props;
     <div id="search-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
     <div class="relative mx-auto mt-[10vh] w-[calc(100%-2rem)] max-w-2xl border border-(--control-line-strong) bg-(--control-navy) shadow-2xl">
       <div class="flex items-center gap-3 border-b border-(--control-line) px-4">
-        <span class="text-xl text-(--control-muted)" aria-hidden="true">⌕</span>
+        <span class="text-xl text-(--control-muted)" aria-hidden="true"><Icon name="mdi:search" class="h-4 w-4" /></span>
         <h2 id="search-dialog-title" class="sr-only">Search Vector ARTCC</h2>
         <input id="search-input" type="search" autocomplete="off" placeholder="Search Vector ARTCC..." class="min-w-0 flex-1 bg-transparent py-4 text-base text-white outline-none placeholder:text-slate-500" aria-label="Search Vector ARTCC" />
         <kbd class="border border-(--control-line) px-2 py-1 text-[0.65rem] text-slate-400">ESC</kbd>
@@ -99,7 +103,7 @@ const { page = false } = Astro.props;
 
   const loadEntries = async () => {
     if (entries.length) return entries;
-    loading ??= fetch('/search.json').then((response) => {
+    loading ??= fetch('/searchdata.json').then((response) => {
       if (!response.ok) throw new Error('Search index unavailable');
       return response.json();
     });
@@ -170,6 +174,7 @@ const { page = false } = Astro.props;
   pageInput?.addEventListener('input', () => update(pageInput, pageResults));
 
   document.addEventListener('keydown', (event) => {
+		console.log(event.key, document.activeElement?.tagName, document.activeElement?.id);
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
       event.preventDefault();
       openSearch();
@@ -180,8 +185,8 @@ const { page = false } = Astro.props;
       openSearch();
     }
 
-		if (event.key === 'Enter' && document.activeElement?.tagName === 'INPUT' && document.activeElement?.id === 'search-page-input') {
-			const firstResult = pageResults?.querySelector('a') as HTMLAnchorElement | null;
+		if (event.key === 'Enter' && document.activeElement?.tagName === 'INPUT') {
+			const firstResult = pageResults?.querySelector('a') as HTMLAnchorElement || dialog?.querySelector('a') as HTMLAnchorElement | null;
 			if (firstResult) {
 				event.preventDefault();
 				window.location.href = firstResult.href;
