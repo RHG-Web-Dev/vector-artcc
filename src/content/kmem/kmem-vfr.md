@@ -1,6 +1,6 @@
 ---
-title: KMEM VFR Ground
-description: KMEM VFR ground procedures, information requirements, altitudes, and phraseology.
+title: KMEM VFR
+description: KMEM VFR procedures, information requirements, altitudes, and phraseology.
 updated: '2026-08-24'
 ---
 
@@ -52,18 +52,18 @@ Pattern Work?
 
 ### VFR Departure
 
-> *[CALL]* Cleared out of the Memphis Class Bravo Airspace.
+> _[CALL]_ Cleared out of the Memphis Class Bravo Airspace.
 >
 > Maintain VFR at/below 2,500.
 >
 > Departure frequency 125.8.
 >
-> Squawk *XXXX*.
+> Squawk _XXXX_.
 
 ### VFR Pattern
 
-> *[CALL]* Cleared into the Memphis Class Bravo Airspace.
+> _[CALL]_ Cleared into the Memphis Class Bravo Airspace.
 >
 > Maintain VFR at/below (1,300 Props; 1,800 Jets).
 >
-> Squawk *XXXX*.
+> Squawk _XXXX_.
