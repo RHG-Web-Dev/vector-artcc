@@ -18,6 +18,27 @@
 
 html {
 	background: var(--control-navy-deep);
+	scrollbar-color: var(--control-line-strong) transparent;
+	scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+	width: 0.75rem;
+	height: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	border: 3px solid var(--control-navy-deep);
+	background: var(--control-line-strong);
+	border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--control-blue-bright);
 }
 
 body {
