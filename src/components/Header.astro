@@ -1,5 +1,6 @@
 ---
 import SidebarNav from "./SidebarNav.astro";
+import Search from "./Search.astro";
 import { site } from "../data/site";
 
 interface Props {
@@ -11,44 +12,18 @@ const { section = "Dashboard" } = Astro.props;
 
 <header class="border-b border-(--control-line) bg-(--control-navy)">
   <div class="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-    <a
-  href="/"
-  class="flex min-w-0 items-center gap-3"
-  aria-label={`${site.name} home`}
->
-  <img
-    src="/img/favicon.svg"
-    alt={`${site.name} mark`}
-    class="h-8 w-8 shrink-0"
-  />
+    <a href="/" class="flex min-w-0 items-center gap-3" aria-label={`${site.name} home`}>
+      <img src="/img/favicon.svg" alt={`${site.name} mark`} class="h-8 w-8 shrink-0" />
+      <div class="min-w-0 leading-none">
+        <span class="block font-display text-xl font-bold tracking-wide text-white">{site.name}</span>
+        <span class="mt-1 block text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[var(--control-muted)]">{site.subtitle}</span>
+      </div>
+    </a>
 
-  <div class="min-w-0 leading-none">
-    <span class="block font-display text-xl font-bold tracking-wide text-white">
-      {site.name}
-    </span>
-
-    <span class="mt-1 block text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[var(--control-muted)]">
-      {site.subtitle}
-    </span>
-  </div>
-</a>
-
-    <div class="flex items-center gap-5">
-
-      <!-- <div class="hidden text-right md:block">
-        <p class="text-[0.62rem] uppercase tracking-[0.25em] text-(--control-muted)">Current Section</p>
-        <p class="mt-0.5 text-sm font-medium text-white">{section}</p>
-      </div> -->
-
-      <button
-        id="mobile-menu-button"
-        class="inline-flex items-center border border-(--control-line-strong)] bg-(--control-navy-deep)] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white hover:bg-(--control-panel-strong)] lg:hidden"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-        type="button"
-      >
-        Menu
-      </button>
+    <div class="flex items-center gap-3 sm:gap-5">
+      <Search />
+      <a href="/search" class="inline-flex items-center border border-(--control-line) bg-(--control-navy-deep) px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-(--control-panel-strong) md:hidden" aria-label="Search">⌕</a>
+      <button id="mobile-menu-button" class="inline-flex items-center border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white hover:bg-(--control-panel-strong) lg:hidden" aria-controls="mobile-menu" aria-expanded="false" type="button">Menu</button>
     </div>
   </div>
 
@@ -60,7 +35,6 @@ const { section = "Dashboard" } = Astro.props;
 <script>
   const btn = document.getElementById("mobile-menu-button");
   const menu = document.getElementById("mobile-menu");
-
   btn?.addEventListener("click", () => {
     const isHidden = menu?.classList.toggle("hidden");
     btn.setAttribute("aria-expanded", String(!isHidden));
