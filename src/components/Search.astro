@@ -180,6 +180,14 @@ const { page = false } = Astro.props;
       openSearch();
     }
 
+		if (event.key === 'Enter' && document.activeElement?.tagName === 'INPUT' && document.activeElement?.id === 'search-page-input') {
+			const firstResult = pageResults?.querySelector('a') as HTMLAnchorElement | null;
+			if (firstResult) {
+				event.preventDefault();
+				window.location.href = firstResult.href;
+			}
+		}
+
     if (event.key === 'Escape' && dialog && !dialog.classList.contains('hidden')) closeSearch();
   });
 </script>
