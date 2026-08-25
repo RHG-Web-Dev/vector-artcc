@@ -34,9 +34,9 @@ hidden: false
 <!-- ================================================================
      INPUT PANEL
      ================================================================ -->
-<div class="border border-[var(--control-line)] bg-[var(--control-panel)]">
-  <div class="border-b border-[var(--control-line)] px-5 py-4">
-    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-[var(--control-blue-bright)]">
+<div class="border border-(--control-line) bg-(--control-panel)">
+  <div class="border-b border-(--control-line) px-5 py-4">
+    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-(--control-blue-bright)">
       MEM CRAFT Validator
     </p>
     <p class="mt-1 text-sm text-slate-400">
@@ -46,10 +46,10 @@ hidden: false
   <!-- ============================================================
        QUICK FLIGHT PLAN PASTE
        ============================================================ -->
-  <div class="border-b border-[var(--control-line)] p-5">
+  <div class="border-b border-(--control-line) p-5">
     <div class="mb-3 flex items-center justify-between gap-4">
       <div>
-        <p class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--control-blue-bright)]">
+        <p class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-(--control-blue-bright)">
           Quick Flight Plan
         </p>
         <p class="mt-1 text-xs text-slate-500">
@@ -59,7 +59,7 @@ hidden: false
       <button
         id="fp-copy-quick"
         type="button"
-        class="border border-[var(--control-line-strong)] px-3 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-slate-300 transition hover:border-[var(--control-blue-bright)] hover:text-white"
+        class="border border-(--control-line-strong) px-3 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-slate-300 transition hover:border-(--control-blue-bright) hover:text-white"
       >
         Copy
       </button>
@@ -70,7 +70,7 @@ hidden: false
       placeholder="FDX904 B77L/L KPHX FL340 ZUMIT5 FOXOM FSM KF33C KA33Y ZUN EAGUL6"
       autocomplete="off"
       spellcheck="false"
-      class="w-full border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-3 font-mono text-sm uppercase text-white outline-none focus:border-[var(--control-blue-bright)]"
+      class="w-full border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-3 font-mono text-sm uppercase text-white outline-none focus:border-(--control-blue-bright)"
     />
     <p class="mt-2 text-xs text-slate-500">
       Pasting here fills the fields below. Editing the fields updates this line automatically.
@@ -89,7 +89,7 @@ hidden: false
         type="text"
         placeholder="FDX904"
         autocomplete="off"
-        class="w-full border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-[var(--control-blue-bright)]"
+        class="w-full border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-(--control-blue-bright)"
       />
     </label>
     <label class="block">
@@ -101,7 +101,7 @@ hidden: false
         type="text"
         placeholder="B77L/L"
         autocomplete="off"
-        class="w-full border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-[var(--control-blue-bright)]"
+        class="w-full border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-(--control-blue-bright)"
       />
     </label>
     <label class="block">
@@ -113,7 +113,7 @@ hidden: false
         type="text"
         value="KMEM"
         autocomplete="off"
-        class="w-full border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-[var(--control-blue-bright)]"
+        class="w-full border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-(--control-blue-bright)"
       />
     </label>
     <label class="block">
@@ -125,7 +125,7 @@ hidden: false
         type="text"
         placeholder="KPHX"
         autocomplete="off"
-        class="w-full border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-[var(--control-blue-bright)]"
+        class="w-full border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-(--control-blue-bright)"
       />
     </label>
     <label class="block">
@@ -137,7 +137,7 @@ hidden: false
         type="text"
         placeholder="FL340"
         autocomplete="off"
-        class="w-full border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-[var(--control-blue-bright)]"
+        class="w-full border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-(--control-blue-bright)"
       />
     </label>
     <label class="block">
@@ -150,7 +150,7 @@ hidden: false
         value="125.8"
         placeholder="125.8"
         autocomplete="off"
-        class="w-full border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-[var(--control-blue-bright)]"
+        class="w-full border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-2.5 font-mono text-sm uppercase text-white outline-none focus:border-(--control-blue-bright)"
       />
       <p class="mt-1 text-xs text-slate-500">
         Leave blank for Departure offline.
@@ -160,7 +160,7 @@ hidden: false
   <!-- ============================================================
        ROUTE
        ============================================================ -->
-  <div class="border-t border-[var(--control-line)] p-5">
+  <div class="border-t border-(--control-line) p-5">
     <label class="block">
       <span class="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
         Filed Route
@@ -171,7 +171,7 @@ hidden: false
         placeholder="ZUMIT5 FOXOM FSM KF33C KA33Y ZUN EAGUL6"
         autocomplete="off"
         spellcheck="false"
-        class="w-full resize-y border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] px-3 py-3 font-mono text-sm leading-6 text-white outline-none focus:border-[var(--control-blue-bright)]"
+        class="w-full resize-y border border-(--control-line-strong) bg-(--control-navy-deep) px-3 py-3 font-mono text-sm leading-6 text-white outline-none focus:border-(--control-blue-bright)"
       ></textarea>
       <p class="mt-2 text-xs text-slate-500">
         Enter the filed route exactly as received.
@@ -181,14 +181,14 @@ hidden: false
       <button
         id="fp-validate"
         type="button"
-        class="border border-[var(--control-blue)] bg-[var(--control-blue)] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[var(--control-blue-bright)]"
+        class="border border-(--control-blue) bg-(--control-blue) px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-(--control-blue-bright)"
       >
         Validate Flight Plan
       </button>
       <button
         id="fp-clear"
         type="button"
-        class="border border-[var(--control-line-strong)] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 transition hover:border-[var(--control-blue-bright)] hover:text-white"
+        class="border border-(--control-line-strong) px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 transition hover:border-(--control-blue-bright) hover:text-white"
       >
         Clear
       </button>
@@ -253,7 +253,7 @@ hidden: false
        VALIDATION SUMMARY
        ============================================================ -->
   <div
-    class="border border-[var(--control-line)] bg-[var(--control-panel)]"
+    class="border border-(--control-line) bg-(--control-panel)"
   >
     <button
       id="fp-validation-toggle"
@@ -263,7 +263,7 @@ hidden: false
       aria-controls="fp-validation-details"
     >
       <div>
-        <p class="text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-[var(--control-blue-bright)]">
+        <p class="text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-(--control-blue-bright)">
           Validation
         </p>
         <p
@@ -282,21 +282,21 @@ hidden: false
     </button>
     <div
       id="fp-validation-details"
-      class="hidden border-t border-[var(--control-line)]"
+      class="hidden border-t border-(--control-line)"
     >
       <div
         id="fp-validation"
-        class="divide-y divide-[var(--control-line)]"
+        class="divide-y divide-(--control-line)"
       ></div>
     </div>
   </div>
   <!-- ============================================================
        CRAFT
        ============================================================ -->
-  <div class="border border-[var(--control-line)] bg-[var(--control-panel)]">
-    <div class="flex items-center justify-between gap-4 border-b border-[var(--control-line)] px-5 py-4">
+  <div class="border border-(--control-line) bg-(--control-panel)">
+    <div class="flex items-center justify-between gap-4 border-b border-(--control-line) px-5 py-4">
       <div>
-        <p class="text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-[var(--control-blue-bright)]">
+        <p class="text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-(--control-blue-bright)">
           CRAFT
         </p>
         <p class="mt-1 text-sm text-slate-400">
@@ -306,7 +306,7 @@ hidden: false
       <button
         id="fp-copy-craft"
         type="button"
-        class="border border-[var(--control-line-strong)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300 transition hover:border-[var(--control-blue-bright)] hover:text-white"
+        class="border border-(--control-line-strong) px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300 transition hover:border-(--control-blue-bright) hover:text-white"
       >
         Copy
       </button>
@@ -314,16 +314,16 @@ hidden: false
     <div class="p-5">
       <div
         id="fp-craft"
-        class="whitespace-pre-line overflow-x-auto border border-[var(--control-line-strong)] bg-[var(--control-navy-deep)] p-4 font-mono text-sm leading-7 text-slate-200"
+        class="whitespace-pre-line overflow-x-auto border border-(--control-line-strong) bg-(--control-navy-deep) p-4 font-mono text-sm leading-7 text-slate-200"
       ></div>
     </div>
   </div>
   <!-- ============================================================
        ROUTE COMPARISON
        ============================================================ -->
-  <div class="border border-[var(--control-line)] bg-[var(--control-panel)]">
-    <div class="border-b border-[var(--control-line)] px-5 py-4">
-      <p class="text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-[var(--control-blue-bright)]">
+  <div class="border border-(--control-line) bg-(--control-panel)">
+    <div class="border-b border-(--control-line) px-5 py-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-(--control-blue-bright)">
         Route Comparison
       </p>
     </div>
@@ -334,7 +334,7 @@ hidden: false
         </p>
         <div
           id="fp-filed-route"
-          class="break-words font-mono text-sm leading-7 text-slate-300"
+          class="wrap-break-word font-mono text-sm leading-7 text-slate-300"
         ></div>
       </div>
       <div>
@@ -343,7 +343,7 @@ hidden: false
         </p>
         <div
           id="fp-corrected-route"
-          class="break-words font-mono text-sm leading-7 text-slate-300"
+          class="wrap-break-word font-mono text-sm leading-7 text-slate-300"
         ></div>
       </div>
     </div>
@@ -600,44 +600,31 @@ function getAircraftType(aircraft) {
 
 
   const jetPatterns = [
+		// Commercial Airliners
+		/^A22/,       // Airbus A220 (BCS1, BCS3 alternative codes)
+		/^A3[0-9]{2}/,// Airbus A300, A310, A318-A321, A330, A340, A350, A380
+		/^B3[7-9]M/,  // Boeing 737 MAX 7/8/9 
+		/^B7[0-9]{2}/,// Boeing 707, 717, 727, 737, 747, 757, 767, 777, 787, 797
+		/^C91/,       // COMAC C919
+		/^DC[90]/     // McDonnell Douglas DC-9, DC-10
+		/^MD/,        // McDonnell Douglas MD-11, MD-80, MD-90
+		/^SU9/,       // Sukhoi Superjet 100
 
-    /^A3[0-9]{2}/,
-    /^A35/,
-    /^A38/,
+		// Regional Jets
+		/^BCS/,       // Airbus A220 original ICAO codes (BCS1, BCS3)
+		/^CRJ/,       // Bombardier CRJ Series (100, 200, 700, 900, 1000)
+		/^E[12][0-9]{2}/, // Embraer E-Jets (E170, E190, E195, E290, etc.)
+		/^ERJ/,       // Embraer Regional Jets (ERJ135, ERJ145)
 
-    /^B7[0-9]{2}/,
-    /^B77/,
-    /^B78/,
-    /^B79/,
-
-    /^B73/,
-    /^B74/,
-    /^B75/,
-    /^B76/,
-
-    /^MD/,
-    /^DC9/,
-    /^DC10/,
-    /^DC11/,
-
-    /^CRJ/,
-    /^E1[0-9]{2}/,
-    /^E2[0-9]{2}/,
-    /^ERJ/,
-
-    /^GLF/,
-    /^G[0-9]{3}/,
-
-    /^CL[0-9]/,
-    /^C5[0-9]{2}/,
-    /^C6[0-9]{2}/,
-    /^C7[0-9]{2}/,
-
-    /^FA[0-9]/,
-    /^F2TH/,
-    /^F900/
-
-  ];
+		// Business & Private Jets
+		/^C[567][0-9]{2}/, // Cessna Citation Series (C525, C560, C680, C750)
+		/^CL[0-9]/,   // Bombardier Challenger Series (CL30, CL60)
+		/^F[29]00/,   // Dassault Falcon 2000, 900
+		/^FA[0-9]/,   // Dassault Falcon 50, 7X, 8X (FA50, FA7X, FA8X)
+		/^G[0-9]{3}/, // Gulfstream Series (G280, G550, G650, etc.)
+		/^GLF/,       // Gulfstream legacy codes (GLF4, GLF5, GLF6)
+		/^LJ/         // Learjet Series (LJ35, LJ45, LJ60, LJ75)
+	];
 
 
   if (
