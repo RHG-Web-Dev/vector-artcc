@@ -1,0 +1,185 @@
+---
+interface Props {
+  page?: boolean;
+}
+
+const { page = false } = Astro.props;
+---
+
+{!page && (
+  <button id="search-trigger" type="button" class="hidden items-center gap-2 border border-(--control-line) bg-(--control-navy-deep) px-3 py-2 text-xs font-medium text-(--control-muted) transition hover:border-(--control-line-strong) hover:text-white md:inline-flex" aria-label="Search" aria-haspopup="dialog" aria-controls="search-dialog">
+    <span aria-hidden="true">⌕</span>
+    <span>Search</span>
+    <kbd class="ml-2 border border-(--control-line) px-1.5 py-0.5 text-[0.6rem] text-slate-400">Ctrl K</kbd>
+  </button>
+)}
+
+{page && (
+  <div class="mx-auto max-w-3xl">
+    <div class="relative">
+      <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-xl text-(--control-muted)" aria-hidden="true">⌕</span>
+      <input id="search-page-input" type="search" autocomplete="off" placeholder="Search training, references, tools..." class="w-full border border-(--control-line) bg-(--control-navy) py-4 pl-12 pr-4 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-(--control-blue)" aria-label="Search Vector ARTCC" />
+    </div>
+    <div id="search-page-results" class="mt-6 space-y-2" aria-live="polite"></div>
+  </div>
+)}
+
+{!page && (
+  <div id="search-dialog" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="search-dialog-title">
+    <div id="search-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <div class="relative mx-auto mt-[10vh] w-[calc(100%-2rem)] max-w-2xl border border-(--control-line-strong) bg-(--control-navy) shadow-2xl">
+      <div class="flex items-center gap-3 border-b border-(--control-line) px-4">
+        <span class="text-xl text-(--control-muted)" aria-hidden="true">⌕</span>
+        <h2 id="search-dialog-title" class="sr-only">Search Vector ARTCC</h2>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search Vector ARTCC..." class="min-w-0 flex-1 bg-transparent py-4 text-base text-white outline-none placeholder:text-slate-500" aria-label="Search Vector ARTCC" />
+        <kbd class="border border-(--control-line) px-2 py-1 text-[0.65rem] text-slate-400">ESC</kbd>
+      </div>
+      <div id="search-results" class="max-h-[60vh] overflow-y-auto p-2" aria-live="polite"></div>
+      <div class="border-t border-(--control-line) px-4 py-2 text-[0.65rem] uppercase tracking-[0.18em] text-slate-500">Search pages, references, training, resources, and tools</div>
+    </div>
+  </div>
+)}
+
+<script>
+  type SearchEntry = {
+    title: string;
+    description: string;
+    section: string;
+    url: string;
+    content: string;
+  };
+
+  let entries: SearchEntry[] = [];
+  let loading: Promise<SearchEntry[]> | null = null;
+
+  const clean = (value: string) => value
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/[#>*_`\[\]()-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const escapeHtml = (value: string) => value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+
+  const score = (entry: SearchEntry, query: string) => {
+    const q = query.toLowerCase().trim();
+    if (!q) return 0;
+
+    const title = entry.title.toLowerCase();
+    const description = entry.description.toLowerCase();
+    const section = entry.section.toLowerCase();
+    const content = clean(entry.content).toLowerCase();
+    const terms = q.split(/\s+/).filter(Boolean);
+    let value = 0;
+
+    if (title === q) value += 1000;
+    if (title.includes(q)) value += 500;
+    if (description.includes(q)) value += 250;
+    if (section.includes(q)) value += 150;
+
+    for (const term of terms) {
+      if (title.includes(term)) value += 100;
+      if (description.includes(term)) value += 50;
+      if (section.includes(term)) value += 30;
+      if (content.includes(term)) value += 10;
+    }
+
+    return value;
+  };
+
+  const search = (query: string) => entries
+    .map((entry) => ({ entry, score: score(entry, query) }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 12)
+    .map((item) => item.entry);
+
+  const loadEntries = async () => {
+    if (entries.length) return entries;
+    loading ??= fetch('/search.json').then((response) => {
+      if (!response.ok) throw new Error('Search index unavailable');
+      return response.json();
+    });
+    entries = await loading;
+    return entries;
+  };
+
+  const renderResults = (target: HTMLElement | null, query: string) => {
+    if (!target) return;
+    if (!query.trim()) {
+      target.innerHTML = '<p class="px-3 py-8 text-center text-sm text-slate-500">Start typing to search.</p>';
+      return;
+    }
+
+    const results = search(query);
+    if (!results.length) {
+      target.innerHTML = `<p class="px-3 py-8 text-center text-sm text-slate-500">No results for <span class="text-slate-300">${escapeHtml(query)}</span>.</p>`;
+      return;
+    }
+
+    target.innerHTML = results.map((entry) => {
+      const description = entry.description || clean(entry.content).slice(0, 180);
+      return `<a href="${entry.url}" class="group block border border-transparent px-4 py-3 transition hover:border-(--control-line) hover:bg-(--control-navy-deep)">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="font-semibold text-white group-hover:text-(--control-blue-bright)">${escapeHtml(entry.title)}</h3>
+          <span class="shrink-0 text-[0.62rem] uppercase tracking-[0.16em] text-slate-500">${escapeHtml(entry.section)}</span>
+        </div>
+        <p class="mt-1 line-clamp-2 text-sm text-slate-400">${escapeHtml(description)}</p>
+      </a>`;
+    }).join('');
+  };
+
+  const update = async (input: HTMLInputElement | null, target: HTMLElement | null) => {
+    if (!input || !target) return;
+    try {
+      await loadEntries();
+      renderResults(target, input.value);
+    } catch {
+      target.innerHTML = '<p class="px-3 py-8 text-center text-sm text-slate-500">Search is temporarily unavailable.</p>';
+    }
+  };
+
+  const dialog = document.getElementById('search-dialog');
+  const trigger = document.getElementById('search-trigger');
+  const input = document.getElementById('search-input') as HTMLInputElement | null;
+  const results = document.getElementById('search-results');
+  const backdrop = document.getElementById('search-backdrop');
+  const pageInput = document.getElementById('search-page-input') as HTMLInputElement | null;
+  const pageResults = document.getElementById('search-page-results');
+
+  const openSearch = async () => {
+    if (!dialog || !input) return;
+    dialog.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+    await loadEntries();
+    input.focus();
+    renderResults(results, input.value);
+  };
+
+  const closeSearch = () => {
+    dialog?.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  trigger?.addEventListener('click', openSearch);
+  backdrop?.addEventListener('click', closeSearch);
+  input?.addEventListener('input', () => update(input, results));
+  pageInput?.addEventListener('input', () => update(pageInput, pageResults));
+
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch();
+    }
+
+    if (event.key === '/' && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+      event.preventDefault();
+      openSearch();
+    }
+
+    if (event.key === 'Escape' && dialog && !dialog.classList.contains('hidden')) closeSearch();
+  });
+</script>
