@@ -173,6 +173,14 @@ const { page = false, mobile = false } = Astro.props;
   input?.addEventListener('input', () => update(input, results));
   pageInput?.addEventListener('input', () => update(pageInput, pageResults));
 
+  if (pageInput) {
+    const query = new URLSearchParams(window.location.search).get('q');
+    if (query) {
+      pageInput.value = query;
+      update(pageInput, pageResults);
+    }
+  }
+
   document.addEventListener('keydown', (event) => {
 		console.log(event.key, document.activeElement?.tagName, document.activeElement?.id);
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
