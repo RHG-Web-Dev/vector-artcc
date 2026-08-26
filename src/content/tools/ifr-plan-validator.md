@@ -604,10 +604,11 @@ function getAircraftType(aircraft) {
 		/^A22/,       // Airbus A220 (BCS1, BCS3 alternative codes)
 		/^A3[0-9]{2}/,// Airbus A300, A310, A318-A321, A330, A340, A350, A380
 		/^B3[7-9]M/,  // Boeing 737 MAX 7/8/9 
+		/^B7[0-9]/,		
 		/^B7[0-9]{2}/,// Boeing 707, 717, 727, 737, 747, 757, 767, 777, 787, 797
 		/^C91/,       // COMAC C919
-		/^DC[90]/     // McDonnell Douglas DC-9, DC-10
-		/^MD/,        // McDonnell Douglas MD-11, MD-80, MD-90
+    /^DC[90]/,    // McDonnell Douglas DC-9, DC-10
+    /^MD/,        // McDonnell Douglas MD-11, MD-80, MD-90
 		/^SU9/,       // Sukhoi Superjet 100
 
 		// Regional Jets
@@ -623,7 +624,7 @@ function getAircraftType(aircraft) {
 		/^FA[0-9]/,   // Dassault Falcon 50, 7X, 8X (FA50, FA7X, FA8X)
 		/^G[0-9]{3}/, // Gulfstream Series (G280, G550, G650, etc.)
 		/^GLF/,       // Gulfstream legacy codes (GLF4, GLF5, GLF6)
-		/^LJ/         // Learjet Series (LJ35, LJ45, LJ60, LJ75)
+    /^LJ/,         // Learjet Series (LJ35, LJ45, LJ60, LJ75)
 	];
 
 
