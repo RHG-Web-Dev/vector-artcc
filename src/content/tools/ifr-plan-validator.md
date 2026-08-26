@@ -961,24 +961,17 @@ function getDirection(
 
   }
 
+  // Use wrapped longitude delta so routes crossing the dateline
+  // are classified by the shortest east/west path.
+  const deltaLongitude =
+    ((destinationLongitude - departureLongitude + 540) % 360) - 180;
 
-  if (
-    departureLongitude <
-    destinationLongitude
-  ) {
-
+  if (deltaLongitude > 0) {
     return "east";
-
   }
 
-
-  if (
-    departureLongitude >
-    destinationLongitude
-  ) {
-
+  if (deltaLongitude < 0) {
     return "west";
-
   }
 
 
