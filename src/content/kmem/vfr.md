@@ -1,5 +1,5 @@
 ---
-title: KMEM VFR
+title: VFR
 description: KMEM VFR procedures, information requirements, altitudes, and phraseology.
 updated: '2026-08-24'
 ---

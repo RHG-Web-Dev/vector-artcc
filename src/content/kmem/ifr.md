@@ -1,5 +1,5 @@
 ---
-title: KMEM IFR
+title: IFR
 description: KMEM IFR procedures, CRAFT generation, departure validation, equipment requirements, and altitude rules.
 updated: '2026-08-24T00:00:00Z'
 ---
@@ -10,8 +10,8 @@ updated: '2026-08-24T00:00:00Z'
 
 ### Initial Altitudes
 
-- **Props:** Maintain 3,000 feet until 10 minutes after departure, then climb to filed altitude.
-- **Jets:** Maintain 5,000 feet until 10 minutes after departure, then climb to filed altitude.
+- **Props:** Maintain 3,000 fee
+- **Jets:** Maintain 5,000 feet
 
 ### Departure Frequency
 
@@ -40,12 +40,13 @@ If the filed departure must be amended:
 - Use the appropriate replacement departure and transition.
 - If the amendment changes the route, include **direct [NEXT VOR]**.
 - The next VOR should be the first VOR after the amended transition.
-- Then continue **as filed**.
+- Then continue **as filed** or if the next vor is a airport or the route is nothing else \*\*.
+- If there are no additional airways or fixes after that point, or if the next point is the destination airport itself, omit "as filed" and clear the aircraft direct to the destination airport.
 
 ### A — Altitude
 
-- **Props:** 3,000 feet until 10 minutes after departure.
-- **Jets:** 5,000 feet until 10 minutes after departure.
+- **Props:** 3,000
+- **Jets:** 5,000
 - Expect the filed altitude **one-zero minutes after departure**.
 
 ### F — Departure Frequency
@@ -97,16 +98,16 @@ Check the filed departure against the following restricted departures:
 
 ### Required Amendments
 
-| Filed Departure | Replacement Departure | Transition |
-| --------------- | --------------------- | ---------- |
-| AUTMN           | CHLDR5                | ANSWA      |
-| BINKY           | PIEPE6                | IBUFY      |
-| GENEH           | CRSON7                | HUMMS      |
-| GMBUD           | BBKING7               | KERMI      |
-| GRRIZ           | JTEEE5                | ODATE      |
-| HOTRD           | ZUMIT                 | JTEEE      |
-| NIKEI           | ZUMIT                 | FOXOM      |
-| OLEMS           | PIEPE6                | IBUFY      |
+| Filed Departure | Replacement Departure / Transition |
+| --------------- | ---------------------------------- |
+| AUTMN           | CHLDR5 / ANSWA                     |
+| BINKY           | PIEPE6 / IBUFY                     |
+| GENEH           | CRSON7 / HUMMS                     |
+| GMBUD           | BBKING7 / KERMI                    |
+| GRRIZ           | JTEEE5 / ODATE                     |
+| HOTRD           | ZUMIT / JTEEE                      |
+| NIKEI           | ZUMIT / FOXOM                      |
+| OLEMS           | PIEPE6 / IBUFY                     |
 
 ## RNP / Non-RNAV Departure Procedures
 
@@ -130,28 +131,13 @@ For aircraft that are only RVSM capable:
 
 ## Departure Cycle Validation
 
-Check the filed departure against the current cycle.
-
-If the departure number does not match the current cycle:
-
-- The filed departure is invalid.
-- Suggest the current cycle.
-
-### Example
-
 > **[CALLSIGN]** Dept Invalid per Incorrect Cycle, Are you able to take the **NEW DEPARTURE**?
 
 ## Time-of-Day Restrictions
 
-Check whether the filed departure is restricted based on the current time.
-
-If the filed departure is unavailable because of time-of-day restrictions:
-
 > **[CALLSIGN]** Dept Invalid per time of day, Are you able to take the **PIEPE6** Dept?
 
 ## Equipment Validation
-
-If the aircraft equipment is not compatible with the filed departure:
 
 > **[CALLSIGN]** Dept Invalid per Equipment Type, Are you able to take the **ELVIS4** Dept?
 
@@ -159,62 +145,28 @@ If the aircraft equipment is not compatible with the filed departure:
 
 Determine the direction of flight by comparing the departure and arrival airports.
 
-### Westbound
-
-If the departure airport is **west of the arrival airport**:
-
-#### Through FL400
-
-Use even flight levels:
-
-- FL320
-- FL340
-- FL360
-- FL380
-- FL400
-
-#### Above FL400
-
-Use:
-
-- FL430
-- FL470
-- FL510
-- FL550
-- etc.
-
-### Eastbound
-
-If the departure airport is **east of the arrival airport**:
-
-#### Through FL410
-
-Use odd flight levels:
-
-- FL310
-- FL330
-- FL350
-- FL370
-- FL390
-- FL410
-
-#### Above FL410
-
-Use:
-
-- FL450
-- FL490
-- FL530
-- FL570
-- etc.
+| West  | East  |
+| ----- | ----- |
+| FL180 | FL190 |
+| FL200 | FL210 |
+| FL220 | FL230 |
+| FL240 | FL250 |
+| FL260 | FL270 |
+| FL280 | FL290 |
+| FL300 | FL310 |
+| FL320 | FL330 |
+| FL340 | FL350 |
+| FL360 | FL370 |
+| FL380 | FL390 |
+| FL400 | FL410 |
+| FL430 | FL440 |
+| FL450 | FL460 |
+| FL470 | FL480 |
+| FL490 | FL500 |
 
 ### Invalid Altitude
 
-If the filed altitude does not match the direction of flight:
-
-> **[CALLSIGN]** Your Altitude is incorrect per direction of flight, Would you like **FL390 or FL370**?
-
-Suggest the appropriate altitudes based on the filed altitude and direction of flight.
+> **[CALLSIGN]** Your Altitude is incorrect per direction of flight, Would you like **FL+1000** or **FL-1000**?
 
 ## CRAFT Generation
 
