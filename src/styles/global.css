@@ -17,9 +17,16 @@
 }
 
 html {
+	scroll-behavior: smooth;
 	background: var(--control-navy-deep);
 	scrollbar-color: var(--control-line-strong) transparent;
 	scrollbar-width: thin;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }
 
 ::-webkit-scrollbar {
