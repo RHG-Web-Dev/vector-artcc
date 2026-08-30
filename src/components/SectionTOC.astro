@@ -1,0 +1,43 @@
+---
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+type SectionTOCProps = {
+  headings?: Heading[];
+  Start?: number;
+  End?: number;
+};
+
+const { headings = [], Start = 2, End = 3 } = Astro.props as SectionTOCProps;
+const toc = headings.filter((h) => h.depth >= Start && h.depth <= End);
+---
+
+{toc.length > 0 && (
+  <nav
+    class="mb-6 rounded-sm border border-(--control-line) bg-(--control-panel) p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+    aria-label="Table of contents"
+  >
+    <p class="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-(--control-muted)">
+      Contents
+    </p>
+
+    <ul class="space-y-2 text-sm text-slate-200">
+      {toc.map((heading) => (
+        <li
+          class="transition-colors"
+          style={`margin-left:${(heading.depth - 2) * 0.75}rem`}
+        >
+          <a
+            href={`#${heading.slug}`}
+            class="inline-flex items-center text-slate-300 transition hover:text-(--control-blue-bright) hover:underline"
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

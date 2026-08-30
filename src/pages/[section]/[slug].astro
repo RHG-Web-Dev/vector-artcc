@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import SectionTOC from "../../components/SectionTOC.astro";
 import { getCollection, render } from "astro:content";
 export async function getStaticPaths() {
   const entries = await getCollection("content");
@@ -30,8 +31,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
-
+const { Content, headings } = await render(entry);
 const section = Astro.params.section ?? "";
 const title = entry.data.title;
 const description = entry.data.description ?? "";
@@ -52,7 +52,8 @@ const daysAgo = dateUpdated ? Math.floor((new Date().getTime() - dateUpdated.get
   section={section}
 >
   <article class="space-y-8">
-
+		
+		<SectionTOC headings={headings} />
     <SectionHeader
 			chips={[
 				{
@@ -62,7 +63,7 @@ const daysAgo = dateUpdated ? Math.floor((new Date().getTime() - dateUpdated.get
 				...(daysAgo !== null
 					? [
 							{
-								text: `Updated: ${dateUpdatedString}, ${daysAgo} day${daysAgo === 1 ? '' : 's'} ago`,
+								text: `Updated: ${dateUpdatedString}`, //, ${daysAgo} day${daysAgo === 1 ? '' : 's'} ago`,
                 tone: 'blue' as const,
 							},
 						]
@@ -70,7 +71,8 @@ const daysAgo = dateUpdated ? Math.floor((new Date().getTime() - dateUpdated.get
 			]}
 			title={title}
 			description={description}
-		/>	
+		/>
+	
     <div class="
 		prose prose-invert max-w-none
 		white-space: pre-line
