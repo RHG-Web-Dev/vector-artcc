@@ -166,7 +166,7 @@ Determine the direction of flight by comparing the departure and arrival airport
 
 ### Invalid Altitude
 
-> **[CALLSIGN]** Your Altitude is incorrect per direction of flight, Would you like **FL+1000** or **FL-1000**?
+> **[CALLSIGN]** Your Altitude is incorrect per direction of flight, Would you like **FL-1000** or **FL+1000**?
 
 ## CRAFT Generation
 
@@ -192,8 +192,6 @@ If the departure or transition was changed and the amendment changes the route:
 
 ## Amendment Messages
 
-If anything in the filed flight plan needs to be changed, display the appropriate message **above the CRAFT output**.
-
 ### Departure Unavailable
 
 > **[CALLSIGN]** Filed departure is **[unavailable right now / turbojet only / etc]**, can you take the **[NEW DEPARTURE]** departure instead?
@@ -202,25 +200,17 @@ If anything in the filed flight plan needs to be changed, display the appropriat
 
 > **[CALLSIGN]** Dept Invalid per Incorrect Cycle, Are you able to take the **[NEW DEPARTURE]**?
 
-Use when the number after the departure does not match the current cycle.
-
 ### Time-of-Day Restriction
 
 > **[CALLSIGN]** Dept Invalid per time of day, Are you able to take the **[NEW DEPARTURE]** Dept?
-
-Use when the filed departure is restricted based on the current time.
 
 ### Equipment Type
 
 > **[CALLSIGN]** Dept Invalid per Equipment Type, Are you able to take the **ELVIS4** Dept?
 
-Use when the aircraft's equipment is not compatible with the filed departure.
-
 ### Direction of Flight Altitude
 
-> **[CALLSIGN]** Your Altitude is incorrect per direction of flight, Would you like **[ALTITUDE 1]** or **[ALTITUDE 2]**?
-
-Suggest the appropriate altitudes based on the aircraft's direction of flight and filed altitude.
+> **[CALLSIGN]** Your Altitude is incorrect per direction of flight, Would you like **[ALTITUDE -1000]** or **[ALTITUDE +1000]**?
 
 ## Final Validation
 
