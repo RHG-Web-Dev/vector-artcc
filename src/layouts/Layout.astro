@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { Icon } from "astro-icon/components";
 import { site } from "../data/site";
 import Header from "../components/Header.astro";
 import SidebarNav from "../components/SidebarNav.astro";
@@ -69,5 +70,33 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
         </main>
       </div>
     </div>
+		<button
+			data-back-to-top
+			class="fixed bottom-6 right-6 rounded-full border border-(--control-line) bg-(--control-panel) p-3 text-lg text-slate-200 shadow-lg opacity-0 transition-all duration-200 hover:border-(--control-line-strong) hover:text-(--control-blue-bright) cursor-pointer"
+			aria-label="Back to top"
+		>
+			<Icon name="mdi:chevron-up" class="h-5 w-5" />
+		</button>
+
+		<script>
+			const button = document.querySelector('[data-back-to-top]');
+
+			const updateButton = () => {
+				if (!button) return;
+				const visible = window.scrollY > 300;
+
+				button.classList.toggle('opacity-0', !visible);
+				button.classList.toggle('pointer-events-none', !visible);
+				button.classList.toggle('opacity-100', visible);
+				button.classList.toggle('pointer-events-auto', visible);
+			};
+
+			button?.addEventListener('click', () => {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			});
+
+			document.addEventListener('scroll', updateButton, { passive: true });
+			updateButton();
+		</script>
   </body>
 </html>
