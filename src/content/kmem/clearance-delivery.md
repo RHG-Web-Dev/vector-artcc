@@ -2,6 +2,7 @@
 title: Clearance Delivery
 description: Memphis clearance delivery quick reference built from controller training notes and linked ZME resources.
 updated: '2026-08-14T00:00:00Z'
+order: 1
 ---
 
 # KMEM Clearance Delivery
