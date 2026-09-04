@@ -31,8 +31,7 @@ Use an amendment when a portion of an aircraft's filed or previously issued clea
 [CALLSIGN] Departure invalid per time of day. Are you able to take the [ALTERNATE] departure?
 ```
 
-[Test](#equipment-type-restriction)
-Use the [Cheatsheet](/zme/cheatsheets#Restrictions) to determine which departures are valid for the current time of day.
+Use the [Cheatsheet](/kmem/cheatsheet#restrictions) to determine which departures are valid for the current time of day.
 
 ### Equipment Type Restriction
 
