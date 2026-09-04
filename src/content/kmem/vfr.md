@@ -1,7 +1,8 @@
 ---
-title: VFR
+title: VFR Clearances
 description: KMEM VFR procedures, information requirements, altitudes, and phraseology.
 updated: '2026-08-24'
+order: 3
 ---
 
 # KMEM VFR Ground
@@ -14,8 +15,6 @@ updated: '2026-08-24'
 - **Pattern:** 1,300 Props / 1,800 Jets
 
 ## VFR Request Flow
-
-### Calls for VFR Flight
 
 ```text
 Aircraft Type?
