@@ -11,7 +11,7 @@ type SectionTOCProps = {
   End?: number;
 };
 
-const { headings = [], Start = 2, End = 3 } = Astro.props as SectionTOCProps;
+const { headings = [], Start = 1, End = 3 } = Astro.props as SectionTOCProps;
 const toc = headings.filter((h) => h.depth >= Start && h.depth <= End);
 ---
 
@@ -28,7 +28,7 @@ const toc = headings.filter((h) => h.depth >= Start && h.depth <= End);
       {toc.map((heading) => (
         <li
           class="transition-colors"
-          style={`margin-left:${(heading.depth - 2) * 0.75}rem`}
+          style={`margin-left:${(heading.depth) * 0.75}rem`}
         >
           <a
             href={`#${heading.slug}`}
