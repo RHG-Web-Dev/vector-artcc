@@ -1,7 +1,8 @@
 ---
-title: IFR
+title: IFR Clearances
 description: KMEM IFR procedures, CRAFT generation, departure validation, equipment requirements, and altitude rules.
 updated: '2026-08-24T00:00:00Z'
+order: 2
 ---
 
 # KMEM IFR Ground
@@ -16,6 +17,42 @@ updated: '2026-08-24T00:00:00Z'
 ### Departure Frequency
 
 - **125.8** — almost always
+
+## VFR Request Flow
+
+```text
+Aircraft Type?
+│
+└─ No → "Say aircraft type."
+
+Equipment?
+│
+├─ RNAV / GNSS (/Z /L /Y /C /I /V /S /G)
+│  └─ RNAV Departure
+│
+└─ RVSM / Non-RNAV (/W)
+   └─ ELVIS4
+
+Filed Departure?
+│
+├─ Valid
+│  └─ Use filed departure
+│
+└─ NO
+   └─ Amend departure / transition
+
+Direction of Flight?
+│
+└─ Filed Altitude?
+   │
+   ├─ Valid
+   │  └─ Continue
+   │
+   └─ NO
+      └─ Offer ±1,000: Unless above FL410, then offer the next valid altitude.
+
+Generate CRAFT
+```
 
 ## CRAFT
 
@@ -174,20 +211,20 @@ After validating the flight plan, generate the CRAFT clearance reference.
 
 ### Standard CRAFT
 
-> Cleared to **[ARRIVAL AIRPORT NAME] Airport**,  
-> **[DEPARTURE] departure, [TRANSITION] transition**, then as filed,  
-> Maintain **5,000** [jets] / **3,000** [props], expect **[FILED ALTITUDE]** one-zero minutes after departure,  
-> Departure frequency **125.8**,  
+> Cleared to **[ARRIVAL AIRPORT NAME] Airport**,
+> **[DEPARTURE] departure, [TRANSITION] transition**, then as filed,
+> Maintain **5,000** [jets] / **3,000** [props], expect **[FILED ALTITUDE]** one-zero minutes after departure,
+> Departure frequency **125.8**,
 > Squawk **XXXX**.
 
 ### Amended CRAFT
 
 If the departure or transition was changed and the amendment changes the route:
 
-> Cleared to **[ARRIVAL AIRPORT NAME] Airport**,  
-> **[NEW DEPARTURE] departure, [NEW TRANSITION] transition, direct [NEXT VOR]**, then as filed,  
-> Maintain **5,000** [jets] / **3,000** [props], expect **[FILED ALTITUDE]** one-zero minutes after departure,  
-> Departure frequency **125.8**,  
+> Cleared to **[ARRIVAL AIRPORT NAME] Airport**,
+> **[NEW DEPARTURE] departure, [NEW TRANSITION] transition, direct [NEXT VOR]**, then as filed,
+> Maintain **5,000** [jets] / **3,000** [props], expect **[FILED ALTITUDE]** one-zero minutes after departure,
+> Departure frequency **125.8**,
 > Squawk **XXXX**.
 
 ## Amendment Messages
@@ -234,3 +271,7 @@ Before issuing the clearance, verify:
 - Transponder code
 
 The validated flight plan should produce a CRAFT clearance that can be used by the controller to issue the IFR clearance.
+
+```
+
+```
