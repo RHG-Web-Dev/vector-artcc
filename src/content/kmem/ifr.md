@@ -212,7 +212,7 @@ After validating the flight plan, generate the CRAFT clearance reference.
 ### Standard CRAFT
 
 > Cleared to **[ARRIVAL AIRPORT NAME] Airport**,
-> **[DEPARTURE] departure, [TRANSITION] transition**, then as filed,
+> **[DEPARTURE] departure, [TRANSITION] transition**, then as filed, [Direct to the field],
 > Maintain **5,000** [jets] / **3,000** [props], expect **[FILED ALTITUDE]** one-zero minutes after departure,
 > Departure frequency **125.8**,
 > Squawk **XXXX**.
@@ -222,7 +222,7 @@ After validating the flight plan, generate the CRAFT clearance reference.
 If the departure or transition was changed and the amendment changes the route:
 
 > Cleared to **[ARRIVAL AIRPORT NAME] Airport**,
-> **[NEW DEPARTURE] departure, [NEW TRANSITION] transition, direct [NEXT VOR]**, then as filed,
+> **[NEW DEPARTURE] departure, [NEW TRANSITION] transition, direct [NEXT VOR]**, then as filed, [Direct to the field],
 > Maintain **5,000** [jets] / **3,000** [props], expect **[FILED ALTITUDE]** one-zero minutes after departure,
 > Departure frequency **125.8**,
 > Squawk **XXXX**.
