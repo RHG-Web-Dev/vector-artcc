@@ -39,6 +39,14 @@ Pattern Work?
         └─ Requested VFR altitude
 ```
 
+## Example VFR Phraseology
+
+- "Memphis Ground, N123AB requesting VFR clearance."
+- "N123AB, Memphis Ground, go ahead."
+- "Cessna 172, N123AB"
+- "N123AB, Flight following and/or requested altitude."
+- "Flight following, VFR to KLIT, 2,500 feet, N123AB."
+
 ## CRAFT
 
 - **C —** Bravo clearance
@@ -66,3 +74,14 @@ Pattern Work?
 > Maintain VFR at/below (1,300 Props; 1,800 Jets).
 >
 > Squawk _XXXX_.
+
+## Example Flight Plans
+
+Whats not listed here is the Aircraft Type, which is always required for VFR flight plans.
+
+- Base Flight Plan would be:
+  - ALT VFR/025 | DEST: Empty | RTE VFR (N/E/S/W) | RMK VFT ±FF
+- Cessna 172, departing to the North.
+  - ALT VFR/025 | DEST: Empty | RTE: VFR North | RMK: VFR -FF
+- Cessna 172, wanting flight following to Denver.
+  - ALT VFR/025 | DEST: KDEN | RTE: VFR | RMK: VFR +FF
