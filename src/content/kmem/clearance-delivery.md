@@ -48,6 +48,10 @@ If the filed departure is unavailable or incompatible, offer the appropriate alt
 
 Confirm the route, altitude, frequency, squawk, and any amended item. See [Readbacks](/reference/readbacks/).
 
+## Phraseology
+- IFR
+Cleared
+
 ## KMEM References
 
 - [KMEM Clearance Delivery Cheatsheet](https://docs.google.com/document/d/1BJ6ozTgVlL9agpQLq1eUOmzTb074xUn8MwN8YAAgx4s/edit?tab=t.20fd7vh1godn)
