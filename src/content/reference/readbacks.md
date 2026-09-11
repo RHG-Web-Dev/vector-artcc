@@ -31,4 +31,16 @@ If the pilot reads an item back incorrectly, correct the specific item clearly:
 
 Do not treat an incorrect readback as accepted simply because the rest of the readback was correct.
 
-Use the current facility SOP and VATSIM phraseology standards whenever they differ from this quick-reference guidance.
+## After a correct readback, you may issue the next instruction.
+
+- On a movement area, pilots have to call for pushback.
+
+```text
+[CALLSIGN] Readback correct, call for push, expect runway XX
+```
+
+- On a non-movement area, pilots use discretion for pushing, but have to call for taxi.
+
+```text
+[CALLSIGN] Readback correct, push at pilots discretion, call for taxi when ready, expect runway XX
+```
