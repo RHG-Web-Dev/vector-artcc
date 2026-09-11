@@ -11,6 +11,14 @@ Coordination should be brief, complete, and easy for the receiving controller to
 
 ## Crossing Coordination
 
+### Short & Fast Example
+
+```text
+[You] Local, Ground, one to cross 27 at November.
+[Local] Local, Crossing Approved.
+[You] Local, Ground Crossing Complete.
+```
+
 A simple memory aid is:
 
 **WHO → WHO AM I → HOW MANY → WHAT → WHERE**
@@ -20,7 +28,7 @@ A simple memory aid is:
 ```text
 [You] Local, Ground.
 [Local] Local
-[You] One to cross 27 at Sierra.
+[You] One to cross 27 at November.
 ```
 
 Breakdown:
