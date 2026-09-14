@@ -47,6 +47,11 @@ Pattern Work?
 - "N123AB, Flight following and/or requested altitude."
 - "Flight following, VFR to KLIT, 2,500 feet, N123AB."
 
+## Coordination w/ Tower
+
+- "Local, Ground, One to get into the pattern."
+- "Local, I'll take them on RWY XXX."
+
 ## CRAFT
 
 - **C —** Bravo clearance
