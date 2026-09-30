@@ -6,14 +6,14 @@ updated: '2026-09-27T00:00:00'
 
 # Airspace
 
-## Controlled Airspace
+## Classes A-G
 
 | Class   | Description           | Altitude                                          |
 | ------- | --------------------- | ------------------------------------------------- |
 | Class A | High-Altitude IFR     | FL180 → FL600                                     |
-| Class B | Major Airports        | MSL                                               |
-| Class C | Busy Airports         | AGL                                               |
-| Class D | Towered Airports      | AGL                                               |
+| Class B | Major Airports        |                                                   |
+| Class C | Busy Airports         |                                                   |
+| Class D | Towered Airports      |                                                   |
 | Class E | Controlled Airspace   |                                                   |
 | Class G | Uncontrolled Airspace | Generally surface → overlying controlled airspace |
 
@@ -21,12 +21,12 @@ updated: '2026-09-27T00:00:00'
 
 | Airspace | Entry Requirement                           |
 | -------- | ------------------------------------------- |
-| A        | IFR, Two-way, Clearance, Transponder/Mode C |
-| B        | Two-way, Clearance, Transponder/Mode C      |
-| C        | Two-way                                     |
-| D        | Two-way                                     |
-| E        | IFR: two-way + clearance; VFR: no clearance |
-| G        | No clearance / no communication requirement |
+| Class A  | Two-way, Clearance, IFR only                |
+| Class B  | Two-way, Clearance                          |
+| Class C  | Two-way                                     |
+| Class D  | Two-way                                     |
+| Class E  | IFR: two-way + clearance; VFR: no clearance |
+| Class G  | No clearance / no communication requirement |
 
 # RVSM
 
@@ -34,15 +34,25 @@ updated: '2026-09-27T00:00:00'
 - FL290–FL410
 - 1,000 ft separation
 - West - Even; East - Odd
-- Above FL410: 2,000 ft separation
+- Above FL410: 2,000 ft separation; FL430-West FL450-East. etc..
 
 # SIDs
 
-| Type         | Description                                                |
-| ------------ | ---------------------------------------------------------- |
-| Pilot        | **Pilot Navigates**<br> via RNAV or visual                 |
-| Radar Vector | **ATC Navigates**<br>via Assigned headings / Radar vectors |
-| Hybrid       | Combination of published navigation and vectors            |
+## Departure Procedures
+
+| Type | Description                                                                                                                               |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| ODP  | Obstacle Departure Procedure — provides obstacle clearance. May be textual or graphic.                                                    |
+| SID  | Standard Instrument Departure — provides an ATC-assigned, published departure route from the terminal area toward the en route structure. |
+| DVA  | Diverse Vector Area — allows ATC to provide radar vectors while maintaining the required obstacle clearance for departure.                |
+
+## SID Types
+
+| Type         | Description                                                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Pilot        | **Pilot Navigates** along the published SID using the specified navigation procedure.<br>ATC provides the clearance, but does not provide headings to fly the procedure. |
+| Radar Vector | **ATC Navigates** the aircraft using assigned headings/vectors.<br>The aircraft is vectored to establish it on the appropriate route or airway.                          |
+| Hybrid       | Combination of pilot navigation and radar vectors.<br>The aircraft follows a published portion of the SID, then receives vectors, or vice versa.vectors                  |
 
 # Mode C / Transponder Requirements
 
