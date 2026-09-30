@@ -199,10 +199,8 @@ Determine the direction of flight by comparing the departure and arrival airport
 | FL360   | FL370   |
 | FL380   | FL390   |
 | FL400   | FL410   |
-| FL430   | FL440   |
-| FL450   | FL460   |
-| FL470   | FL480   |
-| FL490   | FL500   |
+| FL430   | FL450   |
+| FL470   | FL490   |
 
 ### Invalid Altitude
 
