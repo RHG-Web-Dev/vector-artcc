@@ -12,47 +12,64 @@ A relief briefing transfers the current position to the relieving controller. Th
 
 ## Template
 
-> Alright, I'll give you the relief briefing.
->
-> ATIS **[XX]** is current.
->
-> We are currently in a **[North/South]** flow with **[IMC/VMC]** conditions.
->
-> Runways are departing**[XX]** and arriving **[XX]** .
->
-> For online frequencies, Tower is on **[frequency]**, Departure is on **[frequency]**, and **[continue through the online frequency list]**.
->
-> For traffic, **[CALLSIGN]** is currently **[taxiing / holding / waiting / etc.]. [Continue through applicable aircraft]**.
->
-> TDLS is **[up to date / not up to date]**.
->
-> **Any questions?**
+```
+Alright, I'll give you the relief briefing.
+
+ATIS **[X]** is current.
+
+We are currently in a **[North/South]** flow with **[IMC/VMC]** conditions.
+
+Active Runways are departing **[XX]** and arriving **[XX]** .
+
+For online frequencies,
+     Tower is on **[frequency]**
+     Departure is on **[frequency]**
+
+For traffic,
+     **[CALLSIGN]** is currently **[current status].**
+     [Continue through applicable aircraft talking to you]
+
+Aircraft not talking to us:
+     **[CALLSIGN]** is **[current status].**
+		 [Continue through applicable aircraft not talking to you]
+
+[Continue through applicable aircraft]
+
+TDLS is **[up to date / not up to date]**.
+
+**Any questions?**
+```
 
 ---
 
-## Relief Checklist
+## Relief Example for KMEM
 
-- **ATIS:** `[Information]` — Current
-- **Flow:** `[North / South]`
-- **Weather:** `[IMC / VMC]`
-- **Runways:**
+- **ATIS:**
+- `[X]` is Current
+
+- **Altimeter:**
+- **[Airport]** altimeter is `[XX.XX]`
+
+- **Flow & Weather:**
+- Currently in a **[North/South]** flow with **[VMC/IMC]** conditions.
+
+- **Active Runways are:**
   - Departing — `[XX]`
-  - Approach — `[XX]`
+  - Arriving — `[XX]`
 
-- **Online Frequencies:**
-  - Tower — `[XXX.X]`
-  - Departure — `[XXX.X]`
-  - Other online positions — `[Frequency]`
+- **Frequencies:**
+  - Tower is on `119.7`
+  - Departure is on `125.8`
 
-- **Traffic:**
+- **Active Traffic:**
   - `[CALLSIGN]` — `[Current status]`
-  - `[CALLSIGN]` — `[Current status]`
-  - `[CALLSIGN]` — `[Current status]`
+
+- **Havent talked to anyone else on the ground**
 
 - **TDLS:** `[Up to date / Not up to date]`
-  - `[Additional TDLS information, if applicable]`
+  - Not up to date if there are unprocessed flight plans
 
-- **Questions:** `[Any questions?]`
+- **Any Questions?**
 
 ---
 
@@ -74,6 +91,6 @@ Use the aircraft's **current position/status**, rather than simply listing the c
 
 ## Quick Mental Order
 
-**ATIS → Flow → Weather → Runways → Frequencies → Traffic → TDLS → Questions**
+**ATIS → Altimeter → Flow → Weather → Runways → Frequencies → Traffic → TDLS → Questions**
 
 > **If it affects the next controller's ability to work the position, brief it.**
