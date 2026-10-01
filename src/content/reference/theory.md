@@ -40,11 +40,11 @@ updated: '2026-09-27T00:00:00'
 
 ## Departure Procedures
 
-| Type | Description                                                                                                                               |
-| ---- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| ODP  | Obstacle Departure Procedure — provides obstacle clearance. May be textual or graphic.                                                    |
-| SID  | Standard Instrument Departure — provides an ATC-assigned, published departure route from the terminal area toward the en route structure. |
-| DVA  | Diverse Vector Area — allows ATC to provide radar vectors while maintaining the required obstacle clearance for departure.                |
+| Type | Description                                                                                                                                |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| ODP  | Obstacle Departure Procedure<br>Provides obstacle clearance. May be textual or graphic.                                                    |
+| SID  | Standard Instrument Departure<br>Provides an ATC-assigned, published departure route from the terminal area toward the en route structure. |
+| DVA  | Diverse Vector Area<br>Allows ATC to provide radar vectors while maintaining the required obstacle clearance for departure.                |
 
 ## SID Types
 
