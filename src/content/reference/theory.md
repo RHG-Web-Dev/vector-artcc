@@ -8,25 +8,46 @@ updated: '2026-09-27T00:00:00'
 
 ## Classes A-G
 
-| Class   | Description           | Altitude                                          |
-| ------- | --------------------- | ------------------------------------------------- |
-| Class A | High-Altitude IFR     | FL180 → FL600                                     |
-| Class B | Major Airports        |                                                   |
-| Class C | Busy Airports         |                                                   |
-| Class D | Towered Airports      |                                                   |
-| Class E | Controlled Airspace   |                                                   |
-| Class G | Uncontrolled Airspace | Generally surface → overlying controlled airspace |
+| Class   | Description               | Altitude                                          |
+| ------- | ------------------------- | ------------------------------------------------- |
+| Class A | High-Altitude IFR         | FL180 → FL600                                     |
+| Class B | Busy Airports             |                                                   |
+| Class C | Congested Airports        |                                                   |
+| Class D | Towered Airports          |                                                   |
+| Class E | Other Controlled Airspace |                                                   |
+| Class G | Uncontrolled Airspace     | Generally surface → overlying controlled airspace |
 
 ### Entry Requirements
 
-| Airspace | Entry Requirement                           |
-| -------- | ------------------------------------------- |
-| Class A  | Two-way, Clearance, IFR only                |
-| Class B  | Two-way, Clearance                          |
-| Class C  | Two-way                                     |
-| Class D  | Two-way                                     |
-| Class E  | IFR: two-way + clearance; VFR: no clearance |
-| Class G  | No clearance / no communication requirement |
+| Airspace | Entry Requirement                          |
+| -------- | ------------------------------------------ |
+| Class A  | Two-way, Clearance, IFR Only               |
+| Class B  | Two-way, Clearance                         |
+| Class C  | Two-way                                    |
+| Class D  | Two-way                                    |
+| Class E  | No specific entry requirement              |
+| Class G  | No ATC clearance or communication required |
+
+# Direction of Flight
+
+000°–179° magnetic: Odd
+180°–359° magnetic: Even
+Eastbound: Odd
+Westbound: Even
+
+### Flight Level Examples
+
+FL180 — West
+FL190 — East
+FL200 — West
+FL210 — East
+...
+FL410 — East
+FL430 — West
+FL450 — East
+FL470 — West
+FL490 — East
+FL510 — West
 
 # RVSM
 
@@ -35,6 +56,16 @@ updated: '2026-09-27T00:00:00'
 - 1,000 ft separation
 - West - Even; East - Odd
 - Above FL410: 2,000 ft separation; FL430-West FL450-East. etc..
+
+# Equipment Suffixes
+
+Identifies aircraft navigation, transponder, and RVSM capabilities
+Commonly encountered:
+/L - RNAV + RVSM capable; Mode C transponder
+/G - RNAV w/ GNSS
+/W - RVSM Capable
+/A - Advanced RNAV?
+/X — No transponder capability; clarify equipment before continuing
 
 # SIDs
 
@@ -48,17 +79,16 @@ updated: '2026-09-27T00:00:00'
 
 ## SID Types
 
-| Type         | Description                                                                                                                                                              |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Pilot        | **Pilot Navigates** along the published SID using the specified navigation procedure.<br>ATC provides the clearance, but does not provide headings to fly the procedure. |
-| Radar Vector | **ATC Navigates** the aircraft using assigned headings/vectors.<br>The aircraft is vectored to establish it on the appropriate route or airway.                          |
-| Hybrid       | Combination of pilot navigation and radar vectors.<br>The aircraft follows a published portion of the SID, then receives vectors, or vice versa.vectors                  |
+| Type         | Description                                                                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pilot        | **Pilot Navigates** along the published SID using the specified navigation procedure.                                                                   |
+| Radar Vector | **ATC Navigates** the aircraft using assigned headings/vectors.<br>The aircraft is vectored to establish it on the appropriate route or airway.         |
+| Hybrid       | Combination of pilot navigation and radar vectors.<br>The aircraft follows a published portion of the SID, then receives vectors, or vice versa.vectors |
 
 # Mode C / Transponder Requirements
 
 - Whenever airborne
 - Positioned on a active runway
-- Operating on the ground at airports with an surface surveillance system (ASDE-X)
 
 # CRAFT
 
