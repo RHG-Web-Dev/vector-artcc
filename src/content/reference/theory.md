@@ -11,8 +11,8 @@ updated: '2026-09-27T00:00:00'
 | Class   | Description               | Altitude                                          |
 | ------- | ------------------------- | ------------------------------------------------- |
 | Class A | High-Altitude IFR         | FL180 → FL600                                     |
-| Class B | Busy Airports             |                                                   |
-| Class C | Congested Airports        |                                                   |
+| Class B | **B**usy Airports         |                                                   |
+| Class C | **C**ongested Airports    |                                                   |
 | Class D | Towered Airports          |                                                   |
 | Class E | Other Controlled Airspace |                                                   |
 | Class G | Uncontrolled Airspace     | Generally surface → overlying controlled airspace |
@@ -28,33 +28,11 @@ updated: '2026-09-27T00:00:00'
 | Class E  | No specific entry requirement              |
 | Class G  | No ATC clearance or communication required |
 
-# Direction of Flight
-
-000°–179° magnetic: Odd
-180°–359° magnetic: Even
-Eastbound: Odd
-Westbound: Even
-
-### Flight Level Examples
-
-FL180 — West
-FL190 — East
-FL200 — West
-FL210 — East
-...
-FL410 — East
-FL430 — West
-FL450 — East
-FL470 — West
-FL490 — East
-FL510 — West
-
 # RVSM
 
 - Reduced Vertical Separation Minimum
 - FL290–FL410
 - 1,000 ft separation
-- West - Even; East - Odd
 - Above FL410: 2,000 ft separation; FL430-West FL450-East. etc..
 
 # Equipment Suffixes
@@ -63,8 +41,8 @@ Identifies aircraft navigation, transponder, and RVSM capabilities
 Commonly encountered:
 /L - RNAV + RVSM capable; Mode C transponder
 /G - RNAV w/ GNSS
-/W - RVSM Capable
-/A - Advanced RNAV?
+/W - RVSM Capable; No RNAV
+/A - Advanced RNAV; No RVSM
 /X — No transponder capability; clarify equipment before continuing
 
 # SIDs
@@ -79,16 +57,20 @@ Commonly encountered:
 
 ## SID Types
 
-| Type         | Description                                                                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Pilot        | **Pilot Navigates** along the published SID using the specified navigation procedure.                                                                   |
-| Radar Vector | **ATC Navigates** the aircraft using assigned headings/vectors.<br>The aircraft is vectored to establish it on the appropriate route or airway.         |
-| Hybrid       | Combination of pilot navigation and radar vectors.<br>The aircraft follows a published portion of the SID, then receives vectors, or vice versa.vectors |
+| Type         | Description                                                                                                                                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Pilot        | **Pilot Navigates** along the published SID using the specified navigation procedure.                                                            |
+| Radar Vector | **ATC Navigates** the aircraft using assigned headings/vectors.<br>The aircraft is vectored to establish it on the appropriate route or airway.  |
+| Hybrid       | Combination of pilot navigation and radar vectors.<br>The aircraft follows a published portion of the SID, then receives vectors, or vice versa. |
 
 # Mode C / Transponder Requirements
 
-- Whenever airborne
-- Positioned on a active runway
+- **Movement Area**
+  - Mode C required
+
+- **Mode C Veil**
+  - 30 NM from the Class B primary airport
+  - Surface → 10,000 MSL (Mean Sea Level)
 
 # CRAFT
 
