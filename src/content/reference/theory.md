@@ -1,21 +1,34 @@
 ---
 title: Theory
 description: Theory reference covering airspace, entries, instrument departures, CRAFT, transponder requirements, direction of flight, and RNAV operations.
-updated: '2026-10-01T00:00:00'
+updated: '2026-10-02T00:00:00'
 ---
+
+# Dictionary
+
+- AGL — Above Ground Level
+- MSL — Mean Sea Level
+- VFR — Visual Flight Rules
+- IFR — Instrument Flight Rules
+- RNAV — Area Navigation
+- RVSM — Reduced Vertical Separation Minimum
+- VMC — Visual Meteorological Conditions
+- IMC — Instrument Meteorological Conditions
+- ATIS — Automatic Terminal Information Service
+- TDLS — Traffic Display List System
 
 # Airspace
 
 ## Classes A-G
 
-|   Class | Description            | Altitude                                           |
-| ------: | ---------------------- | :------------------------------------------------- |
-| Class A | High-Altitude IFR      | FL180 → FL600                                      |
-| Class B | **B**usy Airports      |                                                    |
-| Class C | **C**ongested Airports |                                                    |
-| Class D | Towered Airports       |                                                    |
-| Class E | **E**verything Else    | Typically starts @ 1200ft AGL (Above Ground Level) |
-| Class G | Uncontrolled Airspace  | Generally surface → overlying controlled airspace  |
+|   Class | Description            | Altitude                                          |
+| ------: | ---------------------- | :------------------------------------------------ |
+| Class A | High-Altitude IFR      | FL180 → FL600                                     |
+| Class B | **B**usy Airports      |                                                   |
+| Class C | **C**ongested Airports |                                                   |
+| Class D | Towered Airports       |                                                   |
+| Class E | **E**verything Else    | Typically starts @ 1200ft AGL                     |
+| Class G | Uncontrolled Airspace  | Generally surface → overlying controlled airspace |
 
 ### Entry Requirements
 
@@ -27,6 +40,10 @@ updated: '2026-10-01T00:00:00'
 |  Class D | Two-way                                    |
 |  Class E | No specific entry requirement              |
 |  Class G | No ATC clearance or communication required |
+
+## VFR Airspace
+
+- VFR operations are permitted upto 18,500 ft MSL
 
 # RVSM
 
@@ -73,7 +90,7 @@ Commonly encountered:
 
 - **Mode C Veil**
   - 30 NM from the Class B primary airport
-  - Surface → 10,000 MSL (Mean Sea Level)
+  - Surface → 10,000 MSL
 
 - **Airspace**
   - Mode C required in Class Brave and Charlie airspace

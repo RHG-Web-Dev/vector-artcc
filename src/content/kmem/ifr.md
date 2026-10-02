@@ -182,25 +182,32 @@ For aircraft that are only RVSM capable:
 
 Determine the direction of flight by comparing the departure and arrival airports.
 
-| West    | East    |
-| ------- | ------- |
-| VFR     | VFR/035 |
-| VFR/045 | VFR/055 |
-| IFR     |         |
-| FL180   | FL190   |
-| FL200   | FL210   |
-| FL220   | FL230   |
-| FL240   | FL250   |
-| FL260   | FL270   |
-| FL280   | FL290   |
-| FL300   | FL310   |
-| FL320   | FL330   |
-| FL340   | FL350   |
-| FL360   | FL370   |
-| FL380   | FL390   |
-| FL400   | FL410   |
-| FL430   | FL450   |
-| FL470   | FL490   |
+| West       | East    |
+| ---------- | ------- |
+| VFR        | VFR/035 |
+| VFR/045    | VFR/055 |
+| VFR/065    | VFR/075 |
+| VFR/085    | VFR/095 |
+| VFR/105    | VFR/115 |
+| VFR/125    | VFR/135 |
+| VFR/145    | VFR/155 |
+| VFR/165    | VFR/175 |
+|            |         |
+| IFR - RVSM |         |
+| FL180      | FL190   |
+| FL200      | FL210   |
+| FL220      | FL230   |
+| FL240      | FL250   |
+| FL260      | FL270   |
+| FL280      | FL290   |
+| FL300      | FL310   |
+| FL320      | FL330   |
+| FL340      | FL350   |
+| FL360      | FL370   |
+| FL380      | FL390   |
+| FL400      | FL410   |
+| FL430      | FL450   |
+| FL470      | FL490   |
 
 ### Invalid Altitude
 
