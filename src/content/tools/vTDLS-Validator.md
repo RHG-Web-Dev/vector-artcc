@@ -11,7 +11,7 @@ The vTDLS Clearance Verifier helps controllers review a clearance in the vTDLS w
 
 The companion userscript adds KMEM clearance support to the workflow:
 
-[View or install the KMEM clearance userscript](https://github.com/RHGDEV/Artcc-Scripts/raw/main/src/kmem-clearance.user.js)
+[View or install the KMEM clearance userscript](https://github.com/RHGDEV/Artcc-Scripts/raw/refs/heads/main/src/tdls-clearance.user.js)
 
 ## How to use it
 
